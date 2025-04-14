@@ -1,0 +1,21 @@
+:root {
+  .main {
+    --primary-color: #f96363; // Primary color of the app because it will capture user's
+    // attention the most, compared to other, less noticable colors
+
+    --secondary-color: #efefef; // It will be used as background color of the layout underlay,
+    // as habit card color at "Statistics" page, in theme toggle button
+
+    --accent-color: #c7c7c7; // This color will be used in progress circle (right sidebar)
+    // and in secondary alert button creation
+
+    --background-color: #ffffff;
+    // Bg color of pages and sidebars
+
+    --primary-text-color: #212121;
+    // Primary text color;
+
+    --secondary-text-color: #6b6b6b;
+    // Secondary text color;
+  }
+}

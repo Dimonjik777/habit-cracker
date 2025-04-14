@@ -1,0 +1,19 @@
+html {
+  box-sizing: border-box;
+  font-size: 100%; //For font accessibility
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  .main {
+    position: relative;
+    background-color: var(--accent-color);
+    color: var(--primary-text-color);
+    font-family: "Inter";
+  }
+}
