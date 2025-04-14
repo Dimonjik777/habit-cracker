@@ -2,9 +2,11 @@ import styles from "/src/styles/modules/button.module.scss";
 export default function Button({
   type,
   value,
+  action,
 }: {
   type: "primary" | "secondary";
   value: string;
+  action: () => void;
 }) {
   return (
     <input
@@ -13,6 +15,7 @@ export default function Button({
         type == "secondary" ? styles.secondary : ""
       }`}
       value={value}
+      onClick={action}
     />
   );
 }
