@@ -9,10 +9,6 @@
   color: var(--background-color);
   border: 3px solid var(--primary-color);
   transition: all 0.1s;
-  &:hover {
-    width: 110%;
-    height: 110%;
-  }
   &.secondary {
     background-color: var(--background-color);
     color: var(--primary-text-color);
