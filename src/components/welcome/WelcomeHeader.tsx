@@ -9,8 +9,12 @@ export default function WelcomeHeader() {
         <div className={styles.logoText}>Habit Cracker</div>
       </div>
       <div className={styles.right}>
-        <Button type="primary" value="Sign In" />
-        <Button type="secondary" value="Sign Up" />
+        <div className={styles.buttonContainer}>
+          <Button type="primary" value="Sign In" />
+        </div>
+        <div className={styles.buttonContainer}>
+          <Button type="secondary" value="Sign Up" />
+        </div>
       </div>
     </div>
   );
