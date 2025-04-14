@@ -13,7 +13,7 @@ export default function welcome() {
             control of your day and achieve your goals
           </div>
           <div className={styles.buttonContainer}>
-            <Button type="primary" value="Get started" />
+            <Button type="primary" value="Get started" action={() => {}} />
           </div>
         </div>
       </div>

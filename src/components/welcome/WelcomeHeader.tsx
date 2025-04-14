@@ -10,10 +10,10 @@ export default function WelcomeHeader() {
       </div>
       <div className={styles.right}>
         <div className={styles.buttonContainer}>
-          <Button type="primary" value="Sign In" />
+          <Button type="primary" value="Sign In" action={() => {}} />
         </div>
         <div className={styles.buttonContainer}>
-          <Button type="secondary" value="Sign Up" />
+          <Button type="secondary" value="Sign Up" action={() => {}} />
         </div>
       </div>
     </div>
