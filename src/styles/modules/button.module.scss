@@ -8,18 +8,12 @@
   background-color: var(--primary-color);
   color: var(--background-color);
   border: 3px solid var(--primary-color);
-  transition: all 0.3s;
+  transition: all 0.1s;
   &:hover {
-    background-color: var(--background-color);
-    color: var(--primary-text-color);
-    border: 3px solid var(--primary-color);
+    width: 120px;
+    height: 50px;
   }
   &.secondary {
-    &:hover {
-      background-color: var(--primary-color);
-      color: var(--background-color);
-      border: 3px solid var(--primary-color);
-    }
     background-color: var(--background-color);
     color: var(--primary-text-color);
     border: 3px solid var(--primary-color);
