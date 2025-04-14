@@ -1,0 +1,43 @@
+.container {
+  background-color: var(--background-color);
+  height: 100px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  .left {
+    margin-left: 5%;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    svg {
+      height: 70px;
+      width: 70px;
+    }
+    .logoText {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--primary-color);
+    }
+  }
+  .right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-right: 5%;
+    gap: 16px;
+  }
+  @media screen and (max-width: 700px) {
+    .left {
+      svg {
+        height: 40px;
+        width: 40px;
+      }
+      .logoText {
+        font-size: 32px;
+      }
+    }
+    .right {
+      display: none;
+    }
+  }
+}
