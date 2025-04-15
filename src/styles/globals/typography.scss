@@ -1,1 +1,24 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;700;800&display=swap");
+
+body{
+  color: var(--primary-text-color);
+}
+
+h1{
+  font-size: 36px;
+  font-weight: 900;
+}
+
+h2{
+  font-size: 24px;
+  font-weight: bold;
+}
+
+h3{
+  font-size: 24px;
+  font-weight: medium;
+}
+
+p, span{
+  font-size: 16px;
+}
