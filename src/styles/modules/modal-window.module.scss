@@ -19,6 +19,8 @@
     min-height: 200px;
     overflow: hidden;
     border-radius: 10px;
+    padding: 40px;
+
   }
 
   .overlay {
@@ -32,4 +34,14 @@
     opacity: 25%;
   }
 
+}
+
+@media screen and (max-width: 700px){
+
+  .container{
+
+    .card{
+      min-width: 80%;
+    }
+  }
 }
