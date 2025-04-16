@@ -1,9 +1,11 @@
 import Logo from "/src/assets/logo.svg?react";
 import ListIcon from "/src/assets/list.svg?react";
 import ChartIcon from "/src/assets/chart.svg?react";
+import { useLocation } from "react-router";
 import styles from "/src/styles/modules/left-sidebar.module.scss";
 
 export default function LeftSidebar() {
+  const location = useLocation();
   return (
     <div className={styles.container}>
       <div className={styles.logoContainer}>
@@ -11,11 +13,19 @@ export default function LeftSidebar() {
         <h1>Habit Cracker</h1>
       </div>
       <div className={styles.linksContainer}>
-        <div className={`${styles.link} ${styles.active}`}>
+        <div
+          className={`${styles.link} ${
+            location.pathname == "/dashboard/all" ? styles.active : ""
+          }`}
+        >
           <ListIcon />
           <h4>All habits</h4>
         </div>
-        <div className={styles.link}>
+        <div
+          className={`${styles.link} ${
+            location.pathname == "/dashboard/statistics" ? styles.active : ""
+          }`}
+        >
           <ChartIcon />
           <h4>Statistics</h4>
         </div>
