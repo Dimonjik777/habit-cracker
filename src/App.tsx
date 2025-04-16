@@ -3,6 +3,8 @@ import Welcome from "./pages/Welcome";
 import ModalWindow from "./components/ModalWindow";
 import FormRegister from "./components/FormRegister";
 import FormLogin from "./components/FormLogin";
+import LeftSidebar from "./components/LeftSidebar";
+
 function App() {
   return (
     <Router>
@@ -26,6 +28,8 @@ function App() {
               </ModalWindow>
             }
           />
+          {/* Development-only route */}
+          <Route path="/left-sidebar-preview" element={<LeftSidebar />} />
           <Route path="/welcome" element={<Welcome />} />
         </Routes>
       </div>
