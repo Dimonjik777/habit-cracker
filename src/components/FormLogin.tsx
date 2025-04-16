@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Button from "./Button";
+import PasswordField from "./PasswordField";
 import styles from "/src/styles/modules/form.module.scss";
 
 type FormLoginData = {
@@ -54,15 +55,13 @@ export default function FormLogin() {
           required
         />
         <h3 className={styles.label}>Password:</h3>
-        <input
-          className={styles.input}
-          type="password"
-          placeholder="Enter password"
+        <PasswordField
           onInput={(e) =>
             setData({ ...data, password: (e.target as HTMLInputElement).value })
           }
-          required
+          value={data.password}
         />
+
         <h4>{error}</h4>
         <Button type="primary" value="Sign up" action={handleSubmit} />
       </form>
