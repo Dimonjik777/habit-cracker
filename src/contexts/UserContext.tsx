@@ -16,6 +16,7 @@ type UserType = {
 type UserData = {
   email: string;
   password: string;
+  name?: string;
 };
 type UserContextType = {
   user: UserType;
@@ -46,7 +47,16 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   // Mockup login
   const login = async (data: UserData) => {
     try {
-      setUser({ ...data, role: "registered" });
+      if (data["name"]) {
+        localStorage.setItem("userName", data["name"]);
+      }
+
+      const name = localStorage.getItem("userName") || "♂ Boy next door ♂";
+      // The name fallback should work only if user does login without prior registration
+      // We arent actually implementing any authentication here so user can login freely, password is not compared
+      // And that's actullay not the thing to care about because it is backend's responsibility to handle authentication
+
+      setUser({ ...data, name: name, role: "registered" });
       return true;
     } catch (e) {
       return false;
