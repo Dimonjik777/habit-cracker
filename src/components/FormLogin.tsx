@@ -13,16 +13,29 @@ export default function FormLogin() {
     email: "",
     password: "",
   });
+
+  const validateEmail = (email: string): boolean => {
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  };
+
   useEffect(() => {
     if (!data["email"] || !data["password"]) {
       setError("Please fill out empty fields.");
+    } else if (!validateEmail(data["email"])) {
+      setError("Please follow the email pattern");
     } else {
       setError("");
     }
+    setShowError(false);
   }, [data]);
+
   const [error, setError] = useState<string>("");
+  const [showError, setShowError] = useState<boolean>(false);
+
   const handleSubmit = async () => {
     if (error) {
+      setShowError(true);
       return;
     }
     let result = await fetchLogin(data);
@@ -62,9 +75,9 @@ export default function FormLogin() {
           value={data.password}
         />
 
-        <h4>{error}</h4>
         <Button type="primary" value="Sign up" action={handleSubmit} />
       </form>
+      {showError && <p className={styles.error}>{error}</p>}
     </div>
   );
 }

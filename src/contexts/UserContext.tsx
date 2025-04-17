@@ -41,7 +41,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
 
   // Mockup user update
   useEffect(() => {
-    sessionStorage.setItem("user", JSON.stringify(user));
+    if (user !== null) {
+      sessionStorage.setItem("user", JSON.stringify(user));
+    }
   }, [user]);
 
   // Mockup login
