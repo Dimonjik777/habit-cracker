@@ -5,13 +5,29 @@ import FormRegister from "./components/FormRegister";
 import FormLogin from "./components/FormLogin";
 import LeftSidebar from "./components/LeftSidebar";
 import { useTheme } from "./contexts/ThemeContext";
+import { useUser } from "./contexts/UserContext";
 
 function App() {
   const { darkTheme } = useTheme();
+  const { user } = useUser();
   return (
     <Router>
       <div className={`main ${darkTheme ? "theme-dark" : ""}`}>
+        {user.role === "registered" && (
+          <>
+            <LeftSidebar />
+            <Routes>
+              <Route
+                path="/dashboard/all"
+                element={<div>Hi there, you are logged in</div>}
+              />
+            </Routes>
+          </>
+        )}
         <Routes>
+          {user.role === "unregistered" && (
+            <Route path="/welcome" element={<Welcome />} />
+          )}
           {/* Development-only route */}
           <Route
             path="/"
@@ -32,7 +48,6 @@ function App() {
           />
           {/* Development-only route */}
           <Route path="/left-sidebar-preview" element={<LeftSidebar />} />
-          <Route path="/welcome" element={<Welcome />} />
         </Routes>
       </div>
     </Router>
