@@ -6,7 +6,7 @@ export default function WelcomeHeader() {
     <div className={styles.container}>
       <div className={styles.left}>
         <Logo />
-        <div className={styles.logoText}>Habit Cracker</div>
+        <h1>Habit Cracker</h1>
       </div>
       <div className={styles.right}>
         <div className={styles.buttonContainer}>

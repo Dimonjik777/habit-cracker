@@ -7,11 +7,11 @@ export default function welcome() {
       <WelcomeHeader />
       <div className={styles.hero}>
         <div className={styles.contents}>
-          <div className={styles.heading}>Build the habits that matter!</div>
-          <div className={styles.description}>
+          <h1 className={styles.heading}>Build the habits that matter!</h1>
+          <h3 className={styles.description}>
             Feeling overwhelmed? Our easy-to-use habit tracker helps you take
             control of your day and achieve your goals
-          </div>
+          </h3>
           <div className={styles.buttonContainer}>
             <Button type="primary" value="Get started" action={() => {}} />
           </div>
