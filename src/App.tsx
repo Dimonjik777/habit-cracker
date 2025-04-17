@@ -6,12 +6,14 @@ import FormLogin from "./components/FormLogin";
 import LeftSidebar from "./components/LeftSidebar";
 import { useTheme } from "./contexts/ThemeContext";
 import { useUser } from "./contexts/UserContext";
+import Redirect from "./components/Redirect";
 
 function App() {
   const { darkTheme } = useTheme();
   const { user } = useUser();
   return (
     <Router>
+      <Redirect />
       <div className={`main ${darkTheme ? "theme-dark" : ""}`}>
         {user.role === "registered" && (
           <>
