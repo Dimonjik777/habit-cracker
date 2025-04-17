@@ -1,8 +1,13 @@
 import styles from "/src/styles/modules/welcome.module.scss";
 import WelcomeHeader from "../components/welcome/WelcomeHeader";
 import Button from "../components/Button";
+import { useModal } from "../contexts/ModalContext";
+import FormRegister from "../components/FormRegister";
 export default function welcome() {
-  return (
+
+  const {openModal} = useModal();
+
+  return (<>
     <div className={styles.container}>
       <WelcomeHeader />
       <div className={styles.hero}>
@@ -13,10 +18,11 @@ export default function welcome() {
             control of your day and achieve your goals
           </h3>
           <div className={styles.buttonContainer}>
-            <Button type="primary" value="Get started" action={() => {}} />
+            <Button type="primary" value="Get started" action={() => openModal(<FormRegister />)} />
           </div>
         </div>
       </div>
     </div>
+    </>
   );
 }

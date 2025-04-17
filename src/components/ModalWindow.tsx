@@ -1,13 +1,14 @@
-import { ReactNode } from "react";
 import styles from "/src/styles/modules/modal-window.module.scss";
+import { useModal } from "../contexts/ModalContext";
 
-export default function ModalWindow(
-  {children} : {children: ReactNode}
-) {
+export default function ModalWindow() {
+
+  const {isActive, modalContent, closeModal} = useModal();
+  
   return (
-    <div className={styles.container}>
-      <div className={styles.card}>{children}</div>
-      <div className={styles.overlay}></div>
+    <div className={`${styles.container} ${isActive ? styles.active : ""}`}>
+      <div className={styles.card}>{modalContent}</div>
+      <div onClick={() => closeModal()} className={styles.overlay}></div>
     </div>
   )
 }
