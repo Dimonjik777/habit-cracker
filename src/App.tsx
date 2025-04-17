@@ -1,8 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import ModalWindow from "./components/ModalWindow";
-import FormRegister from "./components/FormRegister";
-import FormLogin from "./components/FormLogin";
 import LeftSidebar from "./components/LeftSidebar";
 import { useTheme } from "./contexts/ThemeContext";
 import { ModalProvider } from "./contexts/ModalContext";
