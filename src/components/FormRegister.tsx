@@ -15,8 +15,19 @@ export default function FormRegister() {
     password: ''
   });
 
+  const [emailError, setEmailError] = useState<string | null>(null);
+
+  function validateEmail(email : string) : boolean {
+    const regex =  /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return regex.test(email);
+  }
+
   function handleChange(event: React.ChangeEvent<HTMLInputElement>){
     const {name, value} = event.target;
+
+    if(name == "email")
+      setEmailError(null);
+
     setRegisterData(prev => ({
       ...prev,
       [name]: value
@@ -55,8 +66,13 @@ export default function FormRegister() {
         className={styles.input}
         type="password"
         placeholder="Enter password" />
-        <Button type="primary" value="Sign up" action={() => console.log("Hello")} />
+        <Button type="primary" value="Sign up" action={() => {
+          if(!validateEmail(registerData.email)){
+            setEmailError("Incorrect email");
+          }
+        }} />
       </form>
+      {emailError ? <p className={styles.error}>{emailError}</p> : ''}
     </div>
   )
 }
