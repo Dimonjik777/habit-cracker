@@ -36,6 +36,7 @@ export default function FormLogin() {
   const handleSubmit = async () => {
     if (error) {
       setShowError(true);
+      return;
     }
     let result = await fetchLogin(data);
     console.log(`Login result: ${result}`);
