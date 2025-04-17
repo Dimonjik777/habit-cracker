@@ -28,7 +28,7 @@ export default function LeftSidebar() {
           }
         >
           <ChartIcon />
-          <h4>All habits</h4>
+          <h4>Statistics</h4>
         </NavLink>
       </div>
       <div className={styles.signoutContainer}>
