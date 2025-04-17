@@ -5,13 +5,16 @@
   z-index: 99;
   top: 0;
   left: 0;
+  pointer-events: none;
+  opacity: 0;
+  transition: .3s ease all;
 
   .card {
     z-index: 100;
     position: fixed;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -40%);
     background-color: var(--background-color);
     width: auto;
     height: auto;
@@ -20,6 +23,7 @@
     overflow: hidden;
     border-radius: 10px;
     padding: 40px;
+    transition: .3s ease all;
 
   }
 
@@ -31,7 +35,18 @@
     position: fixed;
     top: 0;
     left: 0;
+    transition: .3s ease all;
     opacity: 25%;
+  }
+
+  &.active{
+    pointer-events: all;
+    opacity: 1;
+
+    .card{
+      transform: translate(-50%, -50%);
+    }
+
   }
 
 }
