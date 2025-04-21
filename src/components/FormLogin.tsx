@@ -55,7 +55,7 @@ export default function FormLogin() {
 
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Create your account</h2>
+      <h2 className={styles.title}>Login to Habit Cracker</h2>
       <form className={styles.form} action="" method="get">
         <h3 className={styles.label}>Email adress:</h3>
         <input
