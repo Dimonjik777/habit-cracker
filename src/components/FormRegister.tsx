@@ -2,7 +2,13 @@ import styles from "/src/styles/modules/form.module.scss";
 import Button from "./Button";
 import { useState } from "react";
 import PasswordField from "./PasswordField";
+import { useUser } from "../contexts/UserContext";
+import { useModal } from "../contexts/ModalContext";
+
 export default function FormRegister() {
+
+  const {login} = useUser();
+  const {closeModal} = useModal();
 
   interface RegisterData {
     name: string;
@@ -70,6 +76,8 @@ export default function FormRegister() {
             setEmailError("Incorrect email");
             return;
           }
+          closeModal();
+          login(registerData);
         }} />
       </form>
       {emailError ? <p className={styles.error}>{emailError}</p> : ''}
