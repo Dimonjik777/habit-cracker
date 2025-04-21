@@ -1,6 +1,7 @@
 import styles from "/src/styles/modules/form.module.scss";
 import Button from "./Button";
 import { useState } from "react";
+import PasswordField from "./PasswordField";
 export default function FormRegister() {
 
   interface RegisterData {
@@ -59,13 +60,11 @@ export default function FormRegister() {
         type="text"
         placeholder="Enter email adress" />
         <h3 className={styles.label}>Password:</h3>
-        <input
-        onChange={handleChange}
+        <PasswordField 
         value={registerData.password}
-        name="password"
-        className={styles.input}
-        type="password"
-        placeholder="Enter password" />
+        onInput={(e) => {
+          setRegisterData({...registerData, password:(e.target as HTMLInputElement).value})
+        }} />
         <Button type="primary" value="Sign up" action={() => {
           if(!validateEmail(registerData.email)){
             setEmailError("Incorrect email");
