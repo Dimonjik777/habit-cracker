@@ -68,6 +68,7 @@ export default function FormRegister() {
         <Button type="primary" value="Sign up" action={() => {
           if(!validateEmail(registerData.email)){
             setEmailError("Incorrect email");
+            return;
           }
         }} />
       </form>
