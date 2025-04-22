@@ -1,54 +1,44 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# 📒 Habit cracker (in process)
 
-Currently, two official plugins are available:
+<div align="right">
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/sass/sass-original.svg" height="40" alt="sass logo"  />
+  <img width="12px"/>
+   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" height="40" alt="react logo"  />
+   <img width="12px"/>
+   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" height="40" alt="typescript logo"  />
+   <img width="12px"/>
+  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/reactrouter/reactrouter-original.svg" height="40" alt="react logo"  />
+</div>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A powerful and customizable habit tracker built with React and TypeScript. This is a collaborative project developed together with @georgie-the-developer (https://github.com/georgie-the-developer) to simulate a real-world workflow with clear architecture, reusable components, and scalable state management.
 
-## Expanding the ESLint configuration
+ ##  🚀 Tech Stack
+- **React**
+- **TypeScript**
+- **SCSS Modules**
+- **Contex API**
+- **React Router**
+- **Recharts**
+- **MUI**
+- **Vite**
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🎯 Purpose
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+This project was created as a portfolio-level application to deepen our frontend skills and simulate teamwork, feature planning, and codebase structure similar to real jobs. It's designed to be modular, user-friendly, and easy to scale.
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## 👥 Collaboration
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+This is a team project between two frontend developers. All tasks are discussed, assigned, and reviewed together. We use Git branches, code reviews, and discussions to improve collaboration and simulate real development processes.
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 📌 Features (Planned and Implement)
+- [x] Create welcome page for unregistered users
+- [x] Create basic structure for application
+- [x] Create mockup registration
+- [ ] Create local database in localStorage
+- [ ] Habit creation and editing
+- [ ] Authentication
+- [ ] Page with statistics
+- [ ] Daily tracking and analytics
+- [ ] Dark/light mode toggle
+
