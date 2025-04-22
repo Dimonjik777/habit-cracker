@@ -20,7 +20,7 @@ function App() {
           {user.role === "registered" && (
             <>
               <LeftSidebar />
-              <div className="">
+              <div className="dashboard">
                 <Routes>
                   <Route
                     path="/dashboard/all"
