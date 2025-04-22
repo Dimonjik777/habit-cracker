@@ -23,11 +23,12 @@ export default function HabitsPieChart() {
   return (
     <div className={styles.container}>
       <h1 className={styles.complete__percent}>{`${completeRate}%`}</h1>
+      <p className={styles.complete__desc}>Current day`s progress</p>
       <PieChart width={270} height={270}>
         <Pie
           dataKey="value"
           data={data}
-          innerRadius={100}
+          innerRadius={115}
           outerRadius={135}>
           {data.map((entry, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index]} />

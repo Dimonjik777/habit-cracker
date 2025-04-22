@@ -7,6 +7,17 @@
     position: absolute;
     left: 50%;
     top: 50%;
-    transform: translate(-40%, -50%);
+    transform: translate(-40%, -90%);
+  }
+
+  .complete__desc{
+    position: absolute;
+    top: 50%;
+    font-size: 16px;
+    width: 107px;
+    color: var(--secondary-text-color);
+    text-align: center;
+    left: 50%;
+    transform: translate(-50%, 40%);
   }
 }
