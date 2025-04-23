@@ -7,7 +7,7 @@ import { useModal } from "../contexts/ModalContext";
 
 export default function FormRegister() {
 
-  const {login} = useUser();
+  const {register} = useUser();
   const {closeModal} = useModal();
 
   interface RegisterData {
@@ -77,7 +77,7 @@ export default function FormRegister() {
             return;
           }
           closeModal();
-          login(registerData);
+          register(registerData);
         }} />
       </form>
       {emailError ? <p className={styles.error}>{emailError}</p> : ''}
