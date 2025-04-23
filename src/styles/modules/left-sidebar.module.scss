@@ -10,6 +10,7 @@
   flex-direction: column;
   align-items: center;
   z-index: 99;
+  transition: all 0.3s;
   .logoContainer {
     margin-top: 50px;
     display: flex;
@@ -81,5 +82,8 @@
         fill: var(--primary-text-color);
       }
     }
+  }
+  @media screen and (max-width: 1400px) {
+    left: -380px;
   }
 }
