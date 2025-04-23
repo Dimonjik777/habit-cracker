@@ -20,6 +20,7 @@ type UserData = {
 };
 type UserContextType = {
   user: UserType;
+  register: (data: UserData) => Promise<boolean>;
   login: (data: UserData) => Promise<boolean>;
   logout: () => Promise<boolean>;
 };
@@ -65,6 +66,28 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  
+  const register = async (data: UserData) => {
+    try {
+      // Create mockup database in localStorage with users
+      let allUsers = JSON.parse(localStorage.getItem("Users") || "{}");
+      allUsers = { ...allUsers, [data.email]: { name: data.name, password: data.password } };
+      localStorage.setItem("Users", JSON.stringify(allUsers));
+
+      if (data.name) {
+        localStorage.setItem("userName", data["name"]);
+      }
+
+      setUser({ ...data, role: "registered" });
+
+      return true;
+    }
+    catch (e) {
+      console.error(e);
+      return false;
+    }
+  };
+
   // Mockup logout
   const logout = async () => {
     sessionStorage.removeItem("user");
@@ -77,7 +100,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   }
 
   return (
-    <UserContext.Provider value={{ user, login, logout }}>
+    <UserContext.Provider value={{ user, register, login, logout }}>
       {children}
     </UserContext.Provider>
   );
