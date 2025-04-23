@@ -8,7 +8,6 @@ import Redirect from "./components/Redirect";
 import { ModalProvider } from "./contexts/ModalContext";
 import RightSidebar from "./components/RightSidebar";
 
-
 function App() {
   const { darkTheme } = useTheme();
   const { user } = useUser();
@@ -21,6 +20,18 @@ function App() {
             <>
               <LeftSidebar />
               <div className="dashboard">
+                <div className="header">
+                  <div className="sidebar-toggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                  <div className="sidebar-toggle --right">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                  </div>
+                </div>
                 <Routes>
                   <Route
                     path="/dashboard/all"
@@ -28,7 +39,8 @@ function App() {
                   />
                   <Route
                     path="/dashboard/statistics"
-                    element={<div>Dashboard Statistics</div>} />
+                    element={<div>Dashboard Statistics</div>}
+                  />
                 </Routes>
               </div>
               <RightSidebar />
@@ -39,19 +51,9 @@ function App() {
               <Route path="/welcome" element={<Welcome />} />
             )}
             {/* Development-only route */}
-            <Route
-              path="/"
-              element={
-                ''
-              }
-            />
+            <Route path="/" element={""} />
             {/* Development-only route */}
-            <Route
-              path="/login-preview"
-              element={
-                ''
-              }
-            />
+            <Route path="/login-preview" element={""} />
             {/* Development-only route */}
             <Route path="/left-sidebar-preview" element={<LeftSidebar />} />
           </Routes>
