@@ -32,7 +32,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   // Mockup user retrieval
   useEffect(() => {
     const user = JSON.parse(sessionStorage.getItem("user") || "{}");
-    if (user) {
+    if (user.email) {
       setUser(user);
     } else {
       setUser({ role: "unregistered" });

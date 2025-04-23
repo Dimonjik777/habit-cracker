@@ -2,3 +2,14 @@
 @forward "boilerplates";
 @forward "typography";
 @forward "colors";
+
+.dashboard{
+  background-color: white;
+  min-height: 100%;
+  padding: 50px;
+  width: 100%;
+  max-width: 1050px;
+  position: absolute;
+  top: 0;
+  left: 410px;
+}
