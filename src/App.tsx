@@ -7,6 +7,7 @@ import { useUser } from "./contexts/UserContext";
 import Redirect from "./components/Redirect";
 import { ModalProvider } from "./contexts/ModalContext";
 import RightSidebar from "./components/RightSidebar";
+import ThemeToggle from "./components/ThemeToggle";
 
 function App() {
   const { darkTheme } = useTheme();
@@ -34,15 +35,11 @@ function App() {
               </div>
               <div className="dashboard__info">
                 {location.pathname === "/dashboard/all" ? (
-                  <h2>
-                    Hi there, {user.name}
-                  </h2>
-                ):(
-                  <h2>
-                    Statistics
-                  </h2>
+                  <h2>Hi there, {user.name}</h2>
+                ) : (
+                  <h2>Statistics</h2>
                 )}
-
+                <ThemeToggle />
               </div>
               <Routes>
                 <Route
