@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import ModalWindow from "./components/ModalWindow";
 import LeftSidebar from "./components/LeftSidebar";
@@ -11,55 +11,66 @@ import RightSidebar from "./components/RightSidebar";
 function App() {
   const { darkTheme } = useTheme();
   const { user } = useUser();
+  const location = useLocation();
   return (
     <ModalProvider>
-      <Router>
-        <Redirect />
-        <div className={`main ${darkTheme ? "theme-dark" : ""}`}>
-          {user.role === "registered" && (
-            <>
-              <LeftSidebar />
-              <div className="dashboard">
-                <div className="header">
-                  <div className="sidebar-toggle">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
-                  <div className="sidebar-toggle --right">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                  </div>
+      <Redirect />
+      <div className={`main ${darkTheme ? "theme-dark" : ""}`}>
+        {user.role === "registered" && (
+          <>
+            <LeftSidebar />
+            <div className="dashboard">
+              <div className="header">
+                <div className="sidebar-toggle">
+                  <span></span>
+                  <span></span>
+                  <span></span>
                 </div>
-                <Routes>
-                  <Route
-                    path="/dashboard/all"
-                    element={<div> Dashboard all </div>}
-                  />
-                  <Route
-                    path="/dashboard/statistics"
-                    element={<div>Dashboard Statistics</div>}
-                  />
-                </Routes>
+                <div className="sidebar-toggle --right">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
               </div>
-              <RightSidebar />
-            </>
+              <div className="dashboard__info">
+                {location.pathname === "/dashboard/all" ? (
+                  <h2>
+                    Hi there, {user.name}
+                  </h2>
+                ):(
+                  <h2>
+                    Statistics
+                  </h2>
+                )}
+
+              </div>
+              <Routes>
+                <Route
+                  path="/dashboard/all"
+                  element={<div> Dashboard all </div>}
+                />
+                <Route
+                  path="/dashboard/statistics"
+                  element={<div>Dashboard Statistics</div>}
+                />
+              </Routes>
+            </div>
+            <RightSidebar />
+          </>
+        )}
+        <Routes>
+          {user.role === "unregistered" && (
+            <Route path="/welcome" element={<Welcome />} />
           )}
-          <Routes>
-            {user.role === "unregistered" && (
-              <Route path="/welcome" element={<Welcome />} />
-            )}
-            {/* Development-only route */}
-            <Route path="/" element={""} />
-            {/* Development-only route */}
-            <Route path="/login-preview" element={""} />
-            {/* Development-only route */}
-            <Route path="/left-sidebar-preview" element={<LeftSidebar />} />
-          </Routes>
-          <ModalWindow />
-        </div>
-      </Router>
+          {/* Development-only route */}
+          <Route path="/" element={""} />
+          {/* Development-only route */}
+          <Route path="/login-preview" element={""} />
+          {/* Development-only route */}
+          <Route path="/left-sidebar-preview" element={<LeftSidebar />} />
+        </Routes>
+        <ModalWindow />
+      </div>
     </ModalProvider>
   );
 }
