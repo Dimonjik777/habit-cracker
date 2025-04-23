@@ -85,5 +85,19 @@
   }
   @media screen and (max-width: 1400px) {
     left: -380px;
+    transition: all 0.3s;
+    &.open {
+      left: 0;
+      .overflow {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: calc(100% - 380px);
+        height: 100%;
+        background-color: var(--secondary-text-color);
+        opacity: 0.4;
+        z-index: 97;
+      }
+    }
   }
 }
