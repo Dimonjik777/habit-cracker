@@ -3,11 +3,14 @@
   top: 0;
   left: 0;
   height: 100%;
-  width: 370px;
+  width: 380px;
+  max-width: 100%;
   background-color: var(--background-color);
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 99;
+  transition: all 0.3s;
   .logoContainer {
     margin-top: 50px;
     display: flex;
@@ -77,6 +80,23 @@
       color: var(--primary-text-color);
       svg {
         fill: var(--primary-text-color);
+      }
+    }
+  }
+  @media screen and (max-width: 1400px) {
+    left: -380px;
+    transition: all 0.3s;
+    &.open {
+      left: 0;
+      .overflow {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: calc(100% - 380px);
+        height: 100%;
+        background-color: var(--secondary-text-color);
+        opacity: 0.4;
+        z-index: 97;
       }
     }
   }

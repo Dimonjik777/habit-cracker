@@ -7,13 +7,13 @@
   background-color: white;
   min-height: 100%;
   padding: 50px;
-  width: 100%;
-  max-width: 1050px;
+  width: 55%;
   position: absolute;
   top: 0;
-  left: 410px;
+  left: 50%;
+  transform: translateX(-50%);
   .header {
-    display: flex;
+    display: none;
     justify-content: space-between;
     margin-bottom: 40px;
     .sidebar-toggle {
@@ -37,15 +37,26 @@
         }
       }
       &.--right {
-        // justify-content: end;
         align-items: end;
       }
     }
   }
 
-  &__info{
+  &__info {
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  @media screen and (max-width: 1800px) {
+    width: 50%;
+  }
+  @media screen and (max-width: 1600px) {
+    width: 45%;
+  }
+  @media screen and (max-width: 1400px) {
+    width: 100%;
+    .header {
+      display: flex;
+    }
   }
 }
