@@ -50,28 +50,23 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   // Mockup login
   const login = async (data: UserData) => {
     try {
-      if (data["name"]) {
-        localStorage.setItem("userName", data["name"]);
-      }
-
-      const name = localStorage.getItem("userName") || "♂ Boy next door ♂";
-      // The name fallback should work only if user does login without prior registration
-      // We arent actually implementing any authentication here so user can login freely, password is not compared
-      // And that's actullay not the thing to care about because it is backend's responsibility to handle authentication
-
-      setUser({ ...data, name: name, role: "registered" });
+      setUser({ ...data, role: "registered" });
       return true;
     } catch (e) {
       return false;
     }
   };
 
-  
+
   const register = async (data: UserData) => {
     try {
       // Create mockup database in localStorage with users
       let allUsers = JSON.parse(localStorage.getItem("Users") || "{}");
-      allUsers = { ...allUsers, [data.email]: { name: data.name, password: data.password } };
+      allUsers = {
+        ...allUsers,
+        [data.email]: { name: data.name, password: data.password }
+      };
+      
       localStorage.setItem("Users", JSON.stringify(allUsers));
 
       if (data.name) {
