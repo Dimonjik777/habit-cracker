@@ -11,7 +11,8 @@
   max-width: 1050px;
   position: absolute;
   top: 0;
-  left: 410px;
+  left: 50%;
+  transform: translateX(-50%);
   .header {
     display: flex;
     justify-content: space-between;
