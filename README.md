@@ -35,9 +35,9 @@ This is a team project between two frontend developers. All tasks are discussed,
 - [x] Create welcome page for unregistered users
 - [x] Create basic structure for application
 - [x] Create mockup registration
-- [ ] Create local database in localStorage
+- [x] Create local database in localStorage
 - [ ] Habit creation and editing
-- [ ] Authentication
+- [x] Authentication
 - [ ] Page with statistics
 - [ ] Daily tracking and analytics
 - [ ] Dark/light mode toggle
