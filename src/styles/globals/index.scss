@@ -13,7 +13,7 @@
   left: 50%;
   transform: translateX(-50%);
   .header {
-    display: flex;
+    display: none;
     justify-content: space-between;
     margin-bottom: 40px;
     .sidebar-toggle {
@@ -55,5 +55,8 @@
   }
   @media screen and (max-width: 1400px) {
     width: 100%;
+    .header {
+      display: flex;
+    }
   }
 }
