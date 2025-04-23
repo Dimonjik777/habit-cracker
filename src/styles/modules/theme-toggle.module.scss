@@ -44,10 +44,6 @@
     }
     .sun {
       left: 11px;
-      svg {
-        fill: var(--primary-color);
-        stroke: var(--primary-color);
-      }
       transition: 0.3s;
     }
     .moon {
