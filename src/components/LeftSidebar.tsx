@@ -4,10 +4,10 @@ import ChartIcon from "/src/assets/chart.svg?react";
 import { NavLink } from "react-router";
 import { useUser } from "../contexts/UserContext";
 import styles from "/src/styles/modules/left-sidebar.module.scss";
+import Logout from "/src/assets/logout.svg?react";
 
 export default function LeftSidebar() {
-
-  const {logout} = useUser();
+  const { logout } = useUser();
 
   return (
     <div className={styles.container}>
@@ -35,11 +35,9 @@ export default function LeftSidebar() {
           <h4>Statistics</h4>
         </NavLink>
       </div>
-      <div className={styles.signoutContainer}>
-        <input
-        type="button"
-        value="Sign Out"
-        onClick={() => logout()} />
+      <div className={styles.signoutContainer} onClick={() => logout()}>
+        <Logout />
+        <h4>Sign out</h4>
       </div>
     </div>
   );
