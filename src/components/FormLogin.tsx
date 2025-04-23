@@ -2,8 +2,6 @@ import { useEffect, useState } from "react";
 import Button from "./Button";
 import PasswordField from "./PasswordField";
 import styles from "/src/styles/modules/form.module.scss";
-import { useUser } from "../contexts/UserContext";
-import { useModal } from "../contexts/ModalContext";
 
 type FormLoginData = {
   email: string;
@@ -26,8 +24,7 @@ export default function FormLogin() {
       setError("Please fill out empty fields.");
     } else if (!validateEmail(data["email"])) {
       setError("Please follow the email pattern");
-    }
-    else {
+    } else {
       setError("");
     }
     setShowError(false);
@@ -36,37 +33,23 @@ export default function FormLogin() {
   const [error, setError] = useState<string>("");
   const [showError, setShowError] = useState<boolean>(false);
 
-  const { login } = useUser();
-  const { closeModal } = useModal();
-
   const handleSubmit = async () => {
     if (error) {
       setShowError(true);
       return;
-    };
-
-    let result = await fetchLogin(data);
-
-    if (result){
-      login(data);
-      closeModal();
     }
+    let result = await fetchLogin(data);
+    console.log(`Login result: ${result}`);
   };
 
   const fetchLogin = async (data: FormLoginData): Promise<boolean> => {
-    //Fetching users data
-
+    //Fetching mockup
     return new Promise((resolve) => {
-      const allUsers = JSON.parse(localStorage.getItem("Users") || "");
-      const user = allUsers[data.email];
-      if (user && user.password === data.password) {
-        resolve(true);
-      }
-      else {
-        setError("Incorrect email or password entered.");
-        setShowError(true);
-        resolve(false);
-      }
+      setTimeout(() => {
+        console.table({ data });
+        const success = !!Math.round(Math.random());
+        resolve(success);
+      }, 2000);
     });
   };
 
