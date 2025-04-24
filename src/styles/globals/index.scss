@@ -59,4 +59,11 @@
       display: flex;
     }
   }
+  @media screen and (max-width: 600px) {
+    width: 100%;
+    .header {
+      display: flex;
+    }
+    padding: 20px;
+  }
 }
