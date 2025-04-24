@@ -110,6 +110,7 @@
     height: 100%;
     background-color: var(--secondary-text-color);
     opacity: 0;
+    z-index: 98;
   }
   .open {
     transition: all 0.3s;
@@ -118,7 +119,6 @@
     }
     .overflow {
       opacity: 0.4;
-      z-index: 98;
       pointer-events: all;
     }
   }
