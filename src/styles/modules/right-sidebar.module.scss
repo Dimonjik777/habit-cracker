@@ -12,11 +12,24 @@
   top: 0;
   transition: all 0.3s;
   z-index: 99;
+  .close {
+    display: none;
+  }
 }
 @media screen and (max-width: 1400px) {
   .container {
     right: -380px;
+    .close {
+      display: block;
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
   }
+
   .overflow {
     pointer-events: none;
     transition: all 0.3s;

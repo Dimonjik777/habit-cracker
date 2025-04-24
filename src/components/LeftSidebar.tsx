@@ -6,6 +6,7 @@ import { useUser } from "../contexts/UserContext";
 import { useSidebar } from "../contexts/SidebarContext";
 import styles from "/src/styles/modules/left-sidebar.module.scss";
 import Logout from "/src/assets/logout.svg?react";
+import CloseIcon from "/src/assets/close.svg?react";
 
 export default function LeftSidebar() {
   const { logout } = useUser();
@@ -14,6 +15,7 @@ export default function LeftSidebar() {
     <div className={leftSidebarOpen ? styles.open : ""}>
       <div className={styles.overflow} onClick={closeLeftSidebar}></div>
       <div className={styles.container}>
+        <CloseIcon className={styles.close} />
         <div className={styles.logoContainer}>
           <Logo />
           <h1>Habit Cracker</h1>

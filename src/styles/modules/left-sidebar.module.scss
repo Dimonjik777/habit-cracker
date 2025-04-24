@@ -83,10 +83,22 @@
       }
     }
   }
+  .close {
+    display: none;
+  }
 }
 @media screen and (max-width: 1400px) {
   .container {
     left: -380px;
+    .close {
+      display: block;
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+    }
   }
   .overflow {
     pointer-events: none;
