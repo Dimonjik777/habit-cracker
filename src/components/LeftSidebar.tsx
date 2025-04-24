@@ -15,7 +15,7 @@ export default function LeftSidebar() {
     <div className={leftSidebarOpen ? styles.open : ""}>
       <div className={styles.overflow} onClick={closeLeftSidebar}></div>
       <div className={styles.container}>
-        <CloseIcon className={styles.close} />
+        <CloseIcon className={styles.close} onClick={closeLeftSidebar} />
         <div className={styles.logoContainer}>
           <Logo />
           <h1>Habit Cracker</h1>

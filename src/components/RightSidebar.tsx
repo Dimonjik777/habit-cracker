@@ -10,7 +10,7 @@ export default function RightSidebar() {
     <div className={rightSidebarOpen ? styles.open : ""}>
       <div className={styles.overflow} onClick={closeRightSidebar}></div>
       <div className={styles.container}>
-        <CloseIcon className={styles.close} />
+        <CloseIcon className={styles.close} onClick={closeRightSidebar} />
         <HabitsPieChart />
         <Calendar />
       </div>
