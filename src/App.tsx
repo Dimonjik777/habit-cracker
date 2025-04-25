@@ -8,11 +8,13 @@ import Redirect from "./components/Redirect";
 import { ModalProvider } from "./contexts/ModalContext";
 import RightSidebar from "./components/RightSidebar";
 import ThemeToggle from "./components/ThemeToggle";
+import { useSidebar } from "./contexts/SidebarContext";
 
 function App() {
   const { darkTheme } = useTheme();
   const { user } = useUser();
   const location = useLocation();
+  const { openLeftSidebar, openRightSidebar } = useSidebar();
   return (
     <ModalProvider>
       <Redirect />
@@ -22,12 +24,15 @@ function App() {
             <LeftSidebar />
             <div className="dashboard">
               <div className="header">
-                <div className="sidebar-toggle">
+                <div className="sidebar-toggle" onClick={openLeftSidebar}>
                   <span></span>
                   <span></span>
                   <span></span>
                 </div>
-                <div className="sidebar-toggle --right">
+                <div
+                  className="sidebar-toggle --right"
+                  onClick={openRightSidebar}
+                >
                   <span></span>
                   <span></span>
                   <span></span>

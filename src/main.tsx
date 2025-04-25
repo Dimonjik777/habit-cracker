@@ -4,6 +4,7 @@ import "./styles/globals/index.scss";
 import App from "./App.tsx";
 import { ThemeProvider } from "./contexts/ThemeContext.tsx";
 import { UserProvider } from "./contexts/UserContext.tsx";
+import { SidebarProvider } from "./contexts/SidebarContext.tsx";
 import { BrowserRouter as Router } from "react-router-dom";
 
 createRoot(document.getElementById("root")!).render(
@@ -11,7 +12,9 @@ createRoot(document.getElementById("root")!).render(
     <Router>
       <ThemeProvider>
         <UserProvider>
-          <App />
+          <SidebarProvider>
+            <App />
+          </SidebarProvider>
         </UserProvider>
       </ThemeProvider>
     </Router>
