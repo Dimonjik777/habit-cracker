@@ -3,8 +3,7 @@ import RightSidebar from "./RightSidebar";
 import { useSidebar } from "../contexts/SidebarContext";
 import { useUser } from "../contexts/UserContext";
 import ThemeToggle from "./ThemeToggle";
-import { useLocation } from "react-router-dom";
-import { Outlet } from "react-router-dom";
+import { useLocation, Outlet } from "react-router-dom";
 
 export default function DashboardLayout() {
   const { openLeftSidebar, openRightSidebar } = useSidebar();
