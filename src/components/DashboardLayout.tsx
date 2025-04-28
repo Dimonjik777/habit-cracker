@@ -32,9 +32,9 @@ export default function DashboardLayout() {
           {location.pathname === "/dashboard/statistics" && <h2>Statistics</h2>}
           <ThemeToggle />
         </div>
+        <Outlet />
       </div>
       <RightSidebar />
-      <Outlet />
     </>
   );
 }
