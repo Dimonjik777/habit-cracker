@@ -31,12 +31,6 @@ function App() {
           {user.role === "unregistered" && (
             <Route path="/welcome" element={<Welcome />} />
           )}
-          {/* Development-only route */}
-          <Route path="/" element={""} />
-          {/* Development-only route */}
-          <Route path="/login-preview" element={""} />
-          {/* Development-only route */}
-          <Route path="/left-sidebar-preview" element={<LeftSidebar />} />
         </Routes>
         <ModalWindow />
       </div>
