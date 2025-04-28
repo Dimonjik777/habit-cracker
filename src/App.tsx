@@ -1,7 +1,6 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import ModalWindow from "./components/ModalWindow";
-import LeftSidebar from "./components/LeftSidebar";
 import { useTheme } from "./contexts/ThemeContext";
 import { useUser } from "./contexts/UserContext";
 import Redirect from "./components/Redirect";
