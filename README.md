@@ -22,7 +22,6 @@ A powerful and customizable habit tracker built with React and TypeScript. This 
 - **React Router**
 - **Recharts**
 - **MUI**
-- **Vite**
 
 ## 🎯 Purpose
 
