@@ -39,9 +39,10 @@ function App() {
                 </div>
               </div>
               <div className="dashboard__info">
-                {location.pathname === "/dashboard/all" ? (
+                {location.pathname === "/dashboard/all" && (
                   <h2>Hi there, {user.name}</h2>
-                ) : (
+                )}
+                {location.pathname === "/dashboard/statistics" && (
                   <h2>Statistics</h2>
                 )}
                 <ThemeToggle />
