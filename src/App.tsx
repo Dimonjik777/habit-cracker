@@ -17,12 +17,9 @@ function App() {
         <Routes>
           {user.role === "registered" && (
             <Route path="/dashboard" element={<DashboardLayout />}>
+              <Route path="all" element={<div> Dashboard all </div>} />
               <Route
-                path="/dashboard/all"
-                element={<div> Dashboard all </div>}
-              />
-              <Route
-                path="/dashboard/statistics"
+                path="statistics"
                 element={<div>Dashboard Statistics</div>}
               />
             </Route>
