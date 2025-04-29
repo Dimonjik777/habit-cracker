@@ -48,6 +48,10 @@
     align-items: center;
     justify-content: space-between;
   }
+  .container {
+    position: relative;
+    margin-top: 20px;
+  }
   @media screen and (max-width: 1800px) {
     width: 50%;
   }
