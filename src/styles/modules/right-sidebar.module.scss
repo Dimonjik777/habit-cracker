@@ -16,6 +16,13 @@
   .close {
     display: none;
   }
+  .calendarContainer {
+    button,
+    span {
+      color: var(--primary-text-color);
+      fill: var(--primary-text-color);
+    }
+  }
 }
 @media screen and (max-width: 1400px) {
   @include sidebarOpen("right");
