@@ -7,6 +7,7 @@ import Redirect from "./components/Redirect";
 import { ModalProvider } from "./contexts/ModalContext";
 import DashboardLayout from "./components/DashboardLayout";
 import NotFound from "./components/NotFound";
+import DashboardAll from "./pages/dashboard/DashboardAll";
 
 function App() {
   const { darkTheme } = useTheme();
@@ -18,7 +19,7 @@ function App() {
         <Routes>
           {user.role === "registered" && (
             <Route path="/dashboard" element={<DashboardLayout />}>
-              <Route path="all" element={<div> Dashboard all </div>} />
+              <Route path="all" element={<DashboardAll />} />
               <Route
                 path="statistics"
                 element={<div>Dashboard Statistics</div>}
