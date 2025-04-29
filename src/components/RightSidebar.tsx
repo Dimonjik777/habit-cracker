@@ -12,7 +12,9 @@ export default function RightSidebar() {
       <div className={styles.container}>
         <CloseIcon className={styles.close} onClick={closeRightSidebar} />
         <HabitsPieChart />
-        <Calendar />
+        <div className={styles.calendarContainer}>
+          <Calendar />
+        </div>
       </div>
     </div>
   );
