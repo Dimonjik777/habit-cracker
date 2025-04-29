@@ -1,6 +1,6 @@
 @use "./mixins/_sidebar-open.scss" as *;
 .container {
-  background-color: #fff;
+  background-color: var(--background-color);
   position: fixed;
   width: 380px;
   max-width: 100%;
