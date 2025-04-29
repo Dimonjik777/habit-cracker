@@ -33,8 +33,13 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
       localStorage.setItem("theme", darkTheme ? "dark" : "light");
     }
   }, [darkTheme]);
-  const toggleTheme = () => setDarkTheme((prev) => !prev);
-
+  const toggleTheme = () => {
+    if (darkTheme) {
+      setDarkTheme(false);
+    } else {
+      setDarkTheme(true);
+    }
+  };
   if (darkTheme === null) {
     return <div className="">Loading...</div>;
   }
