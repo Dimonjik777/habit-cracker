@@ -1,6 +1,7 @@
 .container {
-  position: relative;
-
+  position: absolute;
+  top: 50%;
+  right: 3%;
   input[type="checkbox"] {
     display: none;
     overflow: hidden;
