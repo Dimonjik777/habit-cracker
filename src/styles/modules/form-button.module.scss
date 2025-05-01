@@ -1,0 +1,23 @@
+.button {
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  font-weight: 600;
+  border-radius: 10px;
+  background-color: var(--primary-color);
+  color: var(--background-color);
+  border: 3px solid var(--primary-color);
+  transition: all 0.25s;
+  &.secondary {
+    background-color: var(--secondary-color);
+    color: var(--secondary-text-color);
+    border: 3px solid var(--secondary-color);
+    &:hover {
+      filter: brightness(0.9);
+    }
+  }
+  &:hover {
+    filter: brightness(1.2);
+  }
+}
