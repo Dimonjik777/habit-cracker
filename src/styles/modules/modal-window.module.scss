@@ -7,7 +7,7 @@
   left: 0;
   pointer-events: none;
   opacity: 0;
-  transition: .3s ease all;
+  transition: 0.3s ease all;
 
   .card {
     z-index: 100;
@@ -19,12 +19,10 @@
     width: auto;
     height: auto;
     min-width: 300px;
-    min-height: 200px;
     overflow: hidden;
     border-radius: 10px;
     padding: 40px;
-    transition: .3s ease all;
-
+    transition: 0.3s ease all;
   }
 
   .overlay {
@@ -35,27 +33,23 @@
     position: fixed;
     top: 0;
     left: 0;
-    transition: .3s ease all;
+    transition: 0.3s ease all;
     opacity: 25%;
   }
 
-  &.active{
+  &.active {
     pointer-events: all;
     opacity: 1;
 
-    .card{
+    .card {
       transform: translate(-50%, -50%);
     }
-
   }
-
 }
 
-@media screen and (max-width: 700px){
-
-  .container{
-
-    .card{
+@media screen and (max-width: 700px) {
+  .container {
+    .card {
       min-width: 80%;
     }
   }
