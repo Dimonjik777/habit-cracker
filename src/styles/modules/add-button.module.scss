@@ -7,7 +7,13 @@
   width: 60px;
   height: 60px;
   display: flex;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s;
+  &:hover {
+    bottom: 10.5%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
+  }
   .content {
     position: absolute;
     top: 50%;
