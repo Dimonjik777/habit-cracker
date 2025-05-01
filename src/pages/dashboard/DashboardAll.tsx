@@ -35,7 +35,11 @@ export default function DashboardAll() {
           </div>
         </div>
       </div>
-      <AddButton />
+      <AddButton
+        onClick={() => {
+          alert("hi");
+        }}
+      />
     </div>
   );
 }
