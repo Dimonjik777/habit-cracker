@@ -2,7 +2,7 @@ import styles from "/src/styles/modules/dashboard-all.module.scss";
 import ArrowLeft from "/src/assets/arrow-left.svg?react";
 import ArrowRight from "/src/assets/arrow-right.svg?react";
 import { useState, useEffect } from "react";
-
+import AddButton from "../../components/AddButton";
 export default function DashboardAll() {
   const [weekday, setWeekday] = useState<string>("");
   const [dateString, setDateString] = useState<string>("");
@@ -35,6 +35,7 @@ export default function DashboardAll() {
           </div>
         </div>
       </div>
+      <AddButton />
     </div>
   );
 }
