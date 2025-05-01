@@ -24,6 +24,9 @@
     border-radius: 10px;
     padding: 40px;
     transition: 0.3s ease all;
+    @media screen and (max-width: 700px) {
+      padding: 20px;
+    }
   }
 
   .overlay {
