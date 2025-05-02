@@ -20,5 +20,6 @@ body {
     color: var(--primary-text-color);
     font-family: "Inter";
     overflow-y: scroll;
+    scrollbar-width: none;
   }
 }
