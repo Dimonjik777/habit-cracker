@@ -5,6 +5,22 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    .habitTitle {
+      .habitTitleInput {
+        width: 100%;
+        font-size: 18px;
+        font-weight: 500;
+        padding-bottom: 10px;
+        background-color: var(--background-color);
+        color: var(--secondary-text-color);
+        border: none;
+        border-bottom: 1px solid var(--secondary-text-color);
+        &:focus {
+          outline: none;
+          border-bottom: 1px solid var(--secondary-text-color);
+        }
+      }
+    }
     .submitContainer {
       display: flex;
       justify-content: space-between;
