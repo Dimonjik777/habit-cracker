@@ -30,6 +30,8 @@ export default function DashboardLayout() {
             <h2>Hi there, {user.name}</h2>
           )}
           {location.pathname === "/dashboard/statistics" && <h2>Statistics</h2>}
+          <h2></h2>{" "}
+          {/* Dont remove this. its a long story but just don't remove this */}
           <ThemeToggle />
         </div>
         <div className="content">
