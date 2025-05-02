@@ -22,6 +22,66 @@
       }
       margin-bottom: 60px;
     }
+    .habitTypeSelect {
+      width: 100%;
+      .title {
+        font-weight: 500px;
+        font-size: 18px;
+        margin-bottom: 30px;
+      }
+      .options {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .option {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          .inputGroup {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            input {
+              display: none;
+            }
+            .radio {
+              position: relative;
+              border: 2px solid var(--primary-color);
+              border-radius: 50%;
+              width: 25px;
+              height: 25px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              background-color: var(--background-color);
+              transition: all 0.2s;
+            }
+            input:checked + .radio {
+              background-color: var(--primary-color);
+              border: 2px solid var(--primary-color);
+              &:after {
+                content: "";
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                background-color: var(--background-color);
+              }
+            }
+            .name {
+              font-size: 18px;
+              font-weight: 500;
+            }
+          }
+          .description {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 1.5;
+            color: var(--secondary-text-color);
+          }
+        }
+      }
+      margin-bottom: 50px;
+    }
     .submitContainer {
       display: flex;
       justify-content: space-between;
