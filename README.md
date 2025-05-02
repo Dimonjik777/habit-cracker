@@ -41,4 +41,4 @@ This is a team project between two frontend developers. All tasks are discussed,
 - [x] Mockup authentication
 - [ ] Page with statistics
 - [ ] Daily tracking and analytics
-- [ ] Dark/light mode toggle
+- [x] Dark/light mode toggle
