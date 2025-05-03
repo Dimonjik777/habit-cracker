@@ -130,6 +130,7 @@
               }
             }
             .selectOptions {
+              z-index: 10;
               position: absolute;
               overflow: hidden;
               display: flex;
@@ -163,8 +164,43 @@
               }
             }
           }
-          // 1. add custom arrow-down icon instead of the default one
-          // 2. customize the select dropdown
+        }
+        .daysContainer {
+          margin-top: 20px;
+          width: 40%;
+          display: flex;
+          flex-wrap: wrap;
+          gap: 10px;
+          pointer-events: none;
+          transition: opacity 0.2s;
+          &.inactive {
+            opacity: 0.6;
+          }
+          .day {
+            cursor: pointer;
+            pointer-events: all;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--background-color);
+            color: var(--primary-text-color);
+            border: 3px solid var(--secondary-text-color);
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s;
+            &:hover {
+              color: var(--primary-color);
+              border: 3px solid var(--primary-color);
+            }
+            &.selected {
+              background-color: var(--primary-color);
+              color: var(--background-color);
+              border: 3px solid var(--primary-color);
+            }
+          }
         }
       }
       margin-bottom: 100px;
