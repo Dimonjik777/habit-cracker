@@ -175,6 +175,9 @@
           transition: opacity 0.2s;
           &.inactive {
             opacity: 0.6;
+            .day {
+              pointer-events: none;
+            }
           }
           .day {
             cursor: pointer;
