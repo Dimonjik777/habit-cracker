@@ -93,6 +93,9 @@
             font-size: 18px;
             margin-bottom: 30px;
           }
+          svg {
+            stroke: var(--primary-text-color);
+          }
           .selectWrapper {
             z-index: 10;
             .selectLabel {
