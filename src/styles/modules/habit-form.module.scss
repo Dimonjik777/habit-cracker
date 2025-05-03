@@ -84,7 +84,6 @@
     }
     .habitSettings {
       display: flex;
-      justify-content: space-between;
       .habitFrequency {
         .selectContainer {
           position: relative;
@@ -168,6 +167,7 @@
         .daysContainer {
           margin-top: 20px;
           width: 40%;
+          min-width: 100px;
           display: flex;
           flex-wrap: wrap;
           gap: 10px;
@@ -199,6 +199,31 @@
               background-color: var(--primary-color);
               color: var(--background-color);
               border: 3px solid var(--primary-color);
+            }
+          }
+        }
+      }
+      .habitGoalContainer {
+        .title {
+          font-weight: 500;
+          font-size: 18px;
+          margin-bottom: 30px;
+        }
+        .inputContainer {
+          width: 110px;
+          height: 40px;
+          input {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background-color: var(--secondary-color);
+            color: var(--primary-text-color);
+            padding: 10px;
+            font-size: 18px;
+            border-radius: 10px;
+            font-weight: 500;
+            &::-webkit-inner-spin-button {
+              display: none;
             }
           }
         }
