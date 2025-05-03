@@ -5,6 +5,11 @@
     width: 100%;
     display: flex;
     flex-direction: column;
+    @mixin componentTitle() {
+      font-weight: 500;
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
     .habitTitle {
       .habitTitleInput {
         width: 100%;
@@ -25,9 +30,7 @@
     .habitTypeSelect {
       width: 100%;
       .title {
-        font-weight: 500px;
-        font-size: 18px;
-        margin-bottom: 30px;
+        @include componentTitle();
       }
       .options {
         display: flex;
@@ -89,9 +92,7 @@
           position: relative;
           width: 110px;
           .title {
-            font-weight: 500;
-            font-size: 18px;
-            margin-bottom: 30px;
+            @include componentTitle();
           }
           svg {
             stroke: var(--primary-text-color);
@@ -211,9 +212,7 @@
       }
       .habitGoalContainer {
         .title {
-          font-weight: 500;
-          font-size: 18px;
-          margin-bottom: 30px;
+          @include componentTitle();
         }
         .inputContainer {
           width: 110px;
