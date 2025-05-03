@@ -227,6 +227,11 @@
             }
           }
         }
+        transition: opacity 0.2s;
+        &.inactive {
+          opacity: 0.6;
+          pointer-events: none;
+        }
       }
       margin-bottom: 100px;
     }
