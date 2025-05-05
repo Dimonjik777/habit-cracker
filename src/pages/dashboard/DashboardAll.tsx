@@ -5,13 +5,14 @@ import { useState, useEffect } from "react";
 import AddButton from "../../components/AddButton";
 import { useModal } from "../../contexts/ModalContext";
 import AddHabit from "../../components/habit-form/AddHabit";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function DashboardAll() {
   const { openModal } = useModal();
   const [weekday, setWeekday] = useState<string>("");
   const [dateString, setDateString] = useState<string>("");
   const location = useLocation();
+  const navigate = useNavigate();
   useEffect(() => {
     const dateString = getDateParam();
     console.log(dateString);
@@ -48,6 +49,17 @@ export default function DashboardAll() {
     // Validate date and return formatted string
     return isNaN(date.getTime()) ? formatDate(new Date()) : formatDate(date);
   };
+  const navigateDate = (direction: "prev" | "next") => {
+    const currentDate = getDateParam();
+    const [day, month, year] = currentDate.split("-").map(Number);
+    const date = new Date(year, month - 1, day);
+
+    // Add or subtract a day
+    date.setDate(date.getDate() + (direction === "next" ? 1 : -1));
+
+    // Navigate to new date
+    navigate(`?date=${formatDate(date)}`);
+  };
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -57,10 +69,16 @@ export default function DashboardAll() {
           <p>{dateString}</p>
         </div>
         <div className={styles.dateToggleContainer}>
-          <div className={styles.iconContainer}>
+          <div
+            className={styles.iconContainer}
+            onClick={() => navigateDate("prev")}
+          >
             <ArrowLeft />
           </div>
-          <div className={styles.iconContainer}>
+          <div
+            className={styles.iconContainer}
+            onClick={() => navigateDate("next")}
+          >
             <ArrowRight />
           </div>
         </div>
