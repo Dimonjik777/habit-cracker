@@ -6,23 +6,45 @@ export default function HabitGoal({
   onChange,
   active,
 }: {
-  value: number | undefined;
-  onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+  value: number;
+  onChange: (value: number) => void;
   active: boolean;
 }) {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const input = e.target.value;
+
+    // Allow empty input to reset to 0
+    if (input === "") {
+      onChange(0);
+      return;
+    }
+
+    // Convert to number and validate
+    const numberValue = parseInt(input, 10);
+    if (isNaN(numberValue)) return;
+
+    // Limit to reasonable range (0-999999)
+    if (numberValue >= -999999 && numberValue <= 999999) {
+      onChange(numberValue);
+    }
+  };
+
   return (
     <div
       className={`${styles.habitGoalContainer} ${
-        active ? "" : styles.inactive
+        !active ? styles.inactive : ""
       }`}
     >
       <div className={styles.title}>Goal:</div>
       <div className={styles.inputContainer}>
         <input
           type="number"
+          min="-999999"
+          max="999999"
           placeholder="0"
-          value={value}
-          onChange={onChange}
+          value={value || ""}
+          onChange={handleChange}
+          disabled={!active}
         />
       </div>
     </div>
