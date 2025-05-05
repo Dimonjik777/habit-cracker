@@ -5,23 +5,49 @@ import { useState, useEffect } from "react";
 import AddButton from "../../components/AddButton";
 import { useModal } from "../../contexts/ModalContext";
 import AddHabit from "../../components/habit-form/AddHabit";
+import { useLocation } from "react-router-dom";
 
 export default function DashboardAll() {
   const { openModal } = useModal();
   const [weekday, setWeekday] = useState<string>("");
   const [dateString, setDateString] = useState<string>("");
+  const location = useLocation();
   useEffect(() => {
-    const date = new Date();
-    const weekday = date.toLocaleDateString("en-US", { weekday: "long" });
-    setWeekday(weekday);
-    const dateString = date.toLocaleDateString("en-US", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    });
-    setDateString(dateString);
-  }, []);
+    const dateString = getDateParam();
+    console.log(dateString);
+    const [day, month, year] = dateString.split("-");
+    const date = new Date(Number(year), Number(month) - 1, Number(day));
+    setWeekday(date.toLocaleDateString("en-US", { weekday: "long" }));
+    setDateString(
+      date.toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    );
+  }, [location.search]);
+  const formatDate = (date: Date): string => {
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    return `${day}-${month}-${year}`;
+  };
 
+  const getDateParam = (): string => {
+    const queryParams = new URLSearchParams(location.search);
+    const dateParam = queryParams.get("date");
+
+    if (!dateParam) {
+      return formatDate(new Date());
+    }
+
+    // Try to parse the date parameter
+    const [day, month, year] = dateParam.split("-").map(Number);
+    const date = new Date(year, month - 1, day);
+
+    // Validate date and return formatted string
+    return isNaN(date.getTime()) ? formatDate(new Date()) : formatDate(date);
+  };
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -39,6 +65,7 @@ export default function DashboardAll() {
           </div>
         </div>
       </div>
+      <div className={styles.content}></div>
       <AddButton
         onClick={() => {
           openModal(<AddHabit />);
