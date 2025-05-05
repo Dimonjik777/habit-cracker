@@ -3,7 +3,11 @@ import ArrowLeft from "/src/assets/arrow-left.svg?react";
 import ArrowRight from "/src/assets/arrow-right.svg?react";
 import { useState, useEffect } from "react";
 import AddButton from "../../components/AddButton";
+import { useModal } from "../../contexts/ModalContext";
+import AddHabit from "../../components/habit-form/AddHabit";
+
 export default function DashboardAll() {
+  const { openModal } = useModal();
   const [weekday, setWeekday] = useState<string>("");
   const [dateString, setDateString] = useState<string>("");
   useEffect(() => {
@@ -37,7 +41,7 @@ export default function DashboardAll() {
       </div>
       <AddButton
         onClick={() => {
-          alert("hi");
+          openModal(<AddHabit />);
         }}
       />
     </div>
