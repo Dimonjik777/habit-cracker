@@ -9,10 +9,12 @@ import HabitGoal from "./HabitGoal";
 import HabitNotify from "./HabitNotify";
 
 import styles from "/src/styles/modules/habit-form.module.scss";
+import { useUser } from "../../contexts/UserContext";
 
 export default function AddHabit() {
   const [disabled, setDisabled] = useState<boolean>(false);
   const { closeModal } = useModal();
+  const { user } = useUser();
   type AddHabitData = {
     title: string;
     type: "check" | "track";
@@ -41,6 +43,49 @@ export default function AddHabit() {
       setDisabled(false);
     }
   }, [data]);
+  const handleSubmit = async () => {
+    closeModal();
+    let msg: string;
+    if (await fetchAddHabit(data)) {
+      msg = "Habit created successfully!";
+    } else {
+      msg = "Something went wrong";
+    }
+    setTimeout(() => {
+      alert(msg);
+    }, 200);
+  };
+
+  const fetchAddHabit = async (data: AddHabitData) => {
+    try {
+      if (user.role === "registered" && user.email) {
+        const habitsData = JSON.parse(localStorage.getItem("habits") || "{}");
+
+        const userHabits = habitsData[user.email] || [];
+
+        const now = new Date();
+        const createdAt = `${String(now.getDate()).padStart(2, "0")}-${String(
+          now.getMonth() + 1
+        ).padStart(2, "0")}-${now.getFullYear()}`;
+
+        userHabits.push({
+          ...data,
+          createdAt,
+          history: [],
+        });
+
+        habitsData[user.email] = userHabits;
+
+        localStorage.setItem("habits", JSON.stringify(habitsData));
+
+        return true;
+      }
+    } catch (e) {
+      console.error("Error saving habit:", e);
+      return false;
+    }
+  };
+
   return (
     <HabitForm>
       <HabitTitleInput
@@ -87,7 +132,7 @@ export default function AddHabit() {
             type="primary"
             value="Add habit"
             disabled={disabled}
-            action={() => {}}
+            action={handleSubmit}
           />
         </div>
         <div className={styles.buttonContainer}>
