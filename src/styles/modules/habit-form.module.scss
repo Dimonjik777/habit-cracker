@@ -240,6 +240,80 @@
       }
       margin-bottom: 100px;
     }
+    .notifyContainer {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .checkboxContainer {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        .checkbox {
+          cursor: pointer;
+          width: 30px;
+          height: 30px;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          border: 3px solid var(--primary-color);
+          border-radius: 10px;
+          transition: all 0.2s;
+          &.checked {
+            background-color: var(--primary-color);
+          }
+          svg {
+            width: 90%;
+            height: 90%;
+            fill: var(--background-color);
+          }
+        }
+        .label {
+          @include componentTitle();
+          margin-bottom: 0;
+        }
+      }
+      .timeContainer {
+        display: flex;
+        width: 110px;
+        background-color: var(--secondary-color);
+        border-radius: 10px;
+        transition: opacity 0.2s;
+        &.inactive {
+          opacity: 0.6;
+          pointer-events: none;
+        }
+        .inputContainer {
+          width: 49px;
+          height: 40px;
+          display: flex;
+          align-items: center;
+          background-color: var(--secondary-color);
+          border-radius: 10px;
+          padding: 0 10px;
+          .input {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            width: 100%;
+            border: none;
+            outline: none;
+            background-color: var(--secondary-color);
+            font-size: 18px;
+            &::-webkit-inner-spin-button {
+              display: none;
+            }
+          }
+        }
+        span {
+          font-size: 32px;
+          color: var(--secondary-text-color);
+        }
+      }
+      margin-bottom: 40px;
+    }
     .submitContainer {
       display: flex;
       justify-content: space-between;
