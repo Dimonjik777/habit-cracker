@@ -71,7 +71,7 @@ export default function AddHabit() {
         userHabits.push({
           ...data,
           createdAt,
-          history: [],
+          history: {},
         });
 
         habitsData[user.email] = userHabits;
