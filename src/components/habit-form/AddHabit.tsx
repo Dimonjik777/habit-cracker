@@ -7,14 +7,15 @@ import HabitTypeSelect from "./HabitTypeSelect";
 import HabitFrequency from "./HabitFrequency";
 import HabitGoal from "./HabitGoal";
 import HabitNotify from "./HabitNotify";
-
-import styles from "/src/styles/modules/habit-form.module.scss";
 import { useUser } from "../../contexts/UserContext";
+import { useHabit } from "../../contexts/HabitContext";
+import styles from "/src/styles/modules/habit-form.module.scss";
 
 export default function AddHabit() {
   const [disabled, setDisabled] = useState<boolean>(false);
   const { closeModal } = useModal();
   const { user } = useUser();
+  const { createHabit } = useHabit();
   type AddHabitData = {
     title: string;
     type: "check" | "track";
@@ -59,26 +60,19 @@ export default function AddHabit() {
   const fetchAddHabit = async (data: AddHabitData) => {
     try {
       if (user.role === "registered" && user.email) {
-        const habitsData = JSON.parse(localStorage.getItem("habits") || "{}");
-
-        const userHabits = habitsData[user.email] || [];
-
         const now = new Date();
         const createdAt = `${String(now.getDate()).padStart(2, "0")}-${String(
           now.getMonth() + 1
         ).padStart(2, "0")}-${now.getFullYear()}`;
 
-        userHabits.push({
+        const res = await createHabit({
           ...data,
           createdAt,
           history: {},
         });
-
-        habitsData[user.email] = userHabits;
-
-        localStorage.setItem("habits", JSON.stringify(habitsData));
-
-        return true;
+        if (res.ok) {
+          return true;
+        }
       }
     } catch (e) {
       console.error("Error saving habit:", e);
