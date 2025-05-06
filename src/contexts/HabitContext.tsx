@@ -91,7 +91,7 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
   }, []);
   // Save new habits to local storage every time a change is made
   useEffect(() => {
-    if (habits.length < 0) {
+    if (habits.length > 0) {
       setHabitsToLocalStorage(habits);
     }
   }, [habits]);
