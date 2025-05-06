@@ -1,15 +1,33 @@
+import { useModal } from "../../contexts/ModalContext";
+import FormButton from "./FormButton";
 import styles from "/src/styles/modules/habit-form.module.scss";
 
 export default function HabitForm({
   children,
-  onSubmit,
+  handleSubmit,
+  disabled,
 }: {
   children: React.ReactNode;
-  onSubmit?: () => void;
+  handleSubmit: () => void;
+  disabled: boolean;
 }) {
+  const { closeModal } = useModal();
   return (
-    <form onSubmit={onSubmit} className={styles.container}>
+    <form className={styles.container}>
       <div className={styles.content}>{children}</div>
+      <div className={styles.submitContainer}>
+        <div className={styles.buttonContainer}>
+          <FormButton
+            type="primary"
+            value="Add habit"
+            disabled={disabled}
+            action={handleSubmit}
+          />
+        </div>
+        <div className={styles.buttonContainer}>
+          <FormButton type="secondary" value="Cancel" action={closeModal} />
+        </div>
+      </div>
     </form>
   );
 }

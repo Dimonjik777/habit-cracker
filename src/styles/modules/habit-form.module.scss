@@ -316,15 +316,15 @@
       }
       margin-bottom: 40px;
     }
-    .submitContainer {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-      .buttonContainer {
-        font-size: 18px;
-        width: 154px;
-        height: 50px;
-      }
+  }
+  .submitContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    .buttonContainer {
+      font-size: 18px;
+      width: 154px;
+      height: 50px;
     }
   }
 }

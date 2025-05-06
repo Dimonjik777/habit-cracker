@@ -1,5 +1,4 @@
 import HabitForm from "./HabitForm";
-import FormButton from "./FormButton";
 import { useModal } from "../../contexts/ModalContext";
 import { useState, ChangeEvent, useEffect } from "react";
 import HabitTitleInput from "./HabitTitleInput";
@@ -81,7 +80,7 @@ export default function AddHabit() {
   };
 
   return (
-    <HabitForm>
+    <HabitForm disabled={disabled} handleSubmit={handleSubmit}>
       <HabitTitleInput
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
           if (
@@ -120,19 +119,6 @@ export default function AddHabit() {
           setData({ ...data, notifyTime: value });
         }}
       />
-      <div className={styles.submitContainer}>
-        <div className={styles.buttonContainer}>
-          <FormButton
-            type="primary"
-            value="Add habit"
-            disabled={disabled}
-            action={handleSubmit}
-          />
-        </div>
-        <div className={styles.buttonContainer}>
-          <FormButton type="secondary" value="Cancel" action={closeModal} />
-        </div>
-      </div>
     </HabitForm>
   );
 }
