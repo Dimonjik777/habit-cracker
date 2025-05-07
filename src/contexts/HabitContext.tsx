@@ -14,6 +14,7 @@ type HabitContextType = {
   habits: Habit[];
   createHabit: (habit: Habit) => promiseObj;
   updateHabit: (habit: Habit, oldTitle: string) => promiseObj;
+  setHabits: React.Dispatch<React.SetStateAction<Habit[]>>;
 };
 
 type Habit = {
@@ -95,7 +96,9 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
   }, [habits]);
 
   return (
-    <HabitContext.Provider value={{ habits, createHabit, updateHabit }}>
+    <HabitContext.Provider
+      value={{ habits, createHabit, updateHabit, setHabits }}
+    >
       {children}
     </HabitContext.Provider>
   );
