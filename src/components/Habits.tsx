@@ -73,32 +73,32 @@ export default function Habits({ date }: { date: string }) {
       {habitInstances.length > 0 && (
         <>
           <div className={styles.activeHabits}>
-            {habitInstances.map((habit) => {
-              if (!habit.isCompleted) {
+            {habitInstances
+              .filter((habit) => !habit.isCompleted)
+              .map((habit) => {
                 let handleClick = () => alert("Not yet implemented");
                 return (
                   <div key={habit.title}>
                     <Habit habit={habit} onClick={handleClick} />
                   </div>
                 );
-              }
-            })}
+              })}
           </div>
           <div className={styles.completedHabits}>
             <h2>Completed habits</h2>
-            {habitInstances.filter((h) => h.isCompleted).length > 0 ? (
+            {habitInstances.some((h) => h.isCompleted) ? (
               <>
                 <div className={styles.habits}>
-                  {habitInstances.map((habit) => {
-                    if (habit.isCompleted) {
+                  {habitInstances
+                    .filter((habit) => habit.isCompleted)
+                    .map((habit) => {
                       let handleClick = () => alert("Not yet implemented");
                       return (
                         <div key={habit.title}>
                           <Habit habit={habit} onClick={handleClick} />
                         </div>
                       );
-                    }
-                  })}
+                    })}
                 </div>
               </>
             ) : (
