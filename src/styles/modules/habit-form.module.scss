@@ -1,3 +1,18 @@
+@mixin goalInput() {
+  width: 100%;
+  height: 100%;
+  border: none;
+  outline: none;
+  background-color: var(--secondary-color);
+  color: var(--primary-text-color);
+  padding: 10px;
+  font-size: 18px;
+  border-radius: 10px;
+  font-weight: 500;
+  &::-webkit-inner-spin-button {
+    display: none;
+  }
+}
 .container {
   width: 600px;
   max-width: 100%;
@@ -218,19 +233,7 @@
           width: 110px;
           height: 40px;
           input {
-            width: 100%;
-            height: 100%;
-            border: none;
-            outline: none;
-            background-color: var(--secondary-color);
-            color: var(--primary-text-color);
-            padding: 10px;
-            font-size: 18px;
-            border-radius: 10px;
-            font-weight: 500;
-            &::-webkit-inner-spin-button {
-              display: none;
-            }
+            @include goalInput();
           }
         }
         transition: opacity 0.2s;
@@ -325,6 +328,24 @@
       font-size: 18px;
       width: 154px;
       height: 50px;
+    }
+  }
+}
+.updateGoalFormContainer {
+  .container {
+    width: 300px;
+    padding: 0;
+  }
+  .updateGoalContentContainer {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 40px;
+    .input {
+      @include goalInput();
+      width: 100px;
     }
   }
 }
