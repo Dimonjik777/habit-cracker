@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { useUser } from "../contexts/UserContext";
 import { useHabit } from "../contexts/HabitContext";
+import { useModal } from "../contexts/ModalContext";
+import UpdateGoalTrack from "./habit-form/UpdateGoalTrack";
 import Habit from "./Habit";
 import styles from "/src/styles/modules/habits.module.scss";
 
@@ -14,6 +16,7 @@ export default function Habits({ date }: { date: string }) {
   };
   const [habitInstances, setHabitInstances] = useState<HabitInstanceType[]>([]);
   const { user } = useUser();
+  const { openModal, closeModal } = useModal();
   const getWeekday = (dateString: string) => {
     const dateObj = new Date(dateString);
     const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
@@ -67,6 +70,7 @@ export default function Habits({ date }: { date: string }) {
     }
   }, [date, userHabits]);
 
+  // Handle track form value change
   // Handle the inner click event of a habit
   const handleHabitInstanceClick = (habit: HabitInstanceType) => {
     if (habit.type == "check") {
@@ -77,7 +81,29 @@ export default function Habits({ date }: { date: string }) {
         return [...filtered, { ...habit, isCompleted: !habit.isCompleted }];
       });
     } else {
-      alert("hi");
+      const handleSubmit = (val: number) => {
+        setHabitInstances(() => {
+          const filtered = habitInstances.filter((i) => {
+            return i.title != habit.title;
+          });
+          return [
+            ...filtered,
+            {
+              ...habit,
+              goalProgress: val,
+              isCompleted: Boolean(val >= Number(habit.goal)),
+            },
+          ];
+        });
+        closeModal();
+      };
+      openModal(
+        <UpdateGoalTrack
+          val={habit.goalProgress ?? 0}
+          placeholder={String(habit.goal) ?? "0"}
+          handleSubmit={(val: number) => handleSubmit(val)}
+        />
+      );
     }
   };
 
