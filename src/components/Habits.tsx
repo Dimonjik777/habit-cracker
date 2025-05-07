@@ -82,12 +82,12 @@ export default function Habits({ date }: { date: string }) {
               );
             }
           })}
-        {habitInstances.length == 0 && (
-          <div className={styles.noHabits}>
-            <h2>No habit records for this day</h2>
-          </div>
-        )}
       </div>
+      {habitInstances.length == 0 && (
+        <div className={styles.noHabits}>
+          <h2>No habit records for this day</h2>
+        </div>
+      )}
     </div>
   );
 }
