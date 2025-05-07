@@ -67,9 +67,21 @@ export default function Habits({ date }: { date: string }) {
     }
   }, [date, userHabits]);
 
-  useEffect(() => {}, [habitInstances]);
+  // Handle the inner click event of a habit
+  const handleHabitInstanceClick = (habit: HabitInstanceType) => {
+    if (habit.type == "check") {
+      setHabitInstances(() => {
+        const filtered = habitInstances.filter((i) => {
+          return i.title != habit.title;
+        });
+        return [...filtered, { ...habit, isCompleted: !habit.isCompleted }];
+      });
+    } else {
+      alert("hi");
+    }
+  };
+
   const renderHabits = (condition?: string) => {
-    const handleClick = () => {};
     return habitInstances
       .filter((habit) => {
         if (condition == "completed") {
@@ -81,7 +93,10 @@ export default function Habits({ date }: { date: string }) {
       .map((habit) => {
         return (
           <div key={habit.title}>
-            <Habit habit={habit} onClick={handleClick} />
+            <Habit
+              habit={habit}
+              onClick={() => handleHabitInstanceClick(habit)}
+            />
           </div>
         );
       });
