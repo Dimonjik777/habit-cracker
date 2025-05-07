@@ -17,6 +17,10 @@ type HabitContextType = {
   setHabits: React.Dispatch<React.SetStateAction<Habit[]>>;
 };
 
+type HistoryEntry = {
+  isCompleted: boolean;
+  goalProgress?: number;
+};
 type Habit = {
   createdAt: string;
   title: string;
@@ -25,7 +29,9 @@ type Habit = {
   goal: number;
   notify: boolean;
   notifyTime: string;
-  history: {};
+  history: {
+    [date: string]: HistoryEntry;
+  };
 };
 
 // The HabitContext is sort of a backend mockup, so every function is async
