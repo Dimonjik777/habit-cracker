@@ -71,16 +71,22 @@ export default function Habits({ date }: { date: string }) {
   return (
     <div className={styles.container}>
       <div className={styles.activeHabits}>
-        {habitInstances?.map((habit) => {
-          if (!habit.isCompleted) {
-            let handleClick = () => alert("Not yet implemented");
-            return (
-              <div key={habit.title}>
-                <Habit habit={habit} onClick={handleClick} />
-              </div>
-            );
-          }
-        })}
+        {habitInstances &&
+          habitInstances.map((habit) => {
+            if (!habit.isCompleted) {
+              let handleClick = () => alert("Not yet implemented");
+              return (
+                <div key={habit.title}>
+                  <Habit habit={habit} onClick={handleClick} />
+                </div>
+              );
+            }
+          })}
+        {habitInstances.length == 0 && (
+          <div className={styles.noHabits}>
+            <h2>No habit records for this day</h2>
+          </div>
+        )}
       </div>
     </div>
   );

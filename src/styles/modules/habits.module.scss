@@ -5,4 +5,15 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  .noHabits {
+    width: 100%;
+    height: 200px;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--secondary-text-color);
+    line-height: 200%;
+  }
 }
