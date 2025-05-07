@@ -6,6 +6,7 @@ import AddButton from "../../components/AddButton";
 import { useModal } from "../../contexts/ModalContext";
 import AddHabit from "../../components/habit-form/AddHabit";
 import { useLocation, useNavigate } from "react-router-dom";
+import Habits from "../../components/Habits";
 
 export default function DashboardAll() {
   const { openModal } = useModal();
@@ -83,7 +84,9 @@ export default function DashboardAll() {
           </div>
         </div>
       </div>
-      <div className={styles.content}></div>
+      <div className={styles.content}>
+        <Habits date={getDateParam()} />
+      </div>
       <AddButton
         onClick={() => {
           openModal(<AddHabit />);
