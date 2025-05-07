@@ -32,7 +32,7 @@ export default function Habit({
             className={`${styles.goal} ${habit.isCompleted ? styles.done : ""}`}
             onClick={onClick}
           >
-            {habit.goal}
+            {habit.goalProgress}
           </span>
         )}
       </div>
