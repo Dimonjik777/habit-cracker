@@ -8,14 +8,12 @@ import {
 } from "react";
 import { useUser } from "./UserContext";
 
-type HabitFunction = (
-  habit: Habit
-) => Promise<{ ok: boolean; message: string }>;
+type promiseObj = Promise<{ ok: boolean; message: string }>;
 
 type HabitContextType = {
   habits: Habit[];
-  createHabit: HabitFunction;
-  updateHabit: HabitFunction;
+  createHabit: (habit: Habit) => promiseObj;
+  updateHabit: (habit: Habit, oldTitle: string) => promiseObj;
 };
 
 type Habit = {
@@ -76,8 +74,8 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
     }
   };
   // update an existing habit
-  const updateHabit = async (habit: Habit) => {
-    const duplicates = habits.filter((h) => h.title == habit.title);
+  const updateHabit = async (habit: Habit, oldTitle: string) => {
+    const duplicates = habits.filter((h) => h.title == oldTitle);
     if (duplicates.length != 0) {
       setHabits([...habits.filter((h) => h.title != habit.title), habit]);
       return { ok: true, message: "Habit updated successfully!" };
