@@ -70,19 +70,46 @@ export default function Habits({ date }: { date: string }) {
   useEffect(() => {}, [habitInstances]);
   return (
     <div className={styles.container}>
-      <div className={styles.activeHabits}>
-        {habitInstances &&
-          habitInstances.map((habit) => {
-            if (!habit.isCompleted) {
-              let handleClick = () => alert("Not yet implemented");
-              return (
-                <div key={habit.title}>
-                  <Habit habit={habit} onClick={handleClick} />
+      {habitInstances.length > 0 && (
+        <>
+          <div className={styles.activeHabits}>
+            {habitInstances.map((habit) => {
+              if (!habit.isCompleted) {
+                let handleClick = () => alert("Not yet implemented");
+                return (
+                  <div key={habit.title}>
+                    <Habit habit={habit} onClick={handleClick} />
+                  </div>
+                );
+              }
+            })}
+          </div>
+          <div className={styles.completedHabits}>
+            <h2>Completed habits</h2>
+            {habitInstances.filter((h) => h.isCompleted).length > 0 ? (
+              <>
+                <div className={styles.habits}>
+                  {habitInstances.map((habit) => {
+                    if (habit.isCompleted) {
+                      let handleClick = () => alert("Not yet implemented");
+                      return (
+                        <div key={habit.title}>
+                          <Habit habit={habit} onClick={handleClick} />
+                        </div>
+                      );
+                    }
+                  })}
                 </div>
-              );
-            }
-          })}
-      </div>
+              </>
+            ) : (
+              <div className={styles.noHabits}>
+                <h2>No habit marked as "completed"</h2>
+              </div>
+            )}
+          </div>
+        </>
+      )}
+
       {habitInstances.length == 0 && (
         <div className={styles.noHabits}>
           <h2>No habit records for this day</h2>

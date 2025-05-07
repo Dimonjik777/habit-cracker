@@ -16,4 +16,13 @@
     color: var(--secondary-text-color);
     line-height: 200%;
   }
+  .completedHabits {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    .habits {
+      opacity: 0.6;
+    }
+  }
 }
