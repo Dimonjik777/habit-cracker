@@ -68,38 +68,36 @@ export default function Habits({ date }: { date: string }) {
   }, [date, userHabits]);
 
   useEffect(() => {}, [habitInstances]);
+  const renderHabits = (condition?: string) => {
+    const handleClick = () => {};
+    return habitInstances
+      .filter((habit) => {
+        if (condition == "completed") {
+          return habit.isCompleted;
+        } else {
+          return !habit.isCompleted;
+        }
+      })
+      .map((habit) => {
+        return (
+          <div key={habit.title}>
+            <Habit habit={habit} onClick={handleClick} />
+          </div>
+        );
+      });
+  };
   return (
     <div className={styles.container}>
       {habitInstances.length > 0 && (
         <>
           <div className={styles.activeHabits}>
-            {habitInstances
-              .filter((habit) => !habit.isCompleted)
-              .map((habit) => {
-                let handleClick = () => alert("Not yet implemented");
-                return (
-                  <div key={habit.title}>
-                    <Habit habit={habit} onClick={handleClick} />
-                  </div>
-                );
-              })}
+            {renderHabits("uncompleted")}
           </div>
           <div className={styles.completedHabits}>
             <h2>Completed habits</h2>
             {habitInstances.some((h) => h.isCompleted) ? (
               <>
-                <div className={styles.habits}>
-                  {habitInstances
-                    .filter((habit) => habit.isCompleted)
-                    .map((habit) => {
-                      let handleClick = () => alert("Not yet implemented");
-                      return (
-                        <div key={habit.title}>
-                          <Habit habit={habit} onClick={handleClick} />
-                        </div>
-                      );
-                    })}
-                </div>
+                <div className={styles.habits}>{renderHabits("completed")}</div>
               </>
             ) : (
               <div className={styles.noHabits}>
