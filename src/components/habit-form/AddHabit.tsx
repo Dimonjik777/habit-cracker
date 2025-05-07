@@ -80,7 +80,11 @@ export default function AddHabit() {
   };
 
   return (
-    <HabitForm disabled={disabled} handleSubmit={handleSubmit}>
+    <HabitForm
+      disabled={disabled}
+      handleSubmit={handleSubmit}
+      submitTitle="Add habit"
+    >
       <HabitTitleInput
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
           if (

@@ -6,10 +6,12 @@ export default function HabitForm({
   children,
   handleSubmit,
   disabled,
+  submitTitle,
 }: {
   children: React.ReactNode;
   handleSubmit: () => void;
   disabled: boolean;
+  submitTitle: string;
 }) {
   const { closeModal } = useModal();
   return (
@@ -19,7 +21,7 @@ export default function HabitForm({
         <div className={styles.buttonContainer}>
           <FormButton
             type="primary"
-            value="Add habit"
+            value={submitTitle}
             disabled={disabled}
             action={handleSubmit}
           />
