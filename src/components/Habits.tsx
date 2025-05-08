@@ -8,6 +8,7 @@ import styles from "/src/styles/modules/habits.module.scss";
 
 export default function Habits({ date }: { date: string }) {
   type HabitInstanceType = {
+    habitId: string;
     title: string;
     type: "check" | "track";
     goal?: number;
@@ -55,6 +56,7 @@ export default function Habits({ date }: { date: string }) {
             }
             if (history[date]) {
               return {
+                habitId: habit.id,
                 title: habit.title,
                 type: habit.type,
                 goal: habit?.goal,
