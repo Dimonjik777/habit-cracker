@@ -8,20 +8,24 @@ import {
 } from "react";
 import { useUser } from "./UserContext";
 
+type Habits = { [id: string]: Habit };
+
 type promiseObj = Promise<{ ok: boolean; message: string }>;
 
 type HabitContextType = {
-  habits: Habit[];
-  createHabit: (habit: Habit) => promiseObj;
-  updateHabit: (habit: Habit, oldTitle: string) => promiseObj;
-  setHabits: React.Dispatch<React.SetStateAction<Habit[]>>;
+  habits: Habits;
+  createHabit: (habit: Omit<Habit, "id">) => promiseObj;
+  updateHabit: (habit: Habit) => promiseObj;
+  setHabits: React.Dispatch<React.SetStateAction<Habits>>;
 };
 
 type HistoryEntry = {
   isCompleted: boolean;
   goalProgress?: number;
 };
+
 type Habit = {
+  id: string;
   createdAt: string;
   title: string;
   type: "check" | "track";
@@ -34,69 +38,76 @@ type Habit = {
   };
 };
 
-// The HabitContext is sort of a backend mockup, so every function is async
 const HabitContext = createContext<HabitContextType | undefined>(undefined);
 
 export const HabitProvider = ({ children }: { children: ReactNode }) => {
   const { user } = useUser();
-  // An object that refferences all of current user's global objects (not history instances, histories are nested)
-  const [habits, setHabits] = useState<Habit[]>([]);
-  // Fetch global object of all users' habits
-  const fetchHabits = async () => {
-    return JSON.parse(localStorage.getItem("habits") || "[]");
+
+  const [habits, setHabits] = useState<Habits>({});
+
+  const fetchHabits = async (): Promise<Record<string, Habits>> => {
+    return JSON.parse(localStorage.getItem("habits") || "{}");
   };
-  // Save an object of all user's habits in memory
-  const setHabtitsOnLoad = async () => {
-    if (user.role == "registered" && user.email) {
-      const retreivedHabits = await fetchHabits();
-      if (retreivedHabits[user.email]) {
-        setHabits(retreivedHabits[user.email]);
-      } else {
-        setHabits([]);
-        localStorage.setItem(
-          "habits",
-          JSON.stringify({ ...retreivedHabits, [user.email]: [] })
-        );
-      }
+
+  const setHabitsOnLoad = async () => {
+    if (user.role === "registered" && user.email) {
+      const retrievedHabits = await fetchHabits();
+      setHabits(retrievedHabits[user.email] || {});
     }
   };
-  // Update the global object of all users' habits (only the current user's part)
-  const setHabitsToLocalStorage = async (habits: Habit[]) => {
-    if (user.role == "registered" && user.email) {
-      const retreivedHabits = await fetchHabits();
+
+  const setHabitsToLocalStorage = async (habits: Habits) => {
+    if (user.role === "registered" && user.email) {
+      const retrievedHabits = await fetchHabits();
       localStorage.setItem(
         "habits",
-        JSON.stringify({ ...retreivedHabits, [user.email]: habits })
+        JSON.stringify({ ...retrievedHabits, [user.email]: habits })
       );
     }
   };
-  // save a new habit
-  const createHabit = async (habit: Habit) => {
-    const duplicates = habits.filter((h) => h.title == habit.title);
-    if (duplicates.length != 0) {
+
+  const createHabit = async (habitData: Omit<Habit, "id">) => {
+    const id = Date.now().toString();
+    const newHabit: Habit = {
+      id,
+      ...habitData,
+    };
+
+    // Optionally prevent duplicate titles if needed
+    const titleExists = Object.values(habits).some(
+      (h) => h.title === habitData.title
+    );
+    if (titleExists) {
       return { ok: false, message: "Title is in use" };
-    } else {
-      setHabits([...habits, habit]);
-      return { ok: true, message: "Habit created successfully!" };
     }
+
+    setHabits((prev) => ({
+      ...prev,
+      [id]: newHabit,
+    }));
+
+    return { ok: true, message: "Habit created successfully!" };
   };
-  // update an existing habit
-  const updateHabit = async (habit: Habit, oldTitle: string) => {
-    const duplicates = habits.filter((h) => h.title == oldTitle);
-    if (duplicates.length != 0) {
-      setHabits([...habits.filter((h) => h.title != habit.title), habit]);
-      return { ok: true, message: "Habit updated successfully!" };
-    } else {
-      return { ok: false, message: "Habit does not exist, nothing to update" };
+
+  const updateHabit = async (habit: Habit) => {
+    if (!habits[habit.id]) {
+      return { ok: false, message: "Habit not found" };
     }
+
+    setHabits((prev) => ({
+      ...prev,
+      [habit.id]: habit,
+    }));
+
+    return { ok: true, message: "Habit updated successfully!" };
   };
-  // Load current user's habits object from localStorage on page load
+
   useEffect(() => {
-    setHabtitsOnLoad();
+    setHabitsOnLoad();
   }, []);
-  // Save new habits to local storage every time a change is made
+
   useEffect(() => {
-    if (habits.length > 0) {
+    if (Object.keys(habits).length > 0) {
       setHabitsToLocalStorage(habits);
     }
   }, [habits]);
@@ -109,6 +120,7 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
     </HabitContext.Provider>
   );
 };
+
 export const useHabit = () => {
   const context = useContext(HabitContext);
   if (!context) {

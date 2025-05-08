@@ -36,7 +36,7 @@ export default function Habits({ date }: { date: string }) {
       let instances: HabitInstanceType[];
       //  check if the requested day is not a day in future
       if (new Date().getTime() >= safeParseDate(date).getTime()) {
-        instances = userHabits
+        instances = Object.values(userHabits)
           .map((habit: any) => {
             let history = habit.history;
             if (
@@ -86,6 +86,7 @@ export default function Habits({ date }: { date: string }) {
           const filtered = habitInstances.filter((i) => {
             return i.title != habit.title;
           });
+          // TODO: make update habit history record call to HabitContext
           return [
             ...filtered,
             {
