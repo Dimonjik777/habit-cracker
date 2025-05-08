@@ -1,10 +1,12 @@
 import { useState, useEffect, useRef } from "react";
 import { useModal } from "../contexts/ModalContext";
+import { useHabit } from "../contexts/HabitContext";
 import ActionsIcon from "/src/assets/three-dots.svg?react";
 import styles from "/src/styles/modules/habit.module.scss";
 import DeleteHabit from "./habit-form/DeleteHabit";
 
 type HabitInstanceType = {
+  habitId: string;
   title: string;
   type: "check" | "track";
   goal?: number;
@@ -21,6 +23,7 @@ export default function Habit({
   disabled: boolean;
 }) {
   const { openModal, closeModal } = useModal();
+  const { deleteHabit } = useHabit();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -35,9 +38,18 @@ export default function Habit({
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
   const openDelete = (_: React.MouseEvent) => {
-    const handleSubmit = () => {
-      alert("Not yet implemented");
+    const handleSubmit = async () => {
+      const res = await deleteHabit(habit.habitId);
+      let msg;
+      if (res) {
+        msg = res.message;
+      } else {
+        msg = "Error fetching response";
+      }
       closeModal();
+      setTimeout(() => {
+        alert(msg);
+      }, 200);
     };
     openModal(
       <DeleteHabit handleSubmit={handleSubmit} habitTitle={habit.title} />
