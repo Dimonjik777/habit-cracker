@@ -17,7 +17,6 @@ type HabitContextType = {
   createHabit: (habit: Omit<Habit, "id">) => promiseObj;
   updateHabit: (habit: Habit) => promiseObj;
   deleteHabit: (id: string) => promiseObj;
-  setHabits: React.Dispatch<React.SetStateAction<Habits>>;
   setHabitHistoryRecord: (
     habitInstance: HabitInstance,
     date: string
@@ -161,7 +160,6 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
         createHabit,
         updateHabit,
         deleteHabit,
-        setHabits,
         setHabitHistoryRecord,
       }}
     >
