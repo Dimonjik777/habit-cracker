@@ -1,12 +1,12 @@
-import styles from "/src/styles/modules/dashboard-all.module.scss";
+import styles from "/src/styles/modules/dashboard/all/dashboard-all.module.scss";
 import ArrowLeft from "/src/assets/arrow-left.svg?react";
 import ArrowRight from "/src/assets/arrow-right.svg?react";
 import { useState, useEffect } from "react";
-import AddButton from "../../components/AddButton";
+import AddButton from "../../components/dashboard/all/AddButton";
 import { useModal } from "../../contexts/ModalContext";
-import AddHabit from "../../components/habit-form/AddHabit";
+import AddHabit from "../../components/habit-form/forms/AddHabit";
 import { useLocation, useNavigate } from "react-router-dom";
-import Habits from "../../components/Habits";
+import Habits from "../../components/dashboard/all/Habits";
 
 export default function DashboardAll() {
   const { openModal } = useModal();

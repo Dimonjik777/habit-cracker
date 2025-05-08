@@ -1,6 +1,6 @@
 import { useModal } from "../../contexts/ModalContext";
 import FormButton from "./FormButton";
-import styles from "/src/styles/modules/habit-form.module.scss";
+import styles from "/src/styles/modules/habit-form/habit-form.module.scss";
 
 export default function HabitForm({
   children,

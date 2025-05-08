@@ -1,8 +1,8 @@
-import LeftSidebar from "./LeftSidebar";
-import RightSidebar from "./RightSidebar";
-import { useSidebar } from "../contexts/SidebarContext";
-import { useUser } from "../contexts/UserContext";
-import ThemeToggle from "./ThemeToggle";
+import LeftSidebar from "./left-sidebar/LeftSidebar";
+import RightSidebar from "./right-sidebar/RightSidebar";
+import { useSidebar } from "../../contexts/SidebarContext";
+import { useUser } from "../../contexts/UserContext";
+import ThemeToggle from "../ThemeToggle";
 import { useLocation, Outlet } from "react-router-dom";
 
 export default function DashboardLayout() {

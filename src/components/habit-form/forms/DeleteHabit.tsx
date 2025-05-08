@@ -1,5 +1,5 @@
-import HabitForm from "./HabitForm";
-import styles from "/src/styles/modules/habit-form.module.scss";
+import HabitForm from "../HabitForm";
+import styles from "/src/styles/modules/habit-form/habit-form.module.scss";
 
 export default function DeleteHabit({
   handleSubmit,

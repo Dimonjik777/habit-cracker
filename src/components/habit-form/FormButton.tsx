@@ -1,4 +1,4 @@
-import styles from "/src/styles/modules/form-button.module.scss";
+import styles from "/src/styles/modules/habit-form/form-button.module.scss";
 export default function FormButton({
   type,
   value,

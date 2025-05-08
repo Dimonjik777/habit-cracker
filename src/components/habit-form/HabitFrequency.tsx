@@ -1,4 +1,4 @@
-import styles from "/src/styles/modules/habit-form.module.scss";
+import styles from "/src/styles/modules/habit-form/habit-form.module.scss";
 import DropdownArrow from "/src/assets/dropdown-arrow.svg?react";
 import { useEffect, useState } from "react";
 

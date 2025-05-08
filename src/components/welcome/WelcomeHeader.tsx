@@ -1,13 +1,12 @@
 import Logo from "/src/assets/logo.svg?react";
 import Button from "../Button";
-import styles from "/src/styles/modules/welcome-header.module.scss";
+import styles from "/src/styles/modules/welcome/welcome-header.module.scss";
 import { useModal } from "../../contexts/ModalContext";
-import FormRegister from "../FormRegister";
-import FormLogin from "../FormLogin";
+import FormRegister from "./FormRegister";
+import FormLogin from "./FormLogin";
 
 export default function WelcomeHeader() {
-
-  const {openModal} = useModal();
+  const { openModal } = useModal();
 
   return (
     <div className={styles.container}>
@@ -17,14 +16,22 @@ export default function WelcomeHeader() {
       </div>
       <div className={styles.right}>
         <div className={styles.buttonContainer}>
-          <Button type="primary" value="Sign In" action={() => {
-            openModal(<FormLogin />);
-          }} />
+          <Button
+            type="primary"
+            value="Sign In"
+            action={() => {
+              openModal(<FormLogin />);
+            }}
+          />
         </div>
         <div className={styles.buttonContainer}>
-          <Button type="secondary" value="Sign Up" action={() => {
-            openModal(<FormRegister />)
-          }} />
+          <Button
+            type="secondary"
+            value="Sign Up"
+            action={() => {
+              openModal(<FormRegister />);
+            }}
+          />
         </div>
       </div>
     </div>

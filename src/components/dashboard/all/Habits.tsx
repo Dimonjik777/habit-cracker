@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useUser } from "../contexts/UserContext";
-import { useHabit } from "../contexts/HabitContext";
-import { useModal } from "../contexts/ModalContext";
-import UpdateGoalTrack from "./habit-form/UpdateGoalTrack";
+import { useUser } from "../../../contexts/UserContext";
+import { useHabit } from "../../../contexts/HabitContext";
+import { useModal } from "../../../contexts/ModalContext";
+import UpdateGoalTrack from "../../habit-form/forms/UpdateGoalTrack";
 import Habit from "./Habit";
-import styles from "/src/styles/modules/habits.module.scss";
+import styles from "/src/styles/modules/dashboard/all/habits.module.scss";
 
 export default function Habits({ date }: { date: string }) {
   type HabitInstanceType = {

@@ -1,7 +1,7 @@
 import Calendar from "./Calendar";
 import HabitsPieChart from "./HabitsPieChart";
-import { useSidebar } from "../contexts/SidebarContext";
-import styles from "/src/styles/modules/right-sidebar.module.scss";
+import { useSidebar } from "../../../contexts/SidebarContext";
+import styles from "/src/styles/modules/dashboard/right-sidebar/right-sidebar.module.scss";
 import CloseIcon from "/src/assets/close.svg?react";
 
 export default function RightSidebar() {

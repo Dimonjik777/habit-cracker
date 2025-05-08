@@ -1,4 +1,4 @@
-import styles from "/src/styles/modules/add-button.module.scss";
+import styles from "/src/styles/modules/dashboard/all/add-button.module.scss";
 
 export default function AddButton({ onClick }: { onClick?: () => void }) {
   return (

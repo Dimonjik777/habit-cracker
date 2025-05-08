@@ -2,9 +2,9 @@ import Logo from "/src/assets/logo.svg?react";
 import ListIcon from "/src/assets/list.svg?react";
 import ChartIcon from "/src/assets/chart.svg?react";
 import { NavLink } from "react-router";
-import { useUser } from "../contexts/UserContext";
-import { useSidebar } from "../contexts/SidebarContext";
-import styles from "/src/styles/modules/left-sidebar.module.scss";
+import { useUser } from "../../../contexts/UserContext";
+import { useSidebar } from "../../../contexts/SidebarContext";
+import styles from "/src/styles/modules/dashboard/left-sidebar/left-sidebar.module.scss";
 import Logout from "/src/assets/logout.svg?react";
 import CloseIcon from "/src/assets/close.svg?react";
 

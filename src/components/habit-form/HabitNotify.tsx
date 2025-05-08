@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Check from "/src/assets/check.svg?react";
-import styles from "/src/styles/modules/habit-form.module.scss";
+import styles from "/src/styles/modules/habit-form/habit-form.module.scss";
 
 export default function HabitNotify({
   onChange,

@@ -1,4 +1,4 @@
-@use "./mixins/_sidebar-open.scss" as *;
+@use "/src/styles/modules/mixins/sidebar-open" as *;
 .container {
   position: fixed;
   top: 0;

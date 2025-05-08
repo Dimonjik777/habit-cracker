@@ -1,7 +1,7 @@
 import { FormEventHandler, useState } from "react";
 import EyeOpen from "/src/assets/eye-open.svg?react";
 import EyeCrossed from "/src/assets/eye-crossed.svg?react";
-import styles from "/src/styles/modules/password.module.scss";
+import styles from "/src/styles/modules/welcome/password.module.scss";
 
 export default function PasswordField({
   value,

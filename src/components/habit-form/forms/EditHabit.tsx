@@ -1,13 +1,13 @@
-import HabitForm from "./HabitForm";
-import { useModal } from "../../contexts/ModalContext";
+import HabitForm from "../HabitForm";
+import { useModal } from "../../../contexts/ModalContext";
 import { useState, ChangeEvent, useEffect } from "react";
-import HabitTitleInput from "./HabitTitleInput";
-import HabitFrequency from "./HabitFrequency";
-import HabitGoal from "./HabitGoal";
-import HabitNotify from "./HabitNotify";
-import { useUser } from "../../contexts/UserContext";
-import { useHabit } from "../../contexts/HabitContext";
-import styles from "/src/styles/modules/habit-form.module.scss";
+import HabitTitleInput from "../HabitTitleInput";
+import HabitFrequency from "../HabitFrequency";
+import HabitGoal from "../HabitGoal";
+import HabitNotify from "../HabitNotify";
+import { useUser } from "../../../contexts/UserContext";
+import { useHabit } from "../../../contexts/HabitContext";
+import styles from "/src/styles/modules/habit-form/habit-form.module.scss";
 
 type Habit = {
   id: string;

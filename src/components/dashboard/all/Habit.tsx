@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from "react";
-import { useModal } from "../contexts/ModalContext";
-import { useHabit } from "../contexts/HabitContext";
-import DeleteHabit from "./habit-form/DeleteHabit";
-import EditHabit from "./habit-form/EditHabit";
+import { useModal } from "../../../contexts/ModalContext";
+import { useHabit } from "../../../contexts/HabitContext";
+import DeleteHabit from "../../habit-form/forms/DeleteHabit";
+import EditHabit from "../../habit-form/forms/EditHabit";
 import ActionsIcon from "/src/assets/three-dots.svg?react";
-import styles from "/src/styles/modules/habit.module.scss";
+import styles from "/src/styles/modules/dashboard/all/habit.module.scss";
 
 type HabitInstanceType = {
   habitId: string;

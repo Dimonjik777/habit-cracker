@@ -3,9 +3,9 @@ import Welcome from "./pages/Welcome";
 import ModalWindow from "./components/ModalWindow";
 import { useTheme } from "./contexts/ThemeContext";
 import { useUser } from "./contexts/UserContext";
-import Redirect from "./components/Redirect";
+import Redirect from "./components/navigation/Redirect";
 import { ModalProvider } from "./contexts/ModalContext";
-import DashboardLayout from "./components/DashboardLayout";
+import DashboardLayout from "./components/dashboard/DashboardLayout";
 import NotFound from "./components/NotFound";
 import DashboardAll from "./pages/dashboard/DashboardAll";
 

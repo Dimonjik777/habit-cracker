@@ -1,6 +1,6 @@
-import HabitForm from "./HabitForm";
+import HabitForm from "../HabitForm";
 import { useState, ChangeEvent } from "react";
-import styles from "/src/styles/modules/habit-form.module.scss";
+import styles from "/src/styles/modules/habit-form/habit-form.module.scss";
 
 export default function UpdateGoalTrack({
   val,
@@ -36,6 +36,7 @@ export default function UpdateGoalTrack({
         handleSubmit={() => handleSubmit(Number(progress))}
         disabled={progress === null}
         submitTitle="Save track"
+        error=""
       >
         <div className={styles.updateGoalContentContainer}>
           <label htmlFor="update-goal-track">Enter new value:</label>

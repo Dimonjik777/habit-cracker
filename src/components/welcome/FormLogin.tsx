@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
-import Button from "./Button";
+import Button from "../Button";
 import PasswordField from "./PasswordField";
-import styles from "/src/styles/modules/form.module.scss";
-import { useUser } from "../contexts/UserContext";
-import { useModal } from "../contexts/ModalContext";
+import styles from "/src/styles/modules/welcome/form.module.scss";
+import { useUser } from "../../contexts/UserContext";
+import { useModal } from "../../contexts/ModalContext";
 
 type FormLoginData = {
   email: string;
@@ -26,8 +26,7 @@ export default function FormLogin() {
       setError("Please fill out empty fields.");
     } else if (!validateEmail(data["email"])) {
       setError("Please follow the email pattern");
-    }
-    else {
+    } else {
       setError("");
     }
     setShowError(false);
@@ -43,11 +42,11 @@ export default function FormLogin() {
     if (error) {
       setShowError(true);
       return;
-    };
+    }
 
     let result = await fetchLogin(data);
 
-    if (result){
+    if (result) {
       login(data);
       closeModal();
     }
@@ -61,8 +60,7 @@ export default function FormLogin() {
       const user = allUsers[data.email];
       if (user && user.password === data.password) {
         resolve(true);
-      }
-      else {
+      } else {
         setError("Incorrect email or password entered.");
         setShowError(true);
         resolve(false);

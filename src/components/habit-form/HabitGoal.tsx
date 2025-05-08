@@ -1,5 +1,5 @@
 import { ChangeEvent } from "react";
-import styles from "/src/styles/modules/habit-form.module.scss";
+import styles from "/src/styles/modules/habit-form/habit-form.module.scss";
 
 export default function HabitGoal({
   value,
