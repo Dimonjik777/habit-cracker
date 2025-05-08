@@ -55,13 +55,21 @@ export default function Habits({ date }: { date: string }) {
               };
             }
             if (history[date]) {
-              return {
+              const habitInstance = {
                 habitId: habit.id,
                 title: habit.title,
                 type: habit.type,
                 goal: habit?.goal,
                 ...history[date],
               };
+              if (habit.type == "track") {
+                return {
+                  ...habitInstance,
+                  isCompleted: habit.goal <= history[date].goalProgress,
+                };
+              } else {
+                return habitInstance;
+              }
             }
           })
           .filter(Boolean);
