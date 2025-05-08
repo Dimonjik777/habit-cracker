@@ -14,6 +14,7 @@ type promiseObj = Promise<{ ok: boolean; message: string }>;
 
 type HabitContextType = {
   habits: Habits;
+  getHabit: (id: string) => Promise<Habit>;
   createHabit: (habit: Omit<Habit, "id">) => promiseObj;
   updateHabit: (habit: Habit) => promiseObj;
   deleteHabit: (id: string) => promiseObj;
@@ -161,6 +162,7 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
     <HabitContext.Provider
       value={{
         habits,
+        getHabit,
         createHabit,
         updateHabit,
         deleteHabit,
