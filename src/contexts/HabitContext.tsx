@@ -107,7 +107,7 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const updateHabit = async (habit: Habit) => {
-    if (!habits[habit.id]) {
+    if (!getHabit(habit.id)) {
       return { ok: false, message: "Habit not found" };
     }
 
@@ -119,7 +119,7 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
     return { ok: true, message: "Habit updated successfully!" };
   };
   const deleteHabit = async (id: string) => {
-    if (!habits[id]) {
+    if (!getHabit(id)) {
       return { ok: false, message: "Habit not found" };
     }
     setHabits((prev) => {
