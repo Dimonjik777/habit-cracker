@@ -1,9 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import { useModal } from "../contexts/ModalContext";
 import { useHabit } from "../contexts/HabitContext";
+import DeleteHabit from "./habit-form/DeleteHabit";
+import EditHabit from "./habit-form/EditHabit";
 import ActionsIcon from "/src/assets/three-dots.svg?react";
 import styles from "/src/styles/modules/habit.module.scss";
-import DeleteHabit from "./habit-form/DeleteHabit";
 
 type HabitInstanceType = {
   habitId: string;
@@ -14,7 +15,7 @@ type HabitInstanceType = {
   goalProgress?: number;
 };
 export default function Habit({
-  habit,
+  habit: habitInstance,
   onClick,
   disabled,
 }: {
@@ -23,7 +24,7 @@ export default function Habit({
   disabled: boolean;
 }) {
   const { openModal, closeModal } = useModal();
-  const { deleteHabit } = useHabit();
+  const { deleteHabit, getHabit } = useHabit();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -39,7 +40,7 @@ export default function Habit({
   }, []);
   const openDelete = (_: React.MouseEvent) => {
     const handleSubmit = async () => {
-      const res = await deleteHabit(habit.habitId);
+      const res = await deleteHabit(habitInstance.habitId);
       let msg;
       if (res) {
         msg = res.message;
@@ -52,27 +53,40 @@ export default function Habit({
       }, 200);
     };
     openModal(
-      <DeleteHabit handleSubmit={handleSubmit} habitTitle={habit.title} />
+      <DeleteHabit
+        handleSubmit={handleSubmit}
+        habitTitle={habitInstance.title}
+      />
     );
+  };
+  const openEdit = async (_: React.MouseEvent) => {
+    const habit = await getHabit(habitInstance.habitId);
+    if (habit) {
+      openModal(<EditHabit habit={habit} />);
+    } else {
+      alert("Habit not found");
+    }
   };
   return (
     <div ref={ref} className={styles.container}>
       <div className={`${styles.main} ${disabled ? styles.disabled : ""}`}>
-        <h3>{habit.title}</h3>
-        {habit.type == "check" && (
+        <h3>{habitInstance.title}</h3>
+        {habitInstance.type == "check" && (
           <span
             className={`${styles.checkbox} ${
-              habit.isCompleted ? styles.checked : ""
+              habitInstance.isCompleted ? styles.checked : ""
             }`}
             onClick={onClick}
           ></span>
         )}
-        {habit.type == "track" && (
+        {habitInstance.type == "track" && (
           <span
-            className={`${styles.goal} ${habit.isCompleted ? styles.done : ""}`}
+            className={`${styles.goal} ${
+              habitInstance.isCompleted ? styles.done : ""
+            }`}
             onClick={onClick}
           >
-            {habit.goalProgress}
+            {habitInstance.goalProgress}
           </span>
         )}
       </div>
@@ -88,7 +102,9 @@ export default function Habit({
         className={`${styles.dropdownContainer} ${menuOpen ? styles.open : ""}`}
       >
         <div className={styles.selectOptions}>
-          <div className={styles.option}>Edit</div>
+          <div className={styles.option} onClick={openEdit}>
+            Edit
+          </div>
           <div className={styles.option} onClick={openDelete}>
             Delete
           </div>
