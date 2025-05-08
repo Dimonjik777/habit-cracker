@@ -25,7 +25,7 @@ export default function Habits({ date }: { date: string }) {
   };
   const safeParseDate = (str: string) => {
     const [dd, mm, yyyy] = str.split("-");
-    return new Date(`${yyyy}-${mm}-${dd}`);
+    return new Date(Number(yyyy), Number(mm) - 1, Number(dd));
   };
 
   // Import habits as userHabits for better understanding and readability
@@ -113,6 +113,13 @@ export default function Habits({ date }: { date: string }) {
   };
 
   const renderHabits = (condition?: string) => {
+    const today = new Date();
+    const parsedDate = safeParseDate(date);
+
+    const isToday =
+      parsedDate.getFullYear() === today.getFullYear() &&
+      parsedDate.getMonth() === today.getMonth() &&
+      parsedDate.getDate() === today.getDate();
     return habitInstances
       .filter((habit) => {
         if (condition == "completed") {
@@ -127,6 +134,7 @@ export default function Habits({ date }: { date: string }) {
             <Habit
               habit={habit}
               onClick={() => handleHabitInstanceClick(habit)}
+              disabled={!isToday}
             />
           </div>
         );

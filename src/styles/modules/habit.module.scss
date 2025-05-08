@@ -34,6 +34,10 @@
       display: flex;
       justify-content: center;
     }
+    &.disabled {
+      pointer-events: none;
+      opacity: 0.7;
+    }
   }
   .actions {
     position: relative;

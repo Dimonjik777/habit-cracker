@@ -11,13 +11,15 @@ type HabitInstanceType = {
 export default function Habit({
   habit,
   onClick,
+  disabled,
 }: {
   habit: HabitInstanceType;
   onClick: () => void;
+  disabled: boolean;
 }) {
   return (
     <div className={styles.container}>
-      <div className={styles.main}>
+      <div className={`${styles.main} ${disabled ? styles.disabled : ""}`}>
         <h3>{habit.title}</h3>
         {habit.type == "check" && (
           <span
