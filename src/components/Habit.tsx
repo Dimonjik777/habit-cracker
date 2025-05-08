@@ -1,3 +1,4 @@
+import { useState, useEffect, useRef } from "react";
 import ActionsIcon from "/src/assets/three-dots.svg?react";
 import styles from "/src/styles/modules/habit.module.scss";
 
@@ -17,8 +18,22 @@ export default function Habit({
   onClick: () => void;
   disabled: boolean;
 }) {
+  const [menuOpen, setMenuOpen] = useState<boolean>(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (ref.current && !ref.current.contains(e.target as Node)) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, []);
+
   return (
-    <div className={styles.container}>
+    <div ref={ref} className={styles.container}>
       <div className={`${styles.main} ${disabled ? styles.disabled : ""}`}>
         <h3>{habit.title}</h3>
         {habit.type == "check" && (
@@ -38,8 +53,21 @@ export default function Habit({
           </span>
         )}
       </div>
-      <div className={styles.actions}>
+      <div
+        className={styles.actions}
+        onClick={() => {
+          setMenuOpen(true);
+        }}
+      >
         <ActionsIcon />
+      </div>
+      <div
+        className={`${styles.dropdownContainer} ${menuOpen ? styles.open : ""}`}
+      >
+        <div className={styles.selectOptions}>
+          <div className={styles.option}>Edit</div>
+          <div className={styles.option}>Delete</div>
+        </div>
       </div>
     </div>
   );
