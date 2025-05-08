@@ -17,6 +17,10 @@ type HabitContextType = {
   createHabit: (habit: Omit<Habit, "id">) => promiseObj;
   updateHabit: (habit: Habit) => promiseObj;
   setHabits: React.Dispatch<React.SetStateAction<Habits>>;
+  setHabitHistoryRecord: (
+    habitInstance: HabitInstance,
+    date: string
+  ) => promiseObj;
 };
 
 type HistoryEntry = {
@@ -36,6 +40,15 @@ type Habit = {
   history: {
     [date: string]: HistoryEntry;
   };
+};
+
+type HabitInstance = {
+  habitId: string;
+  title: string;
+  type: "check" | "track";
+  goal?: number;
+  isCompleted: boolean;
+  goalProgress?: number;
 };
 
 const HabitContext = createContext<HabitContextType | undefined>(undefined);
@@ -101,7 +114,23 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
 
     return { ok: true, message: "Habit updated successfully!" };
   };
-
+  const setHabitHistoryRecord = async (
+    habitInstance: HabitInstance,
+    date: string
+  ) => {
+    let habitsCopy = JSON.parse(JSON.stringify(habits)); // deep copy
+    let habit = habitsCopy[habitInstance.habitId];
+    if (!habit) {
+      return { ok: false, message: "Habit not found" };
+    }
+    habit.history[date] = {
+      isCompleted: habitInstance.isCompleted,
+      goalProgress: habitInstance.goalProgress,
+    };
+    let res = await updateHabit(habit);
+    console.log(res);
+    return res;
+  };
   useEffect(() => {
     setHabitsOnLoad();
   }, []);
@@ -114,7 +143,13 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <HabitContext.Provider
-      value={{ habits, createHabit, updateHabit, setHabits }}
+      value={{
+        habits,
+        createHabit,
+        updateHabit,
+        setHabits,
+        setHabitHistoryRecord,
+      }}
     >
       {children}
     </HabitContext.Provider>

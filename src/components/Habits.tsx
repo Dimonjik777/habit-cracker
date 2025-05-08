@@ -29,7 +29,7 @@ export default function Habits({ date }: { date: string }) {
   };
 
   // Import habits as userHabits for better understanding and readability
-  const { habits: userHabits } = useHabit();
+  const { habits: userHabits, setHabitHistoryRecord } = useHabit();
 
   useEffect(() => {
     if (user.role == "registered" && user.email) {
@@ -75,30 +75,32 @@ export default function Habits({ date }: { date: string }) {
   // Handle track form value change
   // Handle the inner click event of a habit
   const handleHabitInstanceClick = (habit: HabitInstanceType) => {
+    let updatedInstance: HabitInstanceType;
     if (habit.type == "check") {
+      updatedInstance = { ...habit, isCompleted: !habit.isCompleted };
       setHabitInstances(() => {
         const filtered = habitInstances.filter((i) => {
           return i.title != habit.title;
         });
-        return [...filtered, { ...habit, isCompleted: !habit.isCompleted }];
+        return [...filtered, updatedInstance];
       });
+      setHabitHistoryRecord(updatedInstance, date);
     } else {
       const handleSubmit = (val: number) => {
+        updatedInstance = {
+          ...habit,
+          goalProgress: val,
+          isCompleted: Boolean(val >= Number(habit.goal)),
+        };
         setHabitInstances(() => {
           const filtered = habitInstances.filter((i) => {
             return i.title != habit.title;
           });
           // TODO: make update habit history record call to HabitContext
-          return [
-            ...filtered,
-            {
-              ...habit,
-              goalProgress: val,
-              isCompleted: Boolean(val >= Number(habit.goal)),
-            },
-          ];
+          return [...filtered, updatedInstance];
         });
         closeModal();
+        setHabitHistoryRecord(updatedInstance, date);
       };
       openModal(
         <UpdateGoalTrack
