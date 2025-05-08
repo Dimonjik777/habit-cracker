@@ -7,16 +7,19 @@ export default function HabitForm({
   handleSubmit,
   disabled,
   submitTitle,
+  error,
 }: {
   children: React.ReactNode;
   handleSubmit: () => void;
   disabled: boolean;
   submitTitle: string;
+  error: string;
 }) {
   const { closeModal } = useModal();
   return (
     <form className={styles.container}>
       <div className={styles.content}>{children}</div>
+      {error && <div className={styles.errorContainer}>{error}</div>}
       <div className={styles.submitContainer}>
         <div className={styles.buttonContainer}>
           <FormButton
