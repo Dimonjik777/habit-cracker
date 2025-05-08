@@ -16,6 +16,7 @@ type HabitContextType = {
   habits: Habits;
   createHabit: (habit: Omit<Habit, "id">) => promiseObj;
   updateHabit: (habit: Habit) => promiseObj;
+  deleteHabit: (id: string) => promiseObj;
   setHabits: React.Dispatch<React.SetStateAction<Habits>>;
   setHabitHistoryRecord: (
     habitInstance: HabitInstance,
@@ -114,6 +115,18 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
 
     return { ok: true, message: "Habit updated successfully!" };
   };
+  const deleteHabit = async (id: string) => {
+    if (!habits[id]) {
+      return { ok: false, message: "Habit not found" };
+    }
+    setHabits((prev) => {
+      const updated = { ...prev };
+      delete updated[id];
+      return updated;
+    });
+
+    return { ok: true, message: "Habit deleted successfully!" };
+  };
   const setHabitHistoryRecord = async (
     habitInstance: HabitInstance,
     date: string
@@ -147,6 +160,7 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
         habits,
         createHabit,
         updateHabit,
+        deleteHabit,
         setHabits,
         setHabitHistoryRecord,
       }}
