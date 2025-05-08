@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
+import { useModal } from "../contexts/ModalContext";
 import ActionsIcon from "/src/assets/three-dots.svg?react";
 import styles from "/src/styles/modules/habit.module.scss";
+import DeleteHabit from "./habit-form/DeleteHabit";
 
 type HabitInstanceType = {
   title: string;
@@ -18,6 +20,7 @@ export default function Habit({
   onClick: () => void;
   disabled: boolean;
 }) {
+  const { openModal, closeModal } = useModal();
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const ref = useRef<HTMLDivElement>(null);
 
@@ -31,7 +34,15 @@ export default function Habit({
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
-
+  const openDelete = (_: React.MouseEvent) => {
+    const handleSubmit = () => {
+      alert("Not yet implemented");
+      closeModal();
+    };
+    openModal(
+      <DeleteHabit handleSubmit={handleSubmit} habitTitle={habit.title} />
+    );
+  };
   return (
     <div ref={ref} className={styles.container}>
       <div className={`${styles.main} ${disabled ? styles.disabled : ""}`}>
@@ -66,7 +77,9 @@ export default function Habit({
       >
         <div className={styles.selectOptions}>
           <div className={styles.option}>Edit</div>
-          <div className={styles.option}>Delete</div>
+          <div className={styles.option} onClick={openDelete}>
+            Delete
+          </div>
         </div>
       </div>
     </div>
