@@ -79,6 +79,10 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
     }
   };
 
+  const getHabit = async (id: string) => {
+    return habits[id];
+  };
+
   const createHabit = async (habitData: Omit<Habit, "id">) => {
     const id = Date.now().toString();
     const newHabit: Habit = {
