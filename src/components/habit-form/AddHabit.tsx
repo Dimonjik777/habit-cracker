@@ -31,6 +31,7 @@ export default function AddHabit() {
     notify: false,
     notifyTime: "00:00",
   });
+  const [error, setError] = useState<string>("");
   useEffect(() => {
     if (
       !data.title ||
@@ -44,16 +45,20 @@ export default function AddHabit() {
     }
   }, [data]);
   const handleSubmit = async () => {
-    closeModal();
-    let msg: string;
-    if (await fetchAddHabit(data)) {
-      msg = "Habit created successfully!";
+    const res = await fetchAddHabit(data);
+    if (res) {
+      const msg = res.message;
+      if (res.ok) {
+        closeModal();
+        setTimeout(() => {
+          alert(msg);
+        }, 200);
+      } else {
+        setError(msg);
+      }
     } else {
-      msg = "Something went wrong";
+      setError("Error fetching response");
     }
-    setTimeout(() => {
-      alert(msg);
-    }, 200);
   };
 
   const fetchAddHabit = async (data: AddHabitData) => {
@@ -69,21 +74,22 @@ export default function AddHabit() {
           createdAt,
           history: {},
         });
-        if (res.ok) {
-          return true;
-        }
+        return res;
       }
     } catch (e) {
       console.error("Error saving habit:", e);
       return false;
     }
   };
-
+  useEffect(() => {
+    setError("");
+  }, [data]);
   return (
     <HabitForm
       disabled={disabled}
       handleSubmit={handleSubmit}
       submitTitle="Add habit"
+      error={error}
     >
       <HabitTitleInput
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
