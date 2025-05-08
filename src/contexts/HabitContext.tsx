@@ -11,12 +11,12 @@ import { useUser } from "./UserContext";
 type Habits = { [id: string]: Habit };
 
 type promiseObj = Promise<{ ok: boolean; message: string }>;
-
+type updateHabitData = Omit<Omit<Habit, "createdAt">, "history">;
 type HabitContextType = {
   habits: Habits;
   getHabit: (id: string) => Promise<Habit>;
   createHabit: (habit: Omit<Habit, "id">) => promiseObj;
-  updateHabit: (habit: Habit) => promiseObj;
+  updateHabit: (habitData: updateHabitData) => promiseObj;
   deleteHabit: (id: string) => promiseObj;
   setHabitHistoryRecord: (
     habitInstance: HabitInstance,
@@ -107,14 +107,18 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
     return { ok: true, message: "Habit created successfully!" };
   };
 
-  const updateHabit = async (habit: Habit) => {
-    if (!getHabit(habit.id)) {
+  const updateHabit = async (data: updateHabitData) => {
+    const oldHabit = await getHabit(data.id);
+    if (!oldHabit) {
       return { ok: false, message: "Habit not found" };
     }
-
+    const newHabit: Habit = {
+      ...oldHabit,
+      ...data,
+    };
     setHabits((prev) => ({
       ...prev,
-      [habit.id]: habit,
+      [data.id]: newHabit,
     }));
 
     return { ok: true, message: "Habit updated successfully!" };
