@@ -1,0 +1,36 @@
+@mixin dropdownMenu() {
+  .selectOptions {
+    z-index: 10;
+    position: absolute;
+    overflow: hidden;
+    display: flex;
+    max-height: 0;
+    flex-direction: column;
+    border-radius: 10px;
+    margin-top: 10px;
+    width: 100%;
+    transition: all 0.2s;
+
+    .option {
+      background-color: var(--secondary-color);
+      padding: 10px 20px;
+      font-size: 16px;
+      transition: all 0.2s;
+      &:hover {
+        cursor: pointer;
+        background-color: var(--primary-color);
+        color: var(--background-color);
+      }
+    }
+  }
+  &.open {
+    .selectLabel {
+      .arrowContainer {
+        transform: translateY(-50%) rotate(180deg);
+      }
+    }
+    .selectOptions {
+      max-height: 100px;
+    }
+  }
+}
