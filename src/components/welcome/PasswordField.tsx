@@ -19,6 +19,7 @@ export default function PasswordField({
         onInput={onInput}
         value={value}
         placeholder="Enter password"
+        name="password"
       />
       <div
         className={styles.iconContainer}

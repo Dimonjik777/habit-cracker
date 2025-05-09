@@ -76,6 +76,7 @@ export default function FormLogin() {
         <input
           className={styles.input}
           type="email"
+          name="email"
           placeholder="Enter email adress"
           onInput={(e) =>
             setData({ ...data, email: (e.target as HTMLInputElement).value })
