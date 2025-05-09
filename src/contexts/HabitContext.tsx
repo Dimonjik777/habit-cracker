@@ -153,8 +153,10 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
     return res;
   };
   useEffect(() => {
-    setHabitsOnLoad();
-  }, []);
+    if (user.role == "registered") {
+      setHabitsOnLoad();
+    }
+  }, [user.role]); // this way the user doesn't have to reload the page after logging in to get their habits displayed
 
   useEffect(() => {
     if (Object.keys(habits).length > 0) {
