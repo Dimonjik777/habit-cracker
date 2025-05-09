@@ -90,7 +90,7 @@ export default function FormLogin() {
           value={data.password}
         />
 
-        <Button type="primary" value="Sign up" action={handleSubmit} />
+        <Button type="primary" value="Sign in" action={handleSubmit} />
       </form>
       {showError && <p className={styles.error}>{error}</p>}
     </div>
