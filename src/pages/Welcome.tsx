@@ -2,6 +2,7 @@ import styles from "/src/styles/modules/welcome/welcome.module.scss";
 import WelcomeHeader from "../components/welcome/WelcomeHeader";
 import Button from "../components/Button";
 import { useModal } from "../contexts/ModalContext";
+import ThemeToggle from "../components/ThemeToggle";
 import FormRegister from "../components/welcome/FormRegister";
 export default function welcome() {
   const { openModal } = useModal();
@@ -10,6 +11,9 @@ export default function welcome() {
     <>
       <div className={styles.container}>
         <WelcomeHeader />
+        <div className={styles.themeToggleContainer}>
+          <ThemeToggle />
+        </div>
         <div className={styles.hero}>
           <div className={styles.contents}>
             <h1 className={styles.heading}>Build the habits that matter!</h1>
