@@ -41,7 +41,7 @@ export const ThemeProvider = ({ children }: { children: ReactNode }) => {
     }
   };
   if (darkTheme === null) {
-    return <div className="">Loading...</div>;
+    return;
   }
 
   return (
