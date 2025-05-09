@@ -11,7 +11,7 @@ export default function HabitsPieChart() {
     const searchParams = new URLSearchParams(location.search);
     return searchParams.get("date") ?? "00-00-0000";
   };
-  if (habits) {
+  if (habits.length > 0) {
     const date = getSearchParamDateKey();
     console.log(date);
     const totalCompleted = habits.filter((element) => {
@@ -41,6 +41,13 @@ export default function HabitsPieChart() {
             ))}
           </Pie>
         </PieChart>
+      </div>
+    );
+  } else {
+    return (
+      <div className={styles.container}>
+        <h1 className={styles.complete__percent}>0%</h1>
+        <p className={styles.complete__desc}>Current day`s progress</p>
       </div>
     );
   }
