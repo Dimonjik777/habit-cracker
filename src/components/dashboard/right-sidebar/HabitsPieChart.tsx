@@ -25,7 +25,7 @@ export default function HabitsPieChart() {
       <p className={styles.complete__desc}>Current day`s progress</p>
       <PieChart width={270} height={270}>
         <Pie dataKey="value" data={data} innerRadius={115} outerRadius={135}>
-          {data.map((entry, index) => (
+          {data.map((_, index) => (
             <Cell key={`cell-${index}`} fill={COLORS[index]} />
           ))}
         </Pie>
