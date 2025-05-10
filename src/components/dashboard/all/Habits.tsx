@@ -4,6 +4,7 @@ import { useHabit } from "../../../contexts/HabitContext";
 import { useModal } from "../../../contexts/ModalContext";
 import UpdateGoalTrack from "../../habit-form/forms/UpdateGoalTrack";
 import Habit from "./Habit";
+import { safeParseDate } from "../../../helpers/date-parser";
 import styles from "/src/styles/modules/dashboard/all/habits.module.scss";
 
 export default function Habits({ date }: { date: string }) {
@@ -22,11 +23,6 @@ export default function Habits({ date }: { date: string }) {
     const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
     return days[date.getDay()];
   };
-  const safeParseDate = (str: string) => {
-    const [dd, mm, yyyy] = str.split("-");
-    return new Date(Number(yyyy), Number(mm) - 1, Number(dd));
-  };
-
   // Import habits as userHabits for better understanding and readability
   const { habits: userHabits, setHabitHistoryRecord } = useHabit();
 
