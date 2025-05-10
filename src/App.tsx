@@ -8,6 +8,7 @@ import { ModalProvider } from "./contexts/ModalContext";
 import DashboardLayout from "./components/dashboard/DashboardLayout";
 import NotFound from "./components/NotFound";
 import DashboardAll from "./pages/dashboard/DashboardAll";
+import DashboardStatistics from "./pages/dashboard/DashboardStatistics";
 
 function App() {
   const { darkTheme } = useTheme();
@@ -20,10 +21,7 @@ function App() {
           {user.role === "registered" && (
             <Route path="/dashboard" element={<DashboardLayout />}>
               <Route path="all" element={<DashboardAll />} />
-              <Route
-                path="statistics"
-                element={<div>Dashboard Statistics</div>}
-              />
+              <Route path="statistics" element={<DashboardStatistics />} />
               <Route path="*" element={<NotFound />} />
             </Route>
           )}
