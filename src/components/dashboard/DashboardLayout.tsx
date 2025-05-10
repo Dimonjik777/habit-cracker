@@ -29,7 +29,7 @@ export default function DashboardLayout() {
           {location.pathname === "/dashboard/all" && (
             <h2>Hi there, {user.name}</h2>
           )}
-          {location.pathname === "/dashboard/statistics" && <h2>Statistics</h2>}
+          {location.pathname === "/dashboard/statistics" && <h1>Statistics</h1>}
           <h2></h2>{" "}
           {/* Dont remove this. its a long story but just don't remove this */}
           <ThemeToggle />
