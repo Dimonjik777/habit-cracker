@@ -72,6 +72,9 @@ export default function DashboardAll() {
     // Navigate to new date
     navigate(`?date=${formatDate(date)}`);
   };
+  const isToday = () => {
+    return getDateParam() == formatDate(new Date());
+  };
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -88,7 +91,9 @@ export default function DashboardAll() {
             <ArrowLeft />
           </div>
           <div
-            className={styles.iconContainer}
+            className={`${styles.iconContainer}  ${
+              isToday() ? styles.inactive : ""
+            }`}
             onClick={() => navigateDate("next")}
           >
             <ArrowRight />

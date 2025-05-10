@@ -15,6 +15,10 @@
       gap: 10px;
       align-items: center;
       .iconContainer {
+        &.inactive {
+          pointer-events: none;
+          opacity: 0.6;
+        }
         cursor: pointer;
         width: 30px;
         height: 30px;
