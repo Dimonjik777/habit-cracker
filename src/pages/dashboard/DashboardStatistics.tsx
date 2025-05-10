@@ -22,20 +22,22 @@ export default function DashboardStatistics() {
   };
   return (
     <div className={styles.container}>
-      <div className={styles.chooseHabitContainer}>
-        <h3>Choose a habit:</h3>
+      <>
         {habitsArray.length != 0 ? (
           <>
-            <div className={styles.habitCardsContainer}>
-              {habitsArray.map((habit) => (
-                <span
-                  key={habit.id}
-                  className={`${styles.habitCard} ${isActive(habit)}`}
-                  onClick={() => setChosenHabit(habit)}
-                >
-                  {habit.title}
-                </span>
-              ))}
+            <div className={styles.chooseHabitContainer}>
+              <h3>Choose a habit:</h3>
+              <div className={styles.habitCardsContainer}>
+                {habitsArray.map((habit) => (
+                  <span
+                    key={habit.id}
+                    className={`${styles.habitCard} ${isActive(habit)}`}
+                    onClick={() => setChosenHabit(habit)}
+                  >
+                    {habit.title}
+                  </span>
+                ))}
+              </div>
             </div>
             {/* Line Chart Section */}
             {chosenHabit ? (
@@ -59,7 +61,7 @@ export default function DashboardStatistics() {
             <h2>No habits to choose from</h2>
           </div>
         )}
-      </div>
+      </>
     </div>
   );
 }
