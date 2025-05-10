@@ -7,21 +7,10 @@ import HabitGoal from "../HabitGoal";
 import HabitNotify from "../HabitNotify";
 import { useUser } from "../../../contexts/UserContext";
 import { useHabit } from "../../../contexts/HabitContext";
+import { HabitType } from "../../../helpers/type-habit";
 import styles from "/src/styles/modules/habit-form/habit-form.module.scss";
 
-type Habit = {
-  id: string;
-  createdAt: string;
-  title: string;
-  type: "check" | "track";
-  days: string[];
-  goal: number;
-  notify: boolean;
-  notifyTime: string;
-  history: object;
-};
-
-export default function EditHabit({ habit }: { habit: Habit }) {
+export default function EditHabit({ habit }: { habit: HabitType }) {
   const [disabled, setDisabled] = useState<boolean>(false);
   const { closeModal } = useModal();
   const { user } = useUser();

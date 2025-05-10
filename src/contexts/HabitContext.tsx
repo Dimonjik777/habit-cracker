@@ -7,40 +7,23 @@ import {
   ReactNode,
 } from "react";
 import { useUser } from "./UserContext";
+import { HabitType } from "../helpers/type-habit";
 
-type Habits = { [id: string]: Habit };
+type Habits = { [id: string]: HabitType };
 
 type promiseObj = Promise<{ ok: boolean; message: string }>;
-type updateHabitData = Omit<Omit<Habit, "createdAt">, "history">;
+type updateHabitData = Omit<Omit<HabitType, "createdAt">, "history">;
+
 type HabitContextType = {
   habits: Habits;
-  getHabit: (id: string) => Promise<Habit>;
-  createHabit: (habit: Omit<Habit, "id">) => promiseObj;
+  getHabit: (id: string) => Promise<HabitType>;
+  createHabit: (habit: Omit<HabitType, "id">) => promiseObj;
   updateHabit: (habitData: updateHabitData) => promiseObj;
   deleteHabit: (id: string) => promiseObj;
   setHabitHistoryRecord: (
     habitInstance: HabitInstance,
     date: string
   ) => promiseObj;
-};
-
-type HistoryEntry = {
-  isCompleted: boolean;
-  goalProgress?: number;
-};
-
-type Habit = {
-  id: string;
-  createdAt: string;
-  title: string;
-  type: "check" | "track";
-  days: string[];
-  goal: number;
-  notify: boolean;
-  notifyTime: string;
-  history: {
-    [date: string]: HistoryEntry;
-  };
 };
 
 type HabitInstance = {
@@ -84,9 +67,9 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
     return habits[id];
   };
 
-  const createHabit = async (habitData: Omit<Habit, "id">) => {
+  const createHabit = async (habitData: Omit<HabitType, "id">) => {
     const id = Date.now().toString();
-    const newHabit: Habit = {
+    const newHabit: HabitType = {
       id,
       ...habitData,
     };
@@ -112,7 +95,7 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
     if (!oldHabit) {
       return { ok: false, message: "Habit not found" };
     }
-    const newHabit: Habit = {
+    const newHabit: HabitType = {
       ...oldHabit,
       ...data,
     };
