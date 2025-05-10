@@ -31,11 +31,13 @@ export default function DashboardAll() {
 
   // in case date search param is not set, set it manually
   useEffect(() => {
-    const currentDate = getDateParam() ?? formatDate(new Date());
-    const [day, month, year] = currentDate.split("-").map(Number);
-    const date = new Date(year, month - 1, day);
-    navigate(`?date=${formatDate(date)}`);
-  }, []);
+    if (!new URLSearchParams(location.search).get("date")) {
+      const dateParam = getDateParam();
+      const [day, month, year] = dateParam.split("-").map(Number);
+      const date = new Date(year, month - 1, day);
+      navigate(`?date=${formatDate(date)}`);
+    }
+  }, [location.search]);
 
   const formatDate = (date: Date): string => {
     const day = String(date.getDate()).padStart(2, "0");
