@@ -18,10 +18,9 @@ export default function Habits({ date }: { date: string }) {
   const [habitInstances, setHabitInstances] = useState<HabitInstanceType[]>([]);
   const { user } = useUser();
   const { openModal, closeModal } = useModal();
-  const getWeekday = (dateString: string) => {
-    const dateObj = new Date(dateString);
+  const getWeekday = (date: Date) => {
     const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-    return days[dateObj.getDay()];
+    return days[date.getDay()];
   };
   const safeParseDate = (str: string) => {
     const [dd, mm, yyyy] = str.split("-");
@@ -33,7 +32,7 @@ export default function Habits({ date }: { date: string }) {
 
   useEffect(() => {
     if (user.role == "registered" && user.email) {
-      const weekday = getWeekday(date);
+      const weekday = getWeekday(safeParseDate(date));
       let instances: HabitInstanceType[];
       //  check if the requested day is not a day in future
       if (new Date().getTime() >= safeParseDate(date).getTime()) {
