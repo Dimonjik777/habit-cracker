@@ -139,8 +139,8 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
     habitInstance: HabitInstance,
     date: string
   ) => {
-    let habitsCopy = JSON.parse(JSON.stringify(habits)); // deep copy
-    let habit = habitsCopy[habitInstance.habitId];
+    const habitsCopy = JSON.parse(JSON.stringify(habits)); // deep copy
+    const habit = habitsCopy[habitInstance.habitId];
     if (!habit) {
       return { ok: false, message: "Habit not found" };
     }
@@ -148,7 +148,7 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
       isCompleted: habitInstance.isCompleted,
       goalProgress: habitInstance.goalProgress,
     };
-    let res = await updateHabit(habit);
+    const res = await updateHabit(habit);
     console.log(res);
     return res;
   };

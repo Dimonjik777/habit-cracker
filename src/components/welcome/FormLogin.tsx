@@ -44,7 +44,7 @@ export default function FormLogin() {
       return;
     }
 
-    let result = await fetchLogin(data);
+    const result = await fetchLogin(data);
 
     if (result) {
       login(data);

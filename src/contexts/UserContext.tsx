@@ -53,6 +53,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       setUser({ ...data, role: "registered" });
       return true;
     } catch (e) {
+      console.error(e);
       return false;
     }
   };

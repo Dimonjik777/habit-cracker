@@ -4,7 +4,7 @@ import Button from "../components/Button";
 import { useModal } from "../contexts/ModalContext";
 import ThemeToggle from "../components/ThemeToggle";
 import FormRegister from "../components/welcome/FormRegister";
-export default function welcome() {
+export default function Welcome() {
   const { openModal } = useModal();
 
   return (

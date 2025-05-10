@@ -35,7 +35,7 @@ export default function DashboardAll() {
     const [day, month, year] = currentDate.split("-").map(Number);
     const date = new Date(year, month - 1, day);
     navigate(`?date=${formatDate(date)}`);
-  }, []);
+  });
 
   const formatDate = (date: Date): string => {
     const day = String(date.getDate()).padStart(2, "0");

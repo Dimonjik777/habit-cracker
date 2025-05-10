@@ -18,7 +18,7 @@ type Habit = {
   goal: number;
   notify: boolean;
   notifyTime: string;
-  history: {};
+  history: object;
 };
 
 export default function EditHabit({ habit }: { habit: Habit }) {
