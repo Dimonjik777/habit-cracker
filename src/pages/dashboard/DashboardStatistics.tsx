@@ -39,15 +39,23 @@ export default function DashboardStatistics() {
             </div>
             {/* Line Chart Section */}
             {chosenHabit ? (
-              <h1>{chosenHabit.title}</h1>
+              <div className="">
+                {Object.values(chosenHabit.history).length > 0 ? (
+                  <div className="">This habit has history records</div>
+                ) : (
+                  <div className={styles.textCenter}>
+                    <h3>This habit has no history records yet</h3>
+                  </div>
+                )}
+              </div>
             ) : (
-              <div className={styles.noHabitChosen}>
+              <div className={styles.textCenter}>
                 <h3>No habit chosen yet</h3>
               </div>
             )}
           </>
         ) : (
-          <div className={styles.noHabitsContainer}>
+          <div className={styles.textCenter}>
             <h2>No habits to choose from</h2>
           </div>
         )}
