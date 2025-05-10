@@ -4,7 +4,7 @@
 @forward "colors";
 
 .dashboard {
-  background-color: white;
+  background-color: var(--background-color);
   min-height: 100%;
   padding: 50px;
   width: 55%;
@@ -41,11 +41,16 @@
       }
     }
   }
-
   &__info {
+    position: relative;
+    min-height: 60px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+  }
+  .content {
+    position: relative;
+    margin-top: 20px;
   }
   @media screen and (max-width: 1800px) {
     width: 50%;

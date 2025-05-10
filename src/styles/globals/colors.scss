@@ -17,5 +17,14 @@
 
     --secondary-text-color: #6b6b6b;
     // Secondary text color;
+
+    /* Dark Theme Overrides */
+    &.theme-dark {
+      --secondary-color: #2c2c2c; /* Dark gray for layout underlay, habit cards, toggle */
+      --accent-color: #555555; /* Medium-dark gray for progress circles and buttons */
+      --background-color: #222222; /* Page and sidebar background */
+      --primary-text-color: #f1f1f1; /* Light gray/white for text */
+      --secondary-text-color: #bbbbbb; /* Softer gray for secondary text */
+    }
   }
 }

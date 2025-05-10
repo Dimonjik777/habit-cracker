@@ -1,24 +1,25 @@
-.container{
-
-  .title{
+.container {
+  .title {
     margin-bottom: 45px;
     text-align: center;
   }
 
-  .form{
+  .form {
     display: flex;
     align-items: start;
     justify-content: space-between;
     flex-direction: column;
 
-    .label{
+    .label {
       margin-bottom: 15px;
     }
 
-    .input{
+    .input {
       margin-bottom: 25px;
       border: 1px solid rgba(0, 0, 0, 0.25);
       color: var(--primary-text-color);
+      background-color: var(--background-color);
+      outline: none;
       width: 100%;
       min-width: 200px;
       padding: 5px 15px;
@@ -26,16 +27,15 @@
       border-radius: 10px;
     }
 
-    input:last-child{
+    input:last-child {
       font-size: 24px;
       height: 50px;
       margin-top: 15px;
       margin-bottom: 25px;
     }
-
   }
 
-  .error{
+  .error {
     color: var(--primary-color);
     text-align: center;
   }
