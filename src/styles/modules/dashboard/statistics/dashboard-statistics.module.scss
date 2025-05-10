@@ -1,3 +1,32 @@
 .container {
   margin-top: 40px;
+  @mixin active() {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+  }
+  .chooseHabitContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .habitCardsContainer {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      .habitCard {
+        cursor: pointer;
+        background-color: var(--secondary-color);
+        color: var(--secondary-text-color);
+        padding: 10px 20px;
+        font-size: 18px;
+        border-radius: 10px;
+        transition: all 0.2s;
+        &:hover {
+          @include active();
+        }
+        &.active {
+          @include active();
+        }
+      }
+    }
+  }
 }
