@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useHabit } from "../../contexts/HabitContext";
 import { HabitType } from "../../types/HabitType";
 import ConsistencyChart from "../../components/dashboard/statistics/charts/ConsistencyChart";
+import HistoryChart from "../../components/dashboard/statistics/charts/HistoryChart";
 import styles from "/src/styles/modules/dashboard/statistics/dashboard-statistics.module.scss";
 
 export default function DashboardStatistics() {
@@ -44,7 +45,10 @@ export default function DashboardStatistics() {
             {chosenHabit ? (
               <>
                 {Object.values(chosenHabit.history).length > 0 ? (
-                  <ConsistencyChart chosenHabit={chosenHabit} />
+                  <>
+                    <ConsistencyChart chosenHabit={chosenHabit} />
+                    <HistoryChart chosenHabit={chosenHabit} />
+                  </>
                 ) : (
                   <div className={styles.textCenter}>
                     <h3>This habit has no history records yet</h3>
