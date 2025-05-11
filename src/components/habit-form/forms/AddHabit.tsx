@@ -68,9 +68,9 @@ export default function AddHabit() {
         const createdAt = `${String(now.getDate()).padStart(2, "0")}-${String(
           now.getMonth() + 1
         ).padStart(2, "0")}-${now.getFullYear()}`;
-
         const res = await createHabit({
           ...data,
+          notify: data.notify,
           createdAt,
           history: {},
         });
@@ -83,6 +83,7 @@ export default function AddHabit() {
   };
   useEffect(() => {
     setError("");
+    console.log(data.notify);
   }, [data]);
   return (
     <HabitForm
@@ -123,7 +124,9 @@ export default function AddHabit() {
       </div>
       <HabitNotify
         onChange={(value: boolean) => {
-          setData({ ...data, notify: value });
+          setTimeout(() => {
+            setData({ ...data, notify: value });
+          }, 0);
         }}
         onTimeChange={(value: string) => {
           setData({ ...data, notifyTime: value });
