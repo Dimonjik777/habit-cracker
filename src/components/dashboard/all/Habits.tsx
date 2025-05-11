@@ -6,6 +6,7 @@ import UpdateGoalTrack from "../../habit-form/forms/UpdateGoalTrack";
 import Habit from "./Habit";
 import { safeParseDate } from "../../../helpers/date-parser";
 import styles from "/src/styles/modules/dashboard/all/habits.module.scss";
+import { getWeekday } from "../../../helpers/get-weekday";
 
 export default function Habits({ date }: { date: string }) {
   type HabitInstanceType = {
@@ -19,10 +20,7 @@ export default function Habits({ date }: { date: string }) {
   const [habitInstances, setHabitInstances] = useState<HabitInstanceType[]>([]);
   const { user } = useUser();
   const { openModal, closeModal } = useModal();
-  const getWeekday = (date: Date) => {
-    const days = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
-    return days[date.getDay()];
-  };
+
   // Import habits as userHabits for better understanding and readability
   const { habits: userHabits, setHabitHistoryRecord } = useHabit();
 
