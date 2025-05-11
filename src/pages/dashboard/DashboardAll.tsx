@@ -8,6 +8,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Habits from "../../components/dashboard/all/Habits";
 import { formatDate } from "../../helpers/date/formatDate";
 import styles from "/src/styles/modules/dashboard/all/dashboard-all.module.scss";
+import { getDateParam } from "../../helpers/date/getDateParam";
 
 export default function DashboardAll() {
   const { openModal } = useModal();
@@ -18,7 +19,6 @@ export default function DashboardAll() {
   useEffect(() => {
     let dateParam = getDateParam();
     if (!dateParam) {
-      navigate(`?date=${formatDate(new Date())}`);
       return;
     }
     const [day, month, year] = dateParam.split("-").map(Number);
@@ -33,21 +33,6 @@ export default function DashboardAll() {
     setWeekday(date.toLocaleDateString("en-US", { weekday: "long" }));
   }, [location.search]);
 
-  const getDateParam = (): string => {
-    const queryParams = new URLSearchParams(location.search);
-    const dateParam = queryParams.get("date");
-
-    if (!dateParam) {
-      return "";
-    }
-
-    // Try to parse the date parameter
-    const [day, month, year] = dateParam.split("-").map(Number);
-    const date = new Date(year, month - 1, day);
-
-    // Validate date and return formatted string
-    return isNaN(date.getTime()) ? formatDate(new Date()) : formatDate(date);
-  };
   const navigateDate = (direction: "prev" | "next") => {
     const currentDate = getDateParam();
     const [day, month, year] = currentDate.split("-").map(Number);

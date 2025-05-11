@@ -8,6 +8,9 @@ import {
 } from "react";
 import { useUser } from "./UserContext";
 import { HabitType } from "../types/HabitType";
+import { useLocation, useNavigate } from "react-router-dom";
+import { getDateParam } from "../helpers/date/getDateParam";
+import { formatDate } from "../helpers/date/formatDate";
 
 type Habits = { [id: string]: HabitType };
 
@@ -146,6 +149,16 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
       setHabitsToLocalStorage(habits);
     }
   }, [habits]);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  useEffect(() => {
+    let dateParam = getDateParam();
+    if (!dateParam) {
+      navigate(`?date=${formatDate(new Date())}`);
+      return;
+    }
+  }, [location.search]);
 
   return (
     <HabitContext.Provider
