@@ -154,7 +154,7 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
   const location = useLocation();
   useEffect(() => {
     let dateParam = getDateParam();
-    if (!dateParam) {
+    if (!dateParam && location.pathname.startsWith("/dashboard")) {
       navigate(`?date=${formatDate(new Date())}`);
       return;
     }
