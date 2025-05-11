@@ -7,6 +7,7 @@ import { useModal } from "../../contexts/ModalContext";
 import AddHabit from "../../components/habit-form/forms/AddHabit";
 import { useLocation, useNavigate } from "react-router-dom";
 import Habits from "../../components/dashboard/all/Habits";
+import { formatDate } from "../../helpers/format-date";
 
 export default function DashboardAll() {
   const { openModal } = useModal();
@@ -38,13 +39,6 @@ export default function DashboardAll() {
       navigate(`?date=${formatDate(date)}`);
     }
   }, [location.search]);
-
-  const formatDate = (date: Date): string => {
-    const day = String(date.getDate()).padStart(2, "0");
-    const month = String(date.getMonth() + 1).padStart(2, "0");
-    const year = date.getFullYear();
-    return `${day}-${month}-${year}`;
-  };
 
   const getDateParam = (): string => {
     const queryParams = new URLSearchParams(location.search);
