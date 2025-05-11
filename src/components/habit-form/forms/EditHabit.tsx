@@ -97,6 +97,7 @@ export default function EditHabit({ habit }: { habit: HabitType }) {
       />
       <div className={styles.habitSettings}>
         <HabitFrequency
+          initialValue={data.days}
           onChange={(days: string[]) => {
             setData({ ...data, days: days });
           }}
@@ -110,6 +111,8 @@ export default function EditHabit({ habit }: { habit: HabitType }) {
         />
       </div>
       <HabitNotify
+        initialValue={data.notify}
+        initialTimeValue={data.notifyTime}
         onChange={(value: boolean) => {
           setData({ ...data, notify: value });
         }}
