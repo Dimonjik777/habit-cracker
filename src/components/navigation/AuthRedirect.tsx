@@ -12,7 +12,8 @@ export default function AuthRedirect() {
         navigate("/welcome");
       } else if (
         user.role === "registered" &&
-        window.location.pathname === "/welcome"
+        (window.location.pathname === "/welcome" ||
+          window.location.pathname === "/")
       ) {
         navigate("/dashboard/all");
       }
