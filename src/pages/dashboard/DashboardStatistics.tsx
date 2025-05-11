@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import styles from "/src/styles/modules/dashboard/statistics/dashboard-statistics.module.scss";
 import { useHabit } from "../../contexts/HabitContext";
 import { HabitType } from "../../helpers/type-habit";
+import ConsistencyChart from "../../components/dashboard/statistics/ConsistencyChart";
+import styles from "/src/styles/modules/dashboard/statistics/dashboard-statistics.module.scss";
 
 export default function DashboardStatistics() {
   const { habits } = useHabit();
@@ -39,17 +40,17 @@ export default function DashboardStatistics() {
                 ))}
               </div>
             </div>
-            {/* Line Chart Section */}
+            {/* Chart Section */}
             {chosenHabit ? (
-              <div className="">
+              <>
                 {Object.values(chosenHabit.history).length > 0 ? (
-                  <div className="">This habit has history records</div>
+                  <ConsistencyChart chosenHabit={chosenHabit} />
                 ) : (
                   <div className={styles.textCenter}>
                     <h3>This habit has no history records yet</h3>
                   </div>
                 )}
-              </div>
+              </>
             ) : (
               <div className={styles.textCenter}>
                 <h3>No habit chosen yet</h3>
