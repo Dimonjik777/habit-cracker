@@ -12,7 +12,7 @@ export default function Calendar() {
   const navigate = useNavigate();
   const handleDateChange = (newDate: dayjs.Dayjs | null) => {
     setSelectedDate(newDate);
-    navigate(`?date=${newDate?.format("DD-MM-YYYY")}`);
+    navigate(`/dashboard/all?date=${newDate?.format("DD-MM-YYYY")}`);
   };
   const location = useLocation();
   useEffect(() => {
