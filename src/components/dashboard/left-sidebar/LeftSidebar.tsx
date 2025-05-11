@@ -40,7 +40,15 @@ export default function LeftSidebar() {
             <h4>Statistics</h4>
           </NavLink>
         </div>
-        <div className={styles.signoutContainer} onClick={() => logout()}>
+        <div
+          className={styles.signoutContainer}
+          onClick={() => {
+            closeLeftSidebar();
+            setTimeout(() => {
+              logout();
+            }, 200);
+          }}
+        >
           <Logout />
           <h4>Sign out</h4>
         </div>
