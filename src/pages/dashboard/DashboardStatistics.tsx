@@ -22,39 +22,14 @@ export default function DashboardStatistics() {
       return chosenHabit.id == habit.id ? styles.active : "";
     }
   };
-  return (
-    <div className={styles.container}>
+  const render = () => {
+    return (
       <>
         {habitsArray.length != 0 ? (
           <>
-            <div className={styles.chooseHabitContainer}>
-              <h3>Choose a habit:</h3>
-              <div className={styles.habitCardsContainer}>
-                {habitsArray.map((habit) => (
-                  <span
-                    key={habit.id}
-                    className={`${styles.habitCard} ${isActive(habit)}`}
-                    onClick={() => setChosenHabit(habit)}
-                  >
-                    {habit.title}
-                  </span>
-                ))}
-              </div>
-            </div>
-            {/* Chart Section */}
+            {renderChooseHabits()}
             {chosenHabit ? (
-              <>
-                {Object.values(chosenHabit.history).length > 0 ? (
-                  <>
-                    <ConsistencyChart chosenHabit={chosenHabit} />
-                    <HistoryChart chosenHabit={chosenHabit} />
-                  </>
-                ) : (
-                  <div className={styles.textCenter}>
-                    <h3>This habit has no history records yet</h3>
-                  </div>
-                )}
-              </>
+              <>{renderCharts(chosenHabit)}</>
             ) : (
               <div className={styles.textCenter}>
                 <h3>No habit chosen yet</h3>
@@ -67,6 +42,43 @@ export default function DashboardStatistics() {
           </div>
         )}
       </>
-    </div>
-  );
+    );
+  };
+  const renderChooseHabits = () => {
+    return (
+      <>
+        <div className={styles.chooseHabitContainer}>
+          <h3>Choose a habit:</h3>
+          <div className={styles.habitCardsContainer}>
+            {habitsArray.map((habit) => (
+              <span
+                key={habit.id}
+                className={`${styles.habitCard} ${isActive(habit)}`}
+                onClick={() => setChosenHabit(habit)}
+              >
+                {habit.title}
+              </span>
+            ))}
+          </div>
+        </div>
+      </>
+    );
+  };
+  const renderCharts = (chosenHabit: HabitType) => {
+    return (
+      <>
+        {Object.values(chosenHabit.history).length > 0 ? (
+          <>
+            <ConsistencyChart chosenHabit={chosenHabit} />
+            <HistoryChart chosenHabit={chosenHabit} />
+          </>
+        ) : (
+          <div className={styles.textCenter}>
+            <h3>This habit has no history records yet</h3>
+          </div>
+        )}
+      </>
+    );
+  };
+  return <div className={styles.container}>{render()}</div>;
 }
