@@ -3,14 +3,20 @@ import DropdownArrow from "/src/assets/dropdown-arrow.svg?react";
 import { useEffect, useState } from "react";
 
 export default function HabitFrequency({
+  initialValue,
   onChange,
 }: {
   onChange: (days: string[]) => void;
+  initialValue?: string[];
 }) {
   const [isOpen, setIsOpen] = useState(false);
   const days = ["mon", "tue", "wen", "thu", "fri", "sat", "sun"];
-  const [selectedDays, setSelectedDays] = useState<string[]>(days);
-  const [currentValue, setCurrentValue] = useState<string>("Daily");
+  const [selectedDays, setSelectedDays] = useState<string[]>(
+    initialValue ?? days
+  );
+  const [currentValue, setCurrentValue] = useState<string>(
+    selectedDays.length == days.length ? "Daily" : "Weekly"
+  );
   const toggleDropdown = () => {
     setIsOpen((prev) => !prev);
   };
