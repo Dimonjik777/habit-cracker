@@ -153,12 +153,15 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
   const navigate = useNavigate();
   const location = useLocation();
   useEffect(() => {
-    let dateParam = getDateParam();
-    if (!dateParam && location.pathname.startsWith("/dashboard")) {
-      navigate(`?date=${formatDate(new Date())}`);
-      return;
+    if (user.role == "registered") {
+      let dateParam = getDateParam();
+      console.log(location.pathname);
+      if (!dateParam && location.pathname.startsWith("/dashboard")) {
+        navigate(`?date=${formatDate(new Date())}`);
+        return;
+      }
     }
-  }, [location.search]);
+  }, [location.search, user.role]);
 
   return (
     <HabitContext.Provider
