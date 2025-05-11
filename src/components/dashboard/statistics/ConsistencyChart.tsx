@@ -12,7 +12,7 @@ import { safeParseDate } from "../../../helpers/date-parser";
 import { getWeekday } from "../../../helpers/get-weekday";
 import { HabitType } from "../../../helpers/type-habit";
 import styles from "/src/styles/modules/dashboard/statistics/dashboard-statistics.module.scss";
-import { useRef, useEffect } from "react";
+import { useState, useRef, useEffect } from "react";
 
 export default function ConsistencyChart({
   chosenHabit,
@@ -94,6 +94,10 @@ export default function ConsistencyChart({
       scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
     }
   }, [chosenHabit]);
+  const [data, setData] = useState(getConsistencyData(chosenHabit));
+  useEffect(() => {
+    setData(getConsistencyData(chosenHabit));
+  }, [chosenHabit]);
   return (
     <div className={styles.consistencyContainer}>
       <h3>Consistency: </h3>
@@ -102,12 +106,12 @@ export default function ConsistencyChart({
           <div
             className={styles.chartInner}
             style={{
-              minWidth: `${getConsistencyData(chosenHabit).length * 80}px`,
+              minWidth: `${data.length * 80}px`,
             }}
           >
             <div className={styles.chart}>
               <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={getConsistencyData(chosenHabit)}>
+                <LineChart data={data}>
                   <Line type="monotone" dataKey="value" stroke="#8884d8" />
                   <CartesianGrid stroke="#ccc" />
                   <XAxis dataKey="date" />
