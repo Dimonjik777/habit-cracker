@@ -14,9 +14,6 @@ export default function DashboardStatistics() {
   useEffect(() => {
     setHabitsArray(Object.values(habits));
   }, [habits]);
-  useEffect(() => {
-    console.log(chosenHabit);
-  }, [chosenHabit]);
   const isActive = (habit: HabitType) => {
     if (chosenHabit) {
       return chosenHabit.id == habit.id ? styles.active : "";

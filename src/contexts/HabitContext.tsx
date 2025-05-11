@@ -135,7 +135,6 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
       goalProgress: habitInstance.goalProgress,
     };
     const res = await updateHabit(habit);
-    console.log(res);
     return res;
   };
   useEffect(() => {
@@ -155,7 +154,6 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     if (user.role == "registered") {
       let dateParam = getDateParam();
-      console.log(location.pathname);
       if (!dateParam && location.pathname.startsWith("/dashboard")) {
         navigate(`?date=${formatDate(new Date())}`);
         return;

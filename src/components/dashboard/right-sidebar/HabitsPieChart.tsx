@@ -13,7 +13,6 @@ export default function HabitsPieChart() {
   };
   if (habits.length > 0) {
     const date = getSearchParamDateKey();
-    console.log(date);
     const totalCompleted = habits.filter((element) => {
       const history = element.history;
       if (history[date]) {

@@ -83,7 +83,6 @@ export default function AddHabit() {
   };
   useEffect(() => {
     setError("");
-    console.log(data.notify);
   }, [data]);
   return (
     <HabitForm
