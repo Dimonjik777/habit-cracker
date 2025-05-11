@@ -11,8 +11,9 @@ import dayjs from "dayjs";
 import { safeParseDate } from "../../../../helpers/date/safeParseDate";
 import { getWeekday } from "../../../../helpers/date/getWeekday";
 import { HabitType } from "../../../../types/HabitType";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import ChartsCustomTooltip from "../charts/ChartsCustomTooltip";
+import ChartWrapper from "./ChartWrapper";
 import styles from "/src/styles/modules/dashboard/statistics/dashboard-statistics.module.scss";
 
 export default function ConsistencyChart({
@@ -88,42 +89,30 @@ export default function ConsistencyChart({
     }
     return [];
   };
-  const scrollRef = useRef<HTMLDivElement>(null);
-  useEffect(() => {
-    // Scroll left to show the latest data to user
-    if (scrollRef.current) {
-      scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
-    }
-  }, [chosenHabit]);
   const [data, setData] = useState(getConsistencyData(chosenHabit));
   useEffect(() => {
     setData(getConsistencyData(chosenHabit));
   }, [chosenHabit]);
   return (
-    <div className={styles.consistencyContainer}>
-      <h3>Consistency: </h3>
-      <div className={styles.chartContainer}>
-        <div className={styles.scrollWrapper} ref={scrollRef}>
-          <div
-            className={styles.chartInner}
-            style={{
-              minWidth: `${data.length * 80}px`,
-            }}
-          >
-            <div className={styles.chart}>
-              <ResponsiveContainer width="100%" height={300}>
-                <LineChart data={data}>
-                  <Line type="monotone" dataKey="value" stroke="#8884d8" />
-                  <CartesianGrid stroke="#ccc" />
-                  <XAxis dataKey="date" />
-                  <Tooltip content={<ChartsCustomTooltip />} />
-                  <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
-                </LineChart>
-              </ResponsiveContainer>
-            </div>
-          </div>
+    <ChartWrapper title="Consistency: ">
+      <div
+        className={styles.chartInner}
+        style={{
+          minWidth: `${data.length * 80}px`,
+        }}
+      >
+        <div className={styles.chart}>
+          <ResponsiveContainer width="100%" height={300}>
+            <LineChart data={data}>
+              <Line type="monotone" dataKey="value" stroke="#8884d8" />
+              <CartesianGrid stroke="#ccc" />
+              <XAxis dataKey="date" />
+              <Tooltip content={<ChartsCustomTooltip />} />
+              <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
+            </LineChart>
+          </ResponsiveContainer>
         </div>
       </div>
-    </div>
+    </ChartWrapper>
   );
 }
