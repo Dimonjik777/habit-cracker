@@ -8,12 +8,12 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import dayjs from "dayjs";
-import { safeParseDate } from "../../../../helpers/date-parser";
-import { getWeekday } from "../../../../helpers/get-weekday";
+import { safeParseDate } from "../../../../helpers/date/safeParseDate";
+import { getWeekday } from "../../../../helpers/date/getWeekday";
 import { HabitType } from "../../../../helpers/type-habit";
-import styles from "/src/styles/modules/dashboard/statistics/dashboard-statistics.module.scss";
 import { useState, useRef, useEffect } from "react";
 import ChartsCustomTooltip from "../charts/ChartsCustomTooltip";
+import styles from "/src/styles/modules/dashboard/statistics/dashboard-statistics.module.scss";
 
 export default function ConsistencyChart({
   chosenHabit,

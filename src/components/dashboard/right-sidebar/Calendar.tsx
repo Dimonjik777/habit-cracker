@@ -5,7 +5,7 @@ import { DateCalendar } from "@mui/x-date-pickers/DateCalendar";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
-import { safeParseDate } from "../../../helpers/date-parser";
+import { safeParseDate } from "../../../helpers/date/safeParseDate";
 
 export default function Calendar() {
   const [selectedDate, setSelectedDate] = useState<dayjs.Dayjs | null>(dayjs());

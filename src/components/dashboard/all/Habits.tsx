@@ -4,9 +4,10 @@ import { useHabit } from "../../../contexts/HabitContext";
 import { useModal } from "../../../contexts/ModalContext";
 import UpdateGoalTrack from "../../habit-form/forms/UpdateGoalTrack";
 import Habit from "./Habit";
-import { safeParseDate } from "../../../helpers/date-parser";
+import { safeParseDate } from "../../../helpers/date/safeParseDate";
+import { getWeekday } from "../../../helpers/date/getWeekday";
+
 import styles from "/src/styles/modules/dashboard/all/habits.module.scss";
-import { getWeekday } from "../../../helpers/get-weekday";
 
 export default function Habits({ date }: { date: string }) {
   type HabitInstanceType = {
