@@ -15,7 +15,7 @@ export default function ChartsCustomTooltip({ active, payload, label }: Props) {
       <p className={styles.label}>{label}</p>
       {payload.map((item, index) => (
         <p key={index} className={styles.item}>
-          {item.name}: {item.value}%
+          {item.name}: {item.value}
         </p>
       ))}
     </div>
