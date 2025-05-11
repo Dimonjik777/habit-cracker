@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
+import { formatDate } from "../../helpers/date/formatDate";
 
 export default function AuthRedirect() {
   const { user } = useUser();
@@ -15,7 +16,7 @@ export default function AuthRedirect() {
         (window.location.pathname === "/welcome" ||
           window.location.pathname === "/")
       ) {
-        navigate("/dashboard/all");
+        navigate(`/dashboard/all?date=${formatDate(new Date())}`);
       }
     }
   }, [user, navigate]);
