@@ -13,6 +13,7 @@ import { getWeekday } from "../../../helpers/get-weekday";
 import { HabitType } from "../../../helpers/type-habit";
 import styles from "/src/styles/modules/dashboard/statistics/dashboard-statistics.module.scss";
 import { useState, useRef, useEffect } from "react";
+import ChartsCustomTooltip from "./charts/ChartsCustomTooltip";
 
 export default function ConsistencyChart({
   chosenHabit,
@@ -115,7 +116,7 @@ export default function ConsistencyChart({
                   <Line type="monotone" dataKey="value" stroke="#8884d8" />
                   <CartesianGrid stroke="#ccc" />
                   <XAxis dataKey="date" />
-                  <Tooltip formatter={(v) => `${v}%`} />
+                  <Tooltip content={<ChartsCustomTooltip />} />
                   <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
                 </LineChart>
               </ResponsiveContainer>
