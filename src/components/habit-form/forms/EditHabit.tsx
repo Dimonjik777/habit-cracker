@@ -114,7 +114,9 @@ export default function EditHabit({ habit }: { habit: HabitType }) {
         initialValue={data.notify}
         initialTimeValue={data.notifyTime}
         onChange={(value: boolean) => {
-          setData({ ...data, notify: value });
+          setTimeout(() => {
+            setData({ ...data, notify: value });
+          }, 0);
         }}
         onTimeChange={(value: string) => {
           setData({ ...data, notifyTime: value });
