@@ -3,7 +3,7 @@ import Welcome from "./pages/Welcome";
 import ModalWindow from "./components/ModalWindow";
 import { useTheme } from "./contexts/ThemeContext";
 import { useUser } from "./contexts/UserContext";
-import Redirect from "./components/navigation/Redirect";
+import AuthRedirect from "./components/navigation/AuthRedirect";
 import { ModalProvider } from "./contexts/ModalContext";
 import DashboardLayout from "./components/dashboard/DashboardLayout";
 import NotFound from "./components/NotFound";
@@ -15,7 +15,7 @@ function App() {
   const { user } = useUser();
   return (
     <ModalProvider>
-      <Redirect />
+      <AuthRedirect />
       <div className={`main ${darkTheme ? "theme-dark" : ""}`}>
         <Routes>
           {user.role === "registered" && (

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../../contexts/UserContext";
 
-export default function Redirect() {
+export default function AuthRedirect() {
   const { user } = useUser();
   const navigate = useNavigate();
   useEffect(() => {
