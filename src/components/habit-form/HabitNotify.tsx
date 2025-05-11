@@ -1,15 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Check from "/src/assets/check.svg?react";
 import styles from "/src/styles/modules/habit-form/habit-form.module.scss";
 
 export default function HabitNotify({
+  initialValue,
+  initialTimeValue,
   onChange,
   onTimeChange,
 }: {
+  initialValue?: boolean;
+  initialTimeValue?: string;
   onChange: (value: boolean) => void;
   onTimeChange: (value: string) => void; // optional callback
 }) {
-  const [notifyEnabled, setNotifyEnabled] = useState<boolean>(false);
+  const [notifyEnabled, setNotifyEnabled] = useState<boolean>(
+    Boolean(initialValue)
+  );
+  useEffect(() => {
+    if (initialTimeValue) {
+      const [hours, minutes] = initialTimeValue.split(":");
+      setHours(hours);
+      setMinutes(minutes);
+    }
+  }, [initialTimeValue]);
   const [hours, setHours] = useState<string>("00");
   const [minutes, setMinutes] = useState<string>("00");
 
