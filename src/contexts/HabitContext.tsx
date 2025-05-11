@@ -7,7 +7,7 @@ import {
   ReactNode,
 } from "react";
 import { useUser } from "./UserContext";
-import { HabitType } from "../helpers/type-habit";
+import { HabitType } from "../types/HabitType";
 
 type Habits = { [id: string]: HabitType };
 

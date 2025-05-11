@@ -10,7 +10,7 @@ import {
 import dayjs from "dayjs";
 import { safeParseDate } from "../../../../helpers/date/safeParseDate";
 import { getWeekday } from "../../../../helpers/date/getWeekday";
-import { HabitType } from "../../../../helpers/type-habit";
+import { HabitType } from "../../../../types/HabitType";
 import { useState, useRef, useEffect } from "react";
 import ChartsCustomTooltip from "../charts/ChartsCustomTooltip";
 import styles from "/src/styles/modules/dashboard/statistics/dashboard-statistics.module.scss";

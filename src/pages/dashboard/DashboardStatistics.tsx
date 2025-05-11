@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useHabit } from "../../contexts/HabitContext";
-import { HabitType } from "../../helpers/type-habit";
+import { HabitType } from "../../types/HabitType";
 import ConsistencyChart from "../../components/dashboard/statistics/charts/ConsistencyChart";
 import styles from "/src/styles/modules/dashboard/statistics/dashboard-statistics.module.scss";
 

@@ -7,7 +7,7 @@ import HabitGoal from "../HabitGoal";
 import HabitNotify from "../HabitNotify";
 import { useUser } from "../../../contexts/UserContext";
 import { useHabit } from "../../../contexts/HabitContext";
-import { HabitType } from "../../../helpers/type-habit";
+import { HabitType } from "../../../types/HabitType";
 import styles from "/src/styles/modules/habit-form/habit-form.module.scss";
 
 export default function EditHabit({ habit }: { habit: HabitType }) {
