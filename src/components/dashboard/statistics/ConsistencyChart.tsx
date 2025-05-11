@@ -12,6 +12,7 @@ import { safeParseDate } from "../../../helpers/date-parser";
 import { getWeekday } from "../../../helpers/get-weekday";
 import { HabitType } from "../../../helpers/type-habit";
 import styles from "/src/styles/modules/dashboard/statistics/dashboard-statistics.module.scss";
+import { useRef, useEffect } from "react";
 
 export default function ConsistencyChart({
   chosenHabit,
@@ -86,20 +87,36 @@ export default function ConsistencyChart({
     }
     return [];
   };
+  const scrollRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    // Scroll left to show the latest data to user
+    if (scrollRef.current) {
+      scrollRef.current.scrollLeft = scrollRef.current.scrollWidth;
+    }
+  }, [chosenHabit]);
   return (
     <div className={styles.consistencyContainer}>
       <h3>Consistency: </h3>
       <div className={styles.chartContainer}>
-        <div className={styles.chart}>
-          <ResponsiveContainer width="100%" height={300}>
-            <LineChart data={getConsistencyData(chosenHabit)}>
-              <Line type="monotone" dataKey="value" stroke="#8884d8" />
-              <CartesianGrid stroke="#ccc" />
-              <XAxis dataKey="date" />
-              <Tooltip formatter={(v) => `${v}%`} />
-              <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
-            </LineChart>
-          </ResponsiveContainer>
+        <div className={styles.scrollWrapper} ref={scrollRef}>
+          <div
+            className={styles.chartInner}
+            style={{
+              minWidth: `${getConsistencyData(chosenHabit).length * 80}px`,
+            }}
+          >
+            <div className={styles.chart}>
+              <ResponsiveContainer width="100%" height={300}>
+                <LineChart data={getConsistencyData(chosenHabit)}>
+                  <Line type="monotone" dataKey="value" stroke="#8884d8" />
+                  <CartesianGrid stroke="#ccc" />
+                  <XAxis dataKey="date" />
+                  <Tooltip formatter={(v) => `${v}%`} />
+                  <YAxis domain={[0, 100]} tickFormatter={(v) => `${v}%`} />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -29,22 +29,29 @@
       }
     }
   }
-  .chartContainer {
-    display: flex;
-    justify-content: center;
-    .chart {
-      width: 100%;
-      * {
-        padding: 0;
-        margin: 0;
-      }
-    }
-  }
   .consistencyContainer {
     margin-top: 40px;
     display: flex;
     flex-direction: column;
     gap: 30px;
+  }
+  .chartContainer {
+    display: flex;
+    justify-content: center;
+    // Outer scrollable wrapper
+    .scrollWrapper {
+      scrollbar-width: none;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      width: 100%;
+    }
+    // Inner container with dynamic width
+    .chartInner {
+      min-width: 1000px; // default, will be overwritten dynamically in React
+    }
+    .chart {
+      width: 100%;
+    }
   }
   .textCenter {
     margin-top: 50px;
