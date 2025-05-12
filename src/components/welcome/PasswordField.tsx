@@ -25,7 +25,7 @@ export default function PasswordField({
         className={styles.iconContainer}
         onClick={() => setIsVisible((prev) => !prev)}
       >
-        {isVisible ? <EyeCrossed /> : <EyeOpen />}
+        {isVisible ? <EyeOpen /> : <EyeCrossed />}
       </div>
     </div>
   );
