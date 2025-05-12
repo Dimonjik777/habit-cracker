@@ -37,6 +37,7 @@
     margin-top: 120px;
   }
   .addButtonContainer {
+    pointer-events: none;
     position: sticky;
     bottom: 10%;
     width: 100%;

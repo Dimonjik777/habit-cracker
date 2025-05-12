@@ -1,4 +1,6 @@
 .container {
+  pointer-events: all;
+  cursor: pointer;
   position: relative;
   color: var(--primary-color);
   border-radius: 100%;
@@ -6,7 +8,6 @@
   height: 60px;
   display: flex;
   background-color: var(--background-color);
-  cursor: pointer;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
   &:hover {
