@@ -75,11 +75,13 @@ export default function DashboardAll() {
       <div className={styles.content}>
         <Habits date={getDateParam()} />
       </div>
-      <AddButton
-        onClick={() => {
-          openModal(<AddHabit />);
-        }}
-      />
+      <div className={styles.addButtonContainer}>
+        <AddButton
+          onClick={() => {
+            openModal(<AddHabit />);
+          }}
+        />
+      </div>
     </div>
   );
 }

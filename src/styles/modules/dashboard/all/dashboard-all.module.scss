@@ -36,4 +36,12 @@
   .content {
     margin-top: 120px;
   }
+  .addButtonContainer {
+    position: sticky;
+    bottom: 10%;
+    width: 100%;
+    display: flex;
+    justify-content: end;
+    padding-right: 40px;
+  }
 }

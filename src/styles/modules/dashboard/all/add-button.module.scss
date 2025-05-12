@@ -1,12 +1,11 @@
 .container {
-  position: fixed;
-  bottom: 10%;
-  right: 10%;
+  position: relative;
   color: var(--primary-color);
   border-radius: 100%;
   width: 60px;
   height: 60px;
   display: flex;
+  background-color: var(--background-color);
   cursor: pointer;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
   transition: all 0.3s;
@@ -15,6 +14,7 @@
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.4);
   }
   .content {
+    z-index: 100;
     position: absolute;
     top: 50%;
     left: 50%;
