@@ -7,7 +7,7 @@
   background-color: var(--background-color);
   .hero {
     width: 100%;
-    height: 80%;
+    height: 70%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -32,7 +32,7 @@
       }
       .buttonContainer {
         width: 270px;
-        height: 69px; // 😏
+        height: 69px;
         font-size: 24px;
       }
       @media screen and (max-width: 500px) {
