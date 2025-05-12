@@ -4,6 +4,7 @@ import PasswordField from "./PasswordField";
 import styles from "/src/styles/modules/welcome/form.module.scss";
 import { useUser } from "../../contexts/UserContext";
 import { useModal } from "../../contexts/ModalContext";
+import FormRegister from "./FormRegister";
 
 type FormLoginData = {
   email: string;
@@ -36,7 +37,7 @@ export default function FormLogin() {
   const [showError, setShowError] = useState<boolean>(false);
 
   const { login } = useUser();
-  const { closeModal } = useModal();
+  const { closeModal, openModal } = useModal();
 
   const handleSubmit = async () => {
     if (error) {
@@ -94,6 +95,20 @@ export default function FormLogin() {
         <Button type="primary" value="Sign in" action={handleSubmit} />
       </form>
       {showError && <p className={styles.error}>{error}</p>}
+      <div className={styles.footer}>
+        <h4>Do not have an account yet?</h4>
+        <span
+          className={styles.link}
+          onClick={() => {
+            closeModal();
+            setTimeout(() => {
+              openModal(<FormRegister />);
+            }, 500);
+          }}
+        >
+          Sign up
+        </span>
+      </div>
     </div>
   );
 }

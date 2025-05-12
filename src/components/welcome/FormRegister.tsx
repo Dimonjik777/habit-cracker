@@ -4,10 +4,11 @@ import { useState } from "react";
 import PasswordField from "./PasswordField";
 import { useUser } from "../../contexts/UserContext";
 import { useModal } from "../../contexts/ModalContext";
+import FormLogin from "./FormLogin";
 
 export default function FormRegister() {
   const { register } = useUser();
-  const { closeModal } = useModal();
+  const { closeModal, openModal } = useModal();
 
   interface RegisterData {
     name: string;
@@ -86,6 +87,20 @@ export default function FormRegister() {
         />
       </form>
       {emailError ? <p className={styles.error}>{emailError}</p> : ""}
+      <div className={styles.footer}>
+        <h4>Already have an account?</h4>
+        <span
+          className={styles.link}
+          onClick={() => {
+            closeModal();
+            setTimeout(() => {
+              openModal(<FormLogin />);
+            }, 500);
+          }}
+        >
+          Sign in
+        </span>
+      </div>
     </div>
   );
 }

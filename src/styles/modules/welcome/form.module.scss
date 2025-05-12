@@ -39,4 +39,23 @@
     color: var(--primary-color);
     text-align: center;
   }
+
+  .footer {
+    margin: 10px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    text-align: center;
+    .link {
+      cursor: pointer;
+      font-size: 24px;
+      color: var(--primary-color);
+      text-decoration: underline;
+      transition: filter 0.2s;
+      &:hover {
+        filter: brightness(1.5);
+      }
+    }
+  }
 }
