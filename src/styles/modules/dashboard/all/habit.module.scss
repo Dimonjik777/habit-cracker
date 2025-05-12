@@ -1,14 +1,18 @@
 @use "/src/styles/modules/mixins/_dropdown-menu.scss" as *;
 .container {
   position: relative;
-  height: 50px;
+  min-height: 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   .main {
+    width: 80%;
     display: flex;
     align-items: center;
     gap: 30px;
+    h3 {
+      max-width: 70%;
+    }
     .checkbox {
       cursor: pointer;
       width: 25px;
