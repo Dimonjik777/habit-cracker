@@ -1,75 +1,36 @@
-import { Routes, Route, useLocation } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Welcome from "./pages/Welcome";
 import ModalWindow from "./components/ModalWindow";
-import LeftSidebar from "./components/LeftSidebar";
 import { useTheme } from "./contexts/ThemeContext";
 import { useUser } from "./contexts/UserContext";
-import Redirect from "./components/Redirect";
+import AuthRedirect from "./components/navigation/AuthRedirect";
 import { ModalProvider } from "./contexts/ModalContext";
-import RightSidebar from "./components/RightSidebar";
-import ThemeToggle from "./components/ThemeToggle";
-import { useSidebar } from "./contexts/SidebarContext";
+import DashboardLayout from "./components/dashboard/DashboardLayout";
+import NotFound from "./components/NotFound";
+import DashboardAll from "./pages/dashboard/DashboardAll";
+import DashboardStatistics from "./pages/dashboard/DashboardStatistics";
+import Notifications from "./components/Notifications";
 
 function App() {
   const { darkTheme } = useTheme();
   const { user } = useUser();
-  const location = useLocation();
-  const { openLeftSidebar, openRightSidebar } = useSidebar();
   return (
     <ModalProvider>
-      <Redirect />
+      <AuthRedirect />
+      <Notifications />
       <div className={`main ${darkTheme ? "theme-dark" : ""}`}>
-        {user.role === "registered" && (
-          <>
-            <LeftSidebar />
-            <div className="dashboard">
-              <div className="header">
-                <div className="sidebar-toggle" onClick={openLeftSidebar}>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-                <div
-                  className="sidebar-toggle --right"
-                  onClick={openRightSidebar}
-                >
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </div>
-              <div className="dashboard__info">
-                {location.pathname === "/dashboard/all" ? (
-                  <h2>Hi there, {user.name}</h2>
-                ) : (
-                  <h2>Statistics</h2>
-                )}
-                <ThemeToggle />
-              </div>
-              <Routes>
-                <Route
-                  path="/dashboard/all"
-                  element={<div> Dashboard all </div>}
-                />
-                <Route
-                  path="/dashboard/statistics"
-                  element={<div>Dashboard Statistics</div>}
-                />
-              </Routes>
-            </div>
-            <RightSidebar />
-          </>
-        )}
         <Routes>
+          {user.role === "registered" && (
+            <Route path="/dashboard" element={<DashboardLayout />}>
+              <Route path="all" element={<DashboardAll />} />
+              <Route path="statistics" element={<DashboardStatistics />} />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+          )}
           {user.role === "unregistered" && (
             <Route path="/welcome" element={<Welcome />} />
           )}
-          {/* Development-only route */}
-          <Route path="/" element={""} />
-          {/* Development-only route */}
-          <Route path="/login-preview" element={""} />
-          {/* Development-only route */}
-          <Route path="/left-sidebar-preview" element={<LeftSidebar />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <ModalWindow />
       </div>

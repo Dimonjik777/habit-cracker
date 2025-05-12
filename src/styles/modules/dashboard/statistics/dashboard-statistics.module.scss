@@ -1,0 +1,60 @@
+.container {
+  margin-top: 40px;
+  @mixin active() {
+    background-color: var(--primary-color);
+    color: var(--background-color);
+  }
+  .chooseHabitContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    .habitCardsContainer {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      .habitCard {
+        cursor: pointer;
+        background-color: var(--secondary-color);
+        color: var(--secondary-text-color);
+        padding: 10px 20px;
+        font-size: 18px;
+        border-radius: 10px;
+        transition: all 0.2s;
+        &:hover {
+          @include active();
+        }
+        &.active {
+          @include active();
+        }
+      }
+    }
+  }
+  .chartSectionContainer {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+  }
+  .chartContainer {
+    display: flex;
+    justify-content: center;
+    // Outer scrollable wrapper
+    .scrollWrapper {
+      scrollbar-width: none;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      width: 100%;
+    }
+    // Inner container with dynamic width
+    .chartInner {
+      min-width: 1000px; // default, will be overwritten dynamically in React
+    }
+    .chart {
+      width: 100%;
+    }
+  }
+  .textCenter {
+    margin-top: 50px;
+    text-align: center;
+  }
+}

@@ -53,10 +53,10 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       setUser({ ...data, role: "registered" });
       return true;
     } catch (e) {
+      console.error(e);
       return false;
     }
   };
-
 
   const register = async (data: UserData) => {
     try {
@@ -64,9 +64,9 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       let allUsers = JSON.parse(localStorage.getItem("Users") || "{}");
       allUsers = {
         ...allUsers,
-        [data.email]: { name: data.name, password: data.password }
+        [data.email]: { name: data.name, password: data.password },
       };
-      
+
       localStorage.setItem("Users", JSON.stringify(allUsers));
 
       if (data.name) {
@@ -76,8 +76,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
       setUser({ ...data, role: "registered" });
 
       return true;
-    }
-    catch (e) {
+    } catch (e) {
       console.error(e);
       return false;
     }
@@ -91,7 +90,7 @@ export const UserProvider = ({ children }: { children: ReactNode }) => {
   };
 
   if (user === null) {
-    return <div className="">Loading...</div>;
+    return;
   }
 
   return (

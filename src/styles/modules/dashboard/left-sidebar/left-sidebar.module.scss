@@ -1,0 +1,93 @@
+@use "/src/styles/modules/mixins/sidebar-open" as *;
+.container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 380px;
+  max-width: 100%;
+  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  z-index: 99;
+  transition: all 0.3s;
+  .logoContainer {
+    margin-top: 50px;
+    display: flex;
+    align-items: center;
+    h1 {
+      font-weight: 900;
+      color: var(--primary-color);
+    }
+  }
+  .linksContainer {
+    position: absolute;
+    top: 35%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    .link {
+      cursor: pointer;
+      transition: all 0.2s;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 10px 15px;
+      border-radius: 5px;
+      color: var(--secondary-text-color);
+      text-decoration: none;
+      svg {
+        width: 30px;
+        height: 30px;
+        fill: var(--secondary-text-color);
+      }
+      &:hover {
+        color: var(--background-color);
+        background-color: #ff8989;
+
+        svg {
+          fill: var(--background-color);
+        }
+      }
+      &.active {
+        cursor: auto;
+        color: var(--background-color);
+        background-color: var(--primary-color);
+        svg {
+          fill: var(--background-color);
+        }
+      }
+    }
+  }
+  .signoutContainer {
+    cursor: pointer;
+    position: absolute;
+    top: 75%;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    gap: 15px;
+    transition: all 0.2s;
+    font-weight: 500;
+    color: var(--secondary-text-color);
+    svg {
+      transition: all 0.2s;
+      width: 30px;
+      height: 30px;
+      fill: var(--secondary-text-color);
+    }
+    &:hover {
+      color: var(--primary-text-color);
+      svg {
+        fill: var(--primary-text-color);
+      }
+    }
+  }
+  .close {
+    display: none;
+  }
+}
+@media screen and (max-width: 1400px) {
+  @include sidebarOpen("left");
+}
