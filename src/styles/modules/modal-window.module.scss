@@ -20,7 +20,10 @@
     height: auto;
     min-width: 300px;
     max-width: 90%;
-    overflow: hidden;
+    max-height: 98%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scrollbar-width: none;
     border-radius: 10px;
     padding: 40px;
     transition: 0.3s ease all;
