@@ -147,7 +147,7 @@ export default function Habits({ date }: { date: string }) {
       {habitInstances.length > 0 && (
         <>
           <div className={styles.activeHabits}>
-            {renderHabits("uncompleted")}
+            <div className={styles.habits}>{renderHabits("uncompleted")}</div>
           </div>
           <div className={styles.completedHabits}>
             <h2>Completed habits</h2>
