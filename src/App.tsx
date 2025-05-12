@@ -9,6 +9,7 @@ import DashboardLayout from "./components/dashboard/DashboardLayout";
 import NotFound from "./components/NotFound";
 import DashboardAll from "./pages/dashboard/DashboardAll";
 import DashboardStatistics from "./pages/dashboard/DashboardStatistics";
+import Notifications from "./components/Notifications";
 
 function App() {
   const { darkTheme } = useTheme();
@@ -16,6 +17,7 @@ function App() {
   return (
     <ModalProvider>
       <AuthRedirect />
+      <Notifications />
       <div className={`main ${darkTheme ? "theme-dark" : ""}`}>
         <Routes>
           {user.role === "registered" && (
