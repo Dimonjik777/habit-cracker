@@ -103,6 +103,7 @@ export default function AddHabit() {
         value={data.title}
       />
       <HabitTypeSelect
+        value={data.type}
         onChange={(e: ChangeEvent<HTMLInputElement>) => {
           setData({ ...data, type: e.target.value as "check" | "track" });
         }}

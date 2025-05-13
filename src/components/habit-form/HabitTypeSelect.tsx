@@ -2,8 +2,10 @@ import { ChangeEvent } from "react";
 import styles from "/src/styles/modules/habit-form/habit-form.module.scss";
 
 export default function HabitTypeSelect({
+  value,
   onChange,
 }: {
+  value: "check" | "track";
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
 }) {
   return (
@@ -18,6 +20,7 @@ export default function HabitTypeSelect({
               id="habit-type-check"
               onChange={onChange}
               value={"check"}
+              checked={value == "check"}
             />
             <label className={styles.radio} htmlFor="habit-type-check"></label>
             <span className={styles.name}>Check</span>
@@ -34,6 +37,7 @@ export default function HabitTypeSelect({
               id="habit-type-track"
               onChange={onChange}
               value={"track"}
+              checked={value == "track"}
             />
             <label className={styles.radio} htmlFor="habit-type-track"></label>
             <span className={styles.name}>Track</span>
