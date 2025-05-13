@@ -103,7 +103,7 @@ export default function HistoryChart({
                   tickFormatter={(value) => (value === 1 ? "Yes" : "No")}
                 />
               )}
-              {chosenHabit.type == "track" && <YAxis domain={[]} />}
+              {chosenHabit.type == "track" && <YAxis />}
             </BarChart>
           </ResponsiveContainer>
         </div>
