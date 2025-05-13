@@ -37,8 +37,14 @@ This is a team project between two frontend developers. All tasks are discussed,
 - [x] Create basic structure for application
 - [x] Create mockup registration
 - [x] Create local database in localStorage
-- [ ] Habit creation and editing
+- [x] Habit creation and editing
 - [x] Mockup authentication
-- [ ] Page with statistics
-- [ ] Daily tracking and analytics
+- [x] Page with statistics
+- [x] Daily tracking and analytics
 - [x] Dark/light mode toggle
+
+# >=50 hours spent in total
+
+## Time spent by Dmytro = 6.05 hours
+
+## Time spent by George = 44.8 hours
