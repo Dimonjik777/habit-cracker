@@ -47,6 +47,10 @@ export default function EditHabit({ habit }: { habit: HabitType }) {
     }
   }, [data]);
   const handleSubmit = async () => {
+    if (disabled) {
+      setError("Please fill out all neccessary fields");
+      return;
+    }
     const res = await fetchEditHabit(data);
     if (res) {
       const msg = res.message;

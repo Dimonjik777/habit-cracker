@@ -45,6 +45,10 @@ export default function AddHabit() {
     }
   }, [data]);
   const handleSubmit = async () => {
+    if (disabled) {
+      setError("Please fill out all neccessary fields");
+      return;
+    }
     const res = await fetchAddHabit(data);
     if (res) {
       const msg = res.message;
