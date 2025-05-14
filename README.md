@@ -43,8 +43,8 @@ This is a team project between two frontend developers. All tasks are discussed,
 - [x] Daily tracking and analytics
 - [x] Dark/light mode toggle
 
-# >=50 hours spent in total
+# ~50 hours spent in total
 
-## Time spent by Dmytro = 6.05 hours
+## Time spent by Dmytro = 6 hours
 
-## Time spent by George = 44.8 hours
+## Time spent by George = 40 hours
