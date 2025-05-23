@@ -19,7 +19,7 @@ export default function AddHabit() {
     title: string;
     type: "check" | "track";
     days: string[];
-    goal: number;
+    goal: string;
     notify: boolean;
     notifyTime: string;
   };
@@ -27,7 +27,7 @@ export default function AddHabit() {
     title: "",
     type: "check",
     days: ["mon", "tue", "wen", "thu", "fri", "sat", "sun"],
-    goal: 0,
+    goal: "0",
     notify: false,
     notifyTime: "00:00",
   });
@@ -36,7 +36,7 @@ export default function AddHabit() {
     if (
       !data.title ||
       data.days.length === 0 ||
-      (data.type == "track" && data.goal == 0) ||
+      (data.type == "track" && (data.goal == "" || data.goal == "0")) ||
       (data.notify && !data.notifyTime)
     ) {
       setDisabled(true);
@@ -120,7 +120,7 @@ export default function AddHabit() {
         />
         <HabitGoal
           value={data.goal}
-          onChange={(val: number) => {
+          onChange={(val: string) => {
             setData({ ...data, goal: val });
           }}
           active={data.type == "track"}

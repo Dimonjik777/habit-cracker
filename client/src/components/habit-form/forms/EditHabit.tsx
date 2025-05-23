@@ -20,7 +20,7 @@ export default function EditHabit({ habit }: { habit: HabitType }) {
     title: string;
     type: "check" | "track";
     days: string[];
-    goal: number;
+    goal: string;
     notify: boolean;
     notifyTime: string;
   };
@@ -29,7 +29,7 @@ export default function EditHabit({ habit }: { habit: HabitType }) {
     title: habit.title,
     type: habit.type,
     days: habit.days,
-    goal: habit?.goal ?? 0,
+    goal: habit?.goal ?? "0",
     notify: habit.notify,
     notifyTime: habit.notifyTime,
   });
@@ -38,7 +38,7 @@ export default function EditHabit({ habit }: { habit: HabitType }) {
     if (
       !data.title ||
       data.days.length === 0 ||
-      (data.type == "track" && data.goal == 0) ||
+      (data.type == "track" && (data.goal == "" || data.goal == "0")) ||
       (data.notify && !data.notifyTime)
     ) {
       setDisabled(true);
@@ -108,7 +108,7 @@ export default function EditHabit({ habit }: { habit: HabitType }) {
         />
         <HabitGoal
           value={data.goal}
-          onChange={(val: number) => {
+          onChange={(val: string) => {
             setData({ ...data, goal: val });
           }}
           active={data.type == "track"}

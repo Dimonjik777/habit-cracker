@@ -8,7 +8,7 @@ export type HabitType = {
   title: string;
   type: "check" | "track";
   days: string[];
-  goal: number;
+  goal: string;
   notify: boolean;
   notifyTime: string;
   history: {

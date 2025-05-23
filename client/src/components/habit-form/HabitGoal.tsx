@@ -6,26 +6,28 @@ export default function HabitGoal({
   onChange,
   active,
 }: {
-  value: number;
-  onChange: (value: number) => void;
+  value: string;
+  onChange: (value: string) => void;
   active: boolean;
 }) {
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const input = e.target.value;
+    const rawInput = e.target.value.trim();
+    console.log("rawInput:", rawInput);
 
-    // Allow empty input to reset to 0
-    if (input === "") {
-      onChange(0);
+    // Allow empty input (treat as 0)
+    if (rawInput === "") {
+      onChange("");
+      return;
+    }
+    // Validate full input (optional leading minus, digits only)
+    const isValid = /^-?\d+$/.test(rawInput);
+    if (!isValid) {
       return;
     }
 
-    // Convert to number and validate
-    const numberValue = parseInt(input, 10);
-    if (isNaN(numberValue)) return;
-
-    // Limit to reasonable range (0-999999)
-    if (numberValue >= -999999 && numberValue <= 999999) {
-      onChange(numberValue);
+    const numberValue = parseInt(rawInput, 10);
+    if (numberValue >= 1 && numberValue <= 999999) {
+      onChange(numberValue.toString());
     }
   };
 
@@ -38,11 +40,10 @@ export default function HabitGoal({
       <div className={styles.title}>Goal:</div>
       <div className={styles.inputContainer}>
         <input
-          type="number"
-          min="-999999"
-          max="999999"
+          type="text"
+          inputMode="numeric"
           placeholder="0"
-          value={value || ""}
+          value={value}
           onChange={handleChange}
           disabled={!active}
         />
