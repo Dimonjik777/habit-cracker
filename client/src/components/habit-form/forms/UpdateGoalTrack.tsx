@@ -41,7 +41,8 @@ export default function UpdateGoalTrack({
         <div className={styles.updateGoalContentContainer}>
           <label htmlFor="update-goal-track">Enter new value:</label>
           <input
-            type="number"
+            type="string"
+            inputMode="numeric"
             id="update-goal-track"
             className={styles.input}
             onChange={handleChange}
