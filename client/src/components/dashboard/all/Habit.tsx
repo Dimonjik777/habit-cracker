@@ -38,7 +38,7 @@ export default function Habit({
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, []);
-  const openDelete = (_: React.MouseEvent) => {
+  const openDelete = () => {
     const handleSubmit = async () => {
       const res = await deleteHabit(habitInstance.habitId);
       let msg;
@@ -59,7 +59,7 @@ export default function Habit({
       />
     );
   };
-  const openEdit = async (_: React.MouseEvent) => {
+  const openEdit = async () => {
     const habit = await getHabit(habitInstance.habitId);
     if (habit) {
       openModal(<EditHabit habit={habit} />);
