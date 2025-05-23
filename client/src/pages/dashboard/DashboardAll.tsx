@@ -17,7 +17,7 @@ export default function DashboardAll() {
   const location = useLocation();
   const navigate = useNavigate();
   useEffect(() => {
-    let dateParam = getDateParam();
+    const dateParam = getDateParam();
     if (!dateParam) {
       return;
     }
