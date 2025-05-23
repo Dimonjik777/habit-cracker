@@ -3,30 +3,30 @@ import Check from "/src/assets/check.svg?react";
 import styles from "/src/styles/modules/habit-form/habit-form.module.scss";
 
 export default function HabitNotify({
-  initialValue,
-  initialTimeValue,
+  checkboxValue,
+  timeValue,
   onChange,
   onTimeChange,
 }: {
-  initialValue?: boolean;
-  initialTimeValue?: string;
+  checkboxValue: boolean;
+  timeValue: string;
   onChange: (value: boolean) => void;
   onTimeChange: (value: string) => void; // optional callback
 }) {
   const [notifyEnabled, setNotifyEnabled] = useState<boolean>(
-    Boolean(initialValue)
+    Boolean(checkboxValue)
   );
   const [hours, setHours] = useState<string>(() => {
-    if (initialTimeValue) {
-      const [hours, _] = initialTimeValue.split(":");
+    if (timeValue) {
+      const [hours, _] = timeValue.split(":");
       return hours;
     } else {
       return "00";
     }
   });
   const [minutes, setMinutes] = useState<string>(() => {
-    if (initialTimeValue) {
-      const [_, minutes] = initialTimeValue.split(":");
+    if (timeValue) {
+      const [_, minutes] = timeValue.split(":");
       return minutes;
     } else {
       return "00";
@@ -47,6 +47,10 @@ export default function HabitNotify({
 
   const handleHoursChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let val = e.target.value;
+    const isValid = /^-?\d+$/.test(val);
+    if (!isValid && val !== "") {
+      return;
+    }
     if (val.length <= 2) {
       if (parseInt(val) > 23) val = "23";
       setHours(val);
@@ -56,11 +60,31 @@ export default function HabitNotify({
 
   const handleMinutesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let val = e.target.value;
+    const isValid = /^-?\d+$/.test(val);
+    if (!isValid && val !== "") {
+      return;
+    }
     if (val.length <= 2) {
       if (parseInt(val) > 59) val = "59";
       setMinutes(val);
       updateTime(hours, val);
     }
+  };
+  const handleHoursBlur = () => {
+    let h = parseInt(hours || "0", 10);
+    if (isNaN(h) || h < 0) h = 0;
+    if (h > 23) h = 23;
+    const padded = h.toString().padStart(2, "0");
+    setHours(padded);
+    updateTime(padded, minutes);
+  };
+  const handleMinutesBlur = () => {
+    let m = parseInt(minutes || "0", 10);
+    if (isNaN(m) || m < 0) m = 0;
+    if (m > 59) m = 59;
+    const padded = m.toString().padStart(2, "0");
+    setMinutes(padded);
+    updateTime(hours, padded);
   };
 
   return (
@@ -83,28 +107,26 @@ export default function HabitNotify({
       >
         <div className={styles.inputContainer}>
           <input
-            type="number"
+            type="string"
+            inputMode="numeric"
             className={styles.input}
             placeholder="00"
             value={hours}
             onChange={handleHoursChange}
-            min="0"
-            max="23"
+            onBlur={handleHoursBlur}
             disabled={!notifyEnabled}
-            minLength={0}
-            maxLength={2}
           />
         </div>
         <span>:</span>
         <div className={styles.inputContainer}>
           <input
-            type="number"
+            type="string"
+            inputMode="numeric"
             className={styles.input}
             placeholder="00"
             value={minutes}
             onChange={handleMinutesChange}
-            min="0"
-            max="59"
+            onBlur={handleMinutesBlur}
             disabled={!notifyEnabled}
           />
         </div>

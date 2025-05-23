@@ -115,8 +115,8 @@ export default function EditHabit({ habit }: { habit: HabitType }) {
         />
       </div>
       <HabitNotify
-        initialValue={data.notify}
-        initialTimeValue={data.notifyTime}
+        checkboxValue={data.notify}
+        timeValue={data.notifyTime}
         onChange={(value: boolean) => {
           setTimeout(() => {
             setData({ ...data, notify: value });
