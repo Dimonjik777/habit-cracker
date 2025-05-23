@@ -61,7 +61,7 @@ export default function FormLogin() {
   const { closeModal, openModal } = useModal();
 
   const handleSubmit = async () => {
-    if (errors && errors.size > 0) {
+    if (errors.size > 0) {
       setShowErrors(true);
       return;
     }
