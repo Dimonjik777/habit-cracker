@@ -11,27 +11,13 @@ export default function HabitNotify({
   checkboxValue: boolean;
   timeValue: string;
   onChange: (value: boolean) => void;
-  onTimeChange: (value: string) => void; // optional callback
+  onTimeChange: (value: string) => void;
 }) {
   const [notifyEnabled, setNotifyEnabled] = useState<boolean>(
     Boolean(checkboxValue)
   );
-  const [hours, setHours] = useState<string>(() => {
-    if (timeValue) {
-      const [hours, _] = timeValue.split(":");
-      return hours;
-    } else {
-      return "00";
-    }
-  });
-  const [minutes, setMinutes] = useState<string>(() => {
-    if (timeValue) {
-      const [_, minutes] = timeValue.split(":");
-      return minutes;
-    } else {
-      return "00";
-    }
-  });
+  const hours = timeValue.split(":")[0];
+  const minutes = timeValue.split(":")[1];
 
   const handleToggleNotify = () => {
     const newValue = !notifyEnabled;
@@ -41,7 +27,7 @@ export default function HabitNotify({
   };
 
   const updateTime = (h: string, m: string) => {
-    const time = `${h.padStart(2, "0")}:${m.padStart(2, "0")}`;
+    const time = `${h}:${m}`;
     onTimeChange(time);
   };
 
@@ -53,7 +39,6 @@ export default function HabitNotify({
     }
     if (val.length <= 2) {
       if (parseInt(val) > 23) val = "23";
-      setHours(val);
       updateTime(val, minutes);
     }
   };
@@ -66,7 +51,6 @@ export default function HabitNotify({
     }
     if (val.length <= 2) {
       if (parseInt(val) > 59) val = "59";
-      setMinutes(val);
       updateTime(hours, val);
     }
   };
@@ -75,7 +59,6 @@ export default function HabitNotify({
     if (isNaN(h) || h < 0) h = 0;
     if (h > 23) h = 23;
     const padded = h.toString().padStart(2, "0");
-    setHours(padded);
     updateTime(padded, minutes);
   };
   const handleMinutesBlur = () => {
@@ -83,10 +66,8 @@ export default function HabitNotify({
     if (isNaN(m) || m < 0) m = 0;
     if (m > 59) m = 59;
     const padded = m.toString().padStart(2, "0");
-    setMinutes(padded);
     updateTime(hours, padded);
   };
-
   return (
     <div className={styles.notifyContainer}>
       <div className={styles.checkboxContainer}>
