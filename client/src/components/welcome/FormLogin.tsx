@@ -21,27 +21,49 @@ export default function FormLogin() {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   };
+  const validatePassword = (password: string): boolean => {
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return regex.test(password);
+  };
+
+  const [errors, setErrors] = useState<Map<string, string>>(new Map());
 
   useEffect(() => {
-    if (!data["email"] || !data["password"]) {
-      setError("Please fill out empty fields.");
-    } else if (!validateEmail(data["email"])) {
-      setError("Please follow the email pattern");
-    } else {
-      setError("");
-    }
-    setShowError(false);
-  }, [data]);
+    const updatedErrors = new Map(errors);
 
-  const [error, setError] = useState<string>("");
-  const [showError, setShowError] = useState<boolean>(false);
+    if (!data.email || !data.password) {
+      updatedErrors.set("fields", "Please fill all fields");
+    } else {
+      updatedErrors.delete("fields");
+    }
+
+    if (!validateEmail(data.email)) {
+      updatedErrors.set("email", "Please provide a valid email address");
+    } else {
+      updatedErrors.delete("email");
+    }
+
+    if (!validatePassword(data.password)) {
+      updatedErrors.set(
+        "password",
+        "Password must be at least 8 characters long and contain at least one letter and one number"
+      );
+    } else {
+      updatedErrors.delete("password");
+    }
+
+    setErrors(updatedErrors);
+  }, [data]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const [showErrors, setShowErrors] = useState<boolean>(false);
 
   const { login } = useUser();
   const { closeModal, openModal } = useModal();
 
   const handleSubmit = async () => {
-    if (error) {
-      setShowError(true);
+    if (errors && errors.size > 0) {
+      console.log(errors);
+      setShowErrors(true);
       return;
     }
 
@@ -62,8 +84,14 @@ export default function FormLogin() {
       if (user && user.password === data.password) {
         resolve(true);
       } else {
-        setError("Incorrect email or password entered.");
-        setShowError(true);
+        setErrors((prev) => {
+          const updated = new Map(prev);
+          updated.set("login", "Invalid email or password");
+          return updated;
+        });
+        setShowErrors(true);
+
+        setShowErrors(true);
         resolve(false);
       }
     });
@@ -94,7 +122,15 @@ export default function FormLogin() {
 
         <Button type="primary" value="Sign in" action={handleSubmit} />
       </form>
-      {showError && <p className={styles.error}>{error}</p>}
+      {showErrors && (
+        <>
+          {[...errors].map(([, error], index) => (
+            <p key={index} className={styles.error}>
+              {error}
+            </p>
+          ))}
+        </>
+      )}
       <div className={styles.footer}>
         <h4>Do not have an account yet?</h4>
         <span
