@@ -103,14 +103,14 @@ export default function FormRegister() {
           type="text"
           placeholder="Enter name"
         />
-        <h3 className={styles.label}>Email adress:</h3>
+        <h3 className={styles.label}>Email address:</h3>
         <input
           onChange={handleChange}
           value={registerData.email}
           name="email"
           className={styles.input}
           type="text"
-          placeholder="Enter email adress"
+          placeholder="Enter email address"
         />
         <h3 className={styles.label}>Password:</h3>
         <PasswordField
