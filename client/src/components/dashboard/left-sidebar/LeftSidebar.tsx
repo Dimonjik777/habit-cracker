@@ -26,6 +26,7 @@ export default function LeftSidebar() {
             className={({ isActive }) =>
               `${styles.link} ${isActive ? styles.active : ""}`
             }
+            onClick={closeLeftSidebar}
           >
             <ListIcon />
             <h4>All habits</h4>
@@ -35,6 +36,7 @@ export default function LeftSidebar() {
             className={({ isActive }) =>
               `${styles.link} ${isActive ? styles.active : ""}`
             }
+            onClick={closeLeftSidebar}
           >
             <ChartIcon />
             <h4>Statistics</h4>
