@@ -6,11 +6,14 @@ import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { safeParseDate } from "../../../helpers/date/safeParseDate";
+import { useSidebar } from "../../../contexts/SidebarContext";
 
 export default function Calendar() {
+  const { closeRightSidebar } = useSidebar();
   const [selectedDate, setSelectedDate] = useState<dayjs.Dayjs | null>(dayjs());
   const navigate = useNavigate();
   const handleDateChange = (newDate: dayjs.Dayjs | null) => {
+    closeRightSidebar();
     setSelectedDate(newDate);
     navigate(`/dashboard/all?date=${newDate?.format("DD-MM-YYYY")}`);
   };
