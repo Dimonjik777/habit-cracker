@@ -124,11 +124,11 @@ export default function FormLogin() {
       </form>
       {showErrors && (
         <>
-          {[...errors].map(([, error], index) => (
-            <p key={index} className={styles.error}>
-              {error}
-            </p>
-          ))}
+          <div className={styles.errors}>
+            {[...errors].map(([, error], index) => (
+              <p key={index}>{error}</p>
+            ))}
+          </div>
         </>
       )}
       <div className={styles.footer}>
