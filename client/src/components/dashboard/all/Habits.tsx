@@ -14,7 +14,7 @@ export default function Habits({ date }: { date: string }) {
     habitId: string;
     title: string;
     type: "check" | "track";
-    goal?: number;
+    goal?: string;
     isCompleted: boolean;
     goalProgress?: number;
   };
@@ -33,7 +33,7 @@ export default function Habits({ date }: { date: string }) {
       if (new Date().getTime() >= safeParseDate(date).getTime()) {
         instances = Object.values(userHabits)
           .map((habit: any) => {
-            let history = habit.history;
+            const history = habit.history;
             if (
               // check for the history record presence
               !history[date] &&
@@ -107,7 +107,7 @@ export default function Habits({ date }: { date: string }) {
       openModal(
         <UpdateGoalTrack
           val={habit.goalProgress ?? 0}
-          placeholder={String(habit.goal) ?? "0"}
+          placeholder={habit.goal ?? "0"}
           handleSubmit={(val: number) => handleSubmit(val)}
         />
       );

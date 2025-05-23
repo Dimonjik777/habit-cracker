@@ -33,7 +33,7 @@ type HabitInstance = {
   habitId: string;
   title: string;
   type: "check" | "track";
-  goal?: number;
+  goal?: string;
   isCompleted: boolean;
   goalProgress?: number;
 };
@@ -153,7 +153,7 @@ export const HabitProvider = ({ children }: { children: ReactNode }) => {
   const location = useLocation();
   useEffect(() => {
     if (user.role == "registered") {
-      let dateParam = getDateParam();
+      const dateParam = getDateParam();
       if (!dateParam && location.pathname.startsWith("/dashboard")) {
         navigate(`?date=${formatDate(new Date())}`);
         return;

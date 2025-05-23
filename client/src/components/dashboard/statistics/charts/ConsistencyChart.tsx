@@ -33,7 +33,7 @@ export default function ConsistencyChart({
       const createdAtDate = safeParseDate(chosenHabit.createdAt);
       const tomorrow = dayjs().add(1, "day").startOf("day").toDate();
 
-      let date = new Date(createdAtDate);
+      const date = new Date(createdAtDate);
       const data = [];
 
       let totalScheduled = 0;
@@ -60,10 +60,16 @@ export default function ConsistencyChart({
               const isCompleted = historyEntry?.[1]?.isCompleted ?? false;
               // it can be either 0 or 1
               completionRatio = isCompleted ? 1 : 0;
-            } else if (chosenHabit.type === "track" && chosenHabit.goal != 0) {
+            } else if (
+              chosenHabit.type === "track" &&
+              Number(chosenHabit.goal) != 0
+            ) {
               const progress = historyEntry?.[1]?.goalProgress ?? 0;
               // it can be any number from 0 to 1
-              completionRatio = Math.min(progress / chosenHabit.goal, 1);
+              completionRatio = Math.min(
+                progress / Number(chosenHabit.goal),
+                1
+              );
             }
           }
           // set totalAchieved to (totalAchieved + completionRatio)

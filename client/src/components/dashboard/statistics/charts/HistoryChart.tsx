@@ -29,7 +29,7 @@ export default function HistoryChart({
       const createdAtDate = safeParseDate(chosenHabit.createdAt);
       const tomorrow = dayjs().add(1, "day").startOf("day").toDate();
 
-      let date = new Date(createdAtDate);
+      const date = new Date(createdAtDate);
       const data = [];
       while (date < tomorrow) {
         const weekday = getWeekday(date);
@@ -46,7 +46,10 @@ export default function HistoryChart({
               const isCompleted = historyEntry?.[1]?.isCompleted ?? false;
               // it can be either 0 or 1
               value = isCompleted ? 1 : 0;
-            } else if (chosenHabit.type === "track" && chosenHabit.goal != 0) {
+            } else if (
+              chosenHabit.type === "track" &&
+              Number(chosenHabit.goal) != 0
+            ) {
               const progress = historyEntry?.[1]?.goalProgress ?? 0;
               // it is equal to goalProgress
               value = progress;

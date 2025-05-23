@@ -10,7 +10,7 @@ type HabitInstanceType = {
   habitId: string;
   title: string;
   type: "check" | "track";
-  goal?: number;
+  goal?: string;
   isCompleted: boolean;
   goalProgress?: number;
 };
