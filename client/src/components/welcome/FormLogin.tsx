@@ -46,7 +46,7 @@ export default function FormLogin() {
     if (!validatePassword(data.password)) {
       updatedErrors.set(
         "password",
-        "Password must be at least 8 characters long and contain at least one letter and one number"
+        "Password must be at least 8 characters long and contain at least one letter and one number. Only English letters and numbers are allowed."
       );
     } else {
       updatedErrors.delete("password");
