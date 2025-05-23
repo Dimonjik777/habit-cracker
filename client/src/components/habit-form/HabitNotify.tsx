@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Check from "/src/assets/check.svg?react";
 import styles from "/src/styles/modules/habit-form/habit-form.module.scss";
 
@@ -38,8 +38,14 @@ export default function HabitNotify({
       return;
     }
     if (val.length <= 2) {
-      if (parseInt(val) > 23) val = "23";
       updateTime(val, minutes);
+      if (val.length == 2) {
+        if (parseInt(val) > 23) val = "23";
+        // delay the focus so that two digits can be entered
+        setTimeout(() => {
+          minutesRef.current?.focus();
+        }, 0);
+      }
     }
   };
 
@@ -68,6 +74,7 @@ export default function HabitNotify({
     const padded = m.toString().padStart(2, "0");
     updateTime(hours, padded);
   };
+  const minutesRef = useRef<HTMLInputElement>(null);
   return (
     <div className={styles.notifyContainer}>
       <div className={styles.checkboxContainer}>
@@ -109,6 +116,7 @@ export default function HabitNotify({
             onChange={handleMinutesChange}
             onBlur={handleMinutesBlur}
             disabled={!notifyEnabled}
+            ref={minutesRef}
           />
         </div>
       </div>
