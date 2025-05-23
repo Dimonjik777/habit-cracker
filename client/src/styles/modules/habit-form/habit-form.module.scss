@@ -10,11 +10,19 @@
   font-size: 18px;
   border-radius: 10px;
   font-weight: 500;
-  &::-webkit-inner-spin-button {
-    display: none;
-  }
 }
 .container {
+  /* Chrome, Safari, Edge, Opera */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
   width: 600px;
   max-width: 100%;
   .content {
