@@ -1,6 +1,6 @@
 import styles from "/src/styles/modules/welcome/form.module.scss";
 import Button from "../Button";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PasswordField from "./PasswordField";
 import { useUser } from "../../contexts/UserContext";
 import { useModal } from "../../contexts/ModalContext";
@@ -22,24 +22,73 @@ export default function FormRegister() {
     password: "",
   });
 
-  const [emailError, setEmailError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Map<string, string>>(new Map());
+  const [showErrors, setShowErrors] = useState<boolean>(false);
+
+  const validateName = (name: string): boolean => {
+    const regex = /^[a-zA-Z\s]+$/;
+    return regex.test(name);
+  };
 
   function validateEmail(email: string): boolean {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(email);
   }
 
+  const validatePassword = (password: string): boolean => {
+    const regex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return regex.test(password);
+  };
+
+  // check fields for errors
+  useEffect(() => {
+    const updatedErrors = new Map(errors);
+
+    if (!registerData.name || !registerData.email || !registerData.password) {
+      updatedErrors.set("fields", "Please fill all fields");
+    } else {
+      updatedErrors.delete("fields");
+    }
+
+    if (!validateName(registerData.name)) {
+      updatedErrors.set("name", "Please provide a valid name");
+    } else {
+      updatedErrors.delete("name");
+    }
+
+    if (!validateEmail(registerData.email)) {
+      updatedErrors.set("email", "Please provide a valid email address");
+    } else {
+      updatedErrors.delete("email");
+    }
+
+    if (!validatePassword(registerData.password)) {
+      updatedErrors.set(
+        "password",
+        "Password must be at least 8 characters long and contain at least one letter and one number. Only English letters and numbers are allowed."
+      );
+    } else {
+      updatedErrors.delete("password");
+    }
+
+    setErrors(updatedErrors);
+  }, [registerData]); // eslint-disable-line react-hooks/exhaustive-deps
+
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
-
-    if (name == "email") setEmailError(null);
-
     setRegisterData((prev) => ({
       ...prev,
       [name]: value,
     }));
   }
-
+  const handleSubmit = async () => {
+    if (errors.size > 0) {
+      setShowErrors(true);
+      return;
+    }
+    closeModal();
+    register(registerData);
+  };
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Create your account</h2>
@@ -73,20 +122,17 @@ export default function FormRegister() {
             });
           }}
         />
-        <Button
-          type="primary"
-          value="Sign up"
-          action={() => {
-            if (!validateEmail(registerData.email)) {
-              setEmailError("Incorrect email");
-              return;
-            }
-            closeModal();
-            register(registerData);
-          }}
-        />
+        <Button type="primary" value="Sign up" action={handleSubmit} />
       </form>
-      {emailError ? <p className={styles.error}>{emailError}</p> : ""}
+      {showErrors && (
+        <>
+          <div className={styles.errors}>
+            {[...errors].map(([, error], index) => (
+              <p key={index}>{error}</p>
+            ))}
+          </div>
+        </>
+      )}
       <div className={styles.footer}>
         <h4>Already have an account?</h4>
         <span
