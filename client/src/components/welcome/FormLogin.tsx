@@ -62,7 +62,6 @@ export default function FormLogin() {
 
   const handleSubmit = async () => {
     if (errors && errors.size > 0) {
-      console.log(errors);
       setShowErrors(true);
       return;
     }
